@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #e3a364 ">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('img/imgLogo.png')}}" alt="logo" style="width:40px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -18,16 +18,28 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             @if(Auth::check())
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{url('/miPerfil')}}">Mi perfil</a>
-                </li>
+
+                <div class="dropdown" id="dropdownLogoutLI" class="dropdown order-1">
+
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <p id="dropdownLogoutMenu1"></p>
+                        <img src="<?php echo (Auth::user()->imagenusuario)?>" style="width: 40px; height: 40px;"/>
+                    </button>
+
+                    <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Mi perfil</a>
+                        <form action="{{ url('/logout') }}" method="POST" style="display:inline">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-link dropdown-item" style="display:inline;cursor:pointer">
+                                Cerrar sesión
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+
                 <li class="nav-item">
-                    <form action="{{ url('/logout') }}" method="POST" style="display:inline">
-                        {{ csrf_field() }}
-                        <button type="submit" class="btn btn-link nav-link" style="display:inline;cursor:pointer">
-                            Cerrar sesión
-                        </button>
-                    </form>
+
                 </li>
             @else
                 <li class="nav-item">
