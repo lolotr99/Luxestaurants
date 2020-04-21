@@ -15,10 +15,10 @@ class CreateRestaurantesTable extends Migration
     {
         Schema::create('restaurantes', function (Blueprint $table) {
             $table->bigIncrements('idRestaurante');
-            $table->string('nombreRestaurante');
-            $table->string('localidad');
-            $table->integer('capacidad');
-            $table->enum('estrellasMichelin',[1,2,3]);
+            $table->string('ciudad');
+            $table->string('zona');
+            $table->integer('numeromesas');
+            $table->string('telefono');
             $table->timestamps();
         });
     }
