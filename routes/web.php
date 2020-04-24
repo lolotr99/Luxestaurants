@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('prueba');
 });
 
-Auth::routes();
+Route::get('/locales', 'RestauranteController@getRestaurantes');
 
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

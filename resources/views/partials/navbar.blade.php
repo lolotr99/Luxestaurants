@@ -1,32 +1,35 @@
-<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #e3a364 ">
+<nav class="navbar navbar-expand-md bg-primary">
     <!-- Brand/logo -->
-    <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('img/imgLogo.png')}}" alt="logo" style="width:40px;"></a>
+    <a class="navbar-brand ml-5" href="{{url('/')}}"><img class="imgLogo" src="{{asset('img/imgLogo.png')}}" alt="logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
+        <ul class="nav navbar-nav navbar-letra ml-5">
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Luxestaurants</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="{{url('/locales')}}">Locales/Reservas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Carta</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Sobre Nosotros</a>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto navbar-letra mr-2">
             @if(Auth::check())
 
-                <div class="dropdown" id="dropdownLogoutLI" class="dropdown order-1">
+                <div class="dropdown order-1">
 
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <p id="dropdownLogoutMenu1"></p>
-                        <img src="<?php echo (Auth::user()->imagenusuario)?>" style="width: 40px; height: 40px;"/>
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownLogout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        <img class="imgPerfil" src="<?php echo (Auth::user()->imagenusuario)?>"/>
                     </button>
 
-                    <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownLogout">
                         <a class="dropdown-item" href="#">Mi perfil</a>
                         <form action="{{ url('/logout') }}" method="POST" style="display:inline">
                             {{ csrf_field() }}
@@ -43,10 +46,10 @@
                 </li>
             @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('/login')}}">Iniciar sesión</a>
+                    <a class="nav-link" href="{{url('/login')}}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('/register')}}">Registrarse</a>
+                    <a class="nav-link" href="{{url('/register')}}">Register</a>
                 </li>
             @endif
         </ul>
