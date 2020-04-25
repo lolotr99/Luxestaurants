@@ -13,19 +13,19 @@ nav {
     font-family: 'Be Vietnam', sans-serif;
 }
 
-.navbar-letra li a {
+.text-navbar li a {
     font-size: 1rem;
     color: $bg-white;
 }
-.navbar-letra li a:hover {
+.text-navbar li a:hover {
     text-decoration: none;
     color: $bg-secundary;
 }
-.navbar-letra a:hover {
+.text-navbar a:hover {
   text-decoration: none;
   color: $bg-secundary;
 }
-.navbar-letra button:hover{
+.text-navbar button:hover{
   text-decoration: none;
   color: $bg-secundary;
 }
@@ -42,91 +42,134 @@ nav {
     background-color:  $bg-primary;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.bg-footer {
-    background-color: #33383c;
-    padding: 50px 0 30px;
-}
-.footer-heading {
-    letter-spacing: 2px;
+.text-title {
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
-.footer-link a {
-    color: #acacac;
-    line-height: 40px;
-    font-size: 14px;
-    transition: all 0.5s;
+.text-footer {
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: $bg-white;
+}
+.text-general {
+  font-family: 'Lato', sans-serif ;
+  font-size: 0.875rem;
+}
+.btn-secundary{
+  background-color: $bg-secundary;
+  border-color: $bg-primary;
+  color: $bg-white;
+}
+.btn-secundary:focus, .btn-secundary:hover{
+  background-color: $bg-primary;
+  border-color: $bg-secundary;
+  color: $bg-white;
 }
 
-.footer-link a:hover {
-    color: #1bbc9b;
+
+/* social media buttons */
+.icon-button {
+  background-color: $bg-primary;
+  border-radius: 2.6rem;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.3rem;
+  height: 2.6rem;
+  line-height: 2.6rem;
+  margin: 0 5px;
+  position: relative;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 2.6rem;
 }
 
-.contact-info {
-    color: #acacac;
-    font-size: 14px;
+/* Circle */
+.icon-button span {
+  border-radius: 0;
+  display: block;
+  height: 0;
+  left: 50%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 0;
+}
+.icon-button:hover span {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 2.6rem;
+  margin: -1.3rem;
 }
 
-.footer-social-icon {
-    font-size: 15px;
-    height: 34px;
-    width: 34px;
-    line-height: 34px;
-    border-radius: 3px;
-    text-align: center;
-    display: inline-block;
+/* Icons */
+.icon-button i {
+  background: none;
+  color: white;
+  height: 2.6rem;
+  left: 0;
+  line-height: 2.6rem;
+  position: absolute;
+  top: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 2.6rem;
+  z-index: 10;
 }
 
-.facebook {
-    background-color: #4e71a8;
-    color: #ffffff;
+.twitter span {
+  background-color: #4099ff;
+}
+.facebook span {
+  background-color: #3B5998;
+}
+.instagram span {
+  background-color: #517fa4;
 }
 
-.twitter {
-    background-color: #55acee;
-    color: #ffffff;
+.icon-button .icon-twitter {
+  color: #4099ff;
+}
+.icon-button .icon-facebook {
+  color: #3B5998;
+}
+.icon-button .icon-instagram {
+  color: #517fa4;
 }
 
-.google {
-    background-color: #d6492f;
-    color: #ffffff;
+.icon-button:hover .icon-twitter,
+.icon-button:hover .icon-facebook,
+.icon-button:hover .icon-instagram {
+  color: white;
 }
 
-.apple {
-    background-color: #424041;
-    color: #ffffff;
-}
+@media all and (max-width: 680px) {
+  .icon-button {
+    border-radius: 1.6rem;
+    font-size: 0.8rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    width: 1.6rem;
+  }
 
-.footer-alt {
-    color: #acacac;
-}
+  .icon-button:hover span {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 1.6rem;
+    margin: -0.8rem;
+  }
 
-.footer-heading {
-    position: relative;
-    padding-bottom: 12px;
-}
-
-.footer-heading:after {
-    content: '';
-    width: 25px;
-    border-bottom: 1px solid #FFF;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    display: block;
-    border-bottom: 1px solid #1bbc9b;
+  /* Icons */
+  .icon-button i {
+    height: 1.6rem;
+    line-height: 1.6rem;
+    width: 1.6rem;
+  }
 }

@@ -5,7 +5,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="nav navbar-nav navbar-letra ml-5">
+        <ul class="nav navbar-nav text-navbar ml-5">
             <li class="nav-item">
                 <a class="nav-link" href="#">Luxestaurants</a>
             </li>
@@ -19,7 +19,7 @@
                 <a class="nav-link" href="#">Sobre Nosotros</a>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto navbar-letra mr-2">
+        <ul class="navbar-nav ml-auto text-navbar mr-2">
             @if(Auth::check())
 
                 <div class="dropdown order-1">
