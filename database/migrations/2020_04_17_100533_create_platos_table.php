@@ -14,7 +14,7 @@ class CreatePlatosTable extends Migration
     public function up()
     {
         Schema::create('platos', function (Blueprint $table) {
-            $table->bigIncrements('idPlato');
+            $table->bigIncrements('id');
             $table->string('nombrePlato');
             $table->string('ingredientes');
             $table->string('alergenos');

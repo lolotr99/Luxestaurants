@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('prueba');
+    return view('home');
 });
 
 Route::get('/locales', 'RestauranteController@getRestaurantes');
+Route::get('/locales/{id}','RestauranteController@detallesRestaurante');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

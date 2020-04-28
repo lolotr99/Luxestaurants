@@ -1,4 +1,4 @@
 @extends('layouts.master')
 @section('content')
-    esto es una prueba loco
+    {{$restaurante->ciudad}} : {{$restaurante->zona}}
 @endsection

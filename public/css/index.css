@@ -54,7 +54,7 @@ nav {
 
 .text-general {
   font-family: "Lato", sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .btn-secundary {
@@ -67,6 +67,15 @@ nav {
   background-color: #2E1E1F !important;
   border-color: #AB2417 !important;
   color: #FFFFFF !important;
+}
+
+.estiloEnlaces {
+  color: #AB2417 !important;
+}
+
+.estiloEnlaces:hover {
+  text-decoration: none;
+  color: #212529 !important;
 }
 
 /* social media buttons */

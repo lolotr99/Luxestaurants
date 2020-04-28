@@ -15,7 +15,7 @@ class CreateReservasTable extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('idReserva');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('idUsuario');
             $table->unsignedBigInteger('idRestaurante');
             $table->date('fechaReserva');
@@ -25,7 +25,7 @@ class CreateReservasTable extends Migration
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
             $table->foreign('idRestaurante')
-                ->references('idRestaurante')->on('restaurantes')
+                ->references('id')->on('restaurantes')
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
             $table->timestamps();

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Restaurante;
-use Illuminate\Http\Request;
 
 class RestauranteController extends Controller
 {
@@ -11,4 +10,10 @@ class RestauranteController extends Controller
         $restaurantes = Restaurante::all();
         return view('locales',array('arrayRestaurantes' => $restaurantes));
     }
+
+    public function detallesRestaurante($id){
+        $restaurante = Restaurante::find($id);
+        return view('details',array('restaurante' => $restaurante));
+    }
+
 }

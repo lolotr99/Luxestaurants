@@ -15,7 +15,7 @@ class CreateValoracionesTable extends Migration
     {
         Schema::create('valoraciones', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('idValoracion');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('idUsuario');
             $table->unsignedBigInteger('idPlato');
             $table->date('fechaValoracion');
@@ -26,7 +26,7 @@ class CreateValoracionesTable extends Migration
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
             $table->foreign('idPlato')
-                ->references('idPlato')->on('platos')
+                ->references('id')->on('platos')
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
             $table->timestamps();
