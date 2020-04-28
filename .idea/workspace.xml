@@ -3,19 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="53fdce2f-2733-41ae-83e7-5cc95f711beb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_04_17_100356_create_restaurantes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_04_17_100356_create_restaurantes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_04_17_100451_create_reservas_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_04_17_100451_create_reservas_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_04_17_100533_create_platos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_04_17_100533_create_platos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_04_17_100657_create_valoraciones_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_04_17_100657_create_valoraciones_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/locales.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/locales.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/prueba.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/navbar.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,29 +36,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/details.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="11" lean-forward="true" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+            <state relative-caret-position="258">
+              <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+              <folding>
+                <element signature="e#289#308#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,22 +76,22 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/public/css/index.css" />
-        <option value="$PROJECT_DIR$/resources/views/partials/navbar.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/footer.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/prueba.blade.php" />
         <option value="$PROJECT_DIR$/public/scss/index.scss" />
         <option value="$PROJECT_DIR$/app/Restaurante.php" />
         <option value="$PROJECT_DIR$/resources/views/locales.blade.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_04_17_100356_create_restaurantes_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_04_17_100451_create_reservas_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_04_17_100533_create_platos_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_04_17_100657_create_valoraciones_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/details.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_04_17_100356_create_restaurantes_table.php" />
+        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/resources/views/partials/navbar.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/details.blade.php" />
       </list>
     </option>
   </component>
@@ -229,7 +205,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -251,9 +226,13 @@
             <path>
               <item name="Luxestaurants" type="b2602c69:ProjectViewProjectNode" />
               <item name="Luxestaurants" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Luxestaurants" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Luxestaurants" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Luxestaurants" type="b2602c69:ProjectViewProjectNode" />
@@ -271,12 +250,13 @@
               <item name="Luxestaurants" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -330,18 +310,19 @@
       <workItem from="1587719680136" duration="6041000" />
       <workItem from="1587807980992" duration="8582000" />
       <workItem from="1587981567956" duration="8199000" />
-      <workItem from="1588064879577" duration="4653000" />
+      <workItem from="1588064879577" duration="4766000" />
+      <workItem from="1588093675398" duration="5604000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71270000" />
+    <option name="totallyTimeSpent" value="76987000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="639" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27609682" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2806354" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -354,7 +335,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32938856" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32938856" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -398,13 +379,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -474,28 +448,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
-          <folding>
-            <element signature="e#7#20#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/img/imgLogo.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/navbar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
@@ -512,8 +469,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scss/index.css.map">
-      <provider editor-type-id="sourcemapFileViewerProvider" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="sourcemapFileViewerProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Restaurante.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -557,13 +514,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_17_100356_create_restaurantes_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/locales.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -585,13 +535,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -599,17 +542,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_17_100356_create_restaurantes_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="21" column="35" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="32" column="299" selection-start-line="32" selection-start-column="299" selection-end-line="32" selection-end-column="299" />
+          <folding>
+            <element signature="e#7#20#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partials/navbar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="13" column="17" lean-forward="true" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="76">
           <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/details.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="11" lean-forward="true" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+        <state relative-caret-position="258">
+          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+          <folding>
+            <element signature="e#289#308#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

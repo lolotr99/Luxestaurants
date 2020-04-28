@@ -19,6 +19,7 @@ class CreateRestaurantesTable extends Migration
             $table->string('zona');
             $table->integer('numeromesas');
             $table->string('telefono');
+            $table->string('mapa');
             $table->timestamps();
         });
     }

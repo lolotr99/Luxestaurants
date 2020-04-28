@@ -2,7 +2,7 @@
     <!-- Brand/logo -->
     <a class="navbar-brand ml-5" href="{{url('/')}}"><img class="imgLogo" src="{{asset('img/imgLogo.png')}}" alt="logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="nav navbar-nav text-navbar ml-5">
