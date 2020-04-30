@@ -26,7 +26,7 @@
 
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownLogout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                        <img class="imgPerfil" src="<?php echo (Auth::user()->imagenusuario)?>"/>
+                        <img class="imgPerfil" src="{{asset(Auth::user()->imagenusuario)}}"/>
                     </button>
 
                     <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownLogout">

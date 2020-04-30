@@ -24,7 +24,10 @@
     <div class="row mt-5">
         <h4>Rellena el formulario de reserva</h4>
     </div>
-    <form method="POST" action="" enctype="multipart/form-data">
+    <form method="POST" action="{{url('/reservar')}}" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <input type="hidden" name="ocultoRestaurante" value="{{$restaurante->id}}">
+        <input type="hidden" name="ocultoUsuario" value="{{(Auth::user()->id)}}">
         <div class="row">
                 <div class="col-sm-6">
                     <label for="nombre" class="d-flex justify-content-left">Nombre + Apellidos (*)</label>
@@ -45,7 +48,7 @@
                 <div class="form-group">
                     <label for="fecha" class="control-label">Fecha (*)</label>
                     <div class='input-group date'>
-                        <input id="fecha"  type='date' class="form-control" />
+                        <input type="date" class="form-control" id="fecha" name="fecha">
                     </div>
                 </div>
             </div>
@@ -54,7 +57,7 @@
                 <div class="form-group">
                     <label for="hora" class="control-label">Hora (*)</label>
                     <div class='input-group date'>
-                        <input type="time" id="hora" min="09:00" max="23:30"  class="form-control">
+                        <input type="time" id="hora" name="hora" min="09:00" max="23:30"  class="form-control">
                     </div>
                 </div>
             </div>

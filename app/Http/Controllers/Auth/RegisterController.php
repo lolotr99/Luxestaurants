@@ -67,13 +67,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $imagenusuario = 'img/defecto.png';
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'fechanacimiento' => $data['fechanacimiento'],
-            'imagenusuario' => 'img/defecto.png',
+            'imagenusuario' => $imagenusuario,
             'rol' => 'basico',
         ]);
+
+        if (request()->hasFile('imagenusuario')) {
+            $imagenusuario = 'img/'.request()->file('imagenusuario')->getClientOriginalName();
+            request()->file('imagenusuario')->move('img',request()->file('imagenusuario')->getClientOriginalName());
+            $user->update(['imagenusuario' => $imagenusuario]);
+        }
+
+        return $user;
     }
 }
