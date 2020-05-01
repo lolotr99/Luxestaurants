@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="nav navbar-nav text-navbar ml-5">
             <li class="nav-item">
-                <a class="nav-link" href="#">Luxestaurants</a>
+                <a class="nav-link" href="{{url('/')}}">Luxestaurants</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{url('/locales')}}">Locales/Reservas</a>
@@ -30,7 +30,7 @@
                     </button>
 
                     <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownLogout">
-                        <a class="dropdown-item" href="#">Mi perfil</a>
+                        <a class="dropdown-item" href="{{url('/miPerfil')}}">Mi perfil</a>
                         <form action="{{ url('/logout') }}" method="POST" style="display:inline">
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-link dropdown-item" style="display:inline;cursor:pointer">

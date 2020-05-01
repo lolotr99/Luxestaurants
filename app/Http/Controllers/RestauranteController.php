@@ -44,11 +44,10 @@ class RestauranteController extends Controller
             $reserva->save();
             $restaurante->save();
         }
-        $restaurantes = Restaurante::all();
-        return view('locales',array('arrayRestaurantes' => $restaurantes));
+        return redirect('/locales');
     }
 
-    public function showPDF() {
+    public function createPDF() {
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML('<h1>Test</h1>');
         return $pdf->download();

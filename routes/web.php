@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('home');
-});*/
-Route::get('/', 'RestauranteController@showPDF');
-
-
+Route::get('/', 'HomeController@index');
 Route::get('/locales', 'RestauranteController@getRestaurantes');
-Route::get('/locales/{id}','RestauranteController@detallesRestaurante');
-Route::post('/reservar','RestauranteController@reservar');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/locales/{id}','RestauranteController@detallesRestaurante');
+    Route::post('/reservar','RestauranteController@reservar');
+    Route::get('/miPerfil','HomeController@getPerfil');
+    Route::get('/anularReserva/{id}','HomeController@anularReserva');
+});
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
