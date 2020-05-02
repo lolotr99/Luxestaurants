@@ -20,8 +20,7 @@ class CreateReservasTable extends Migration
             $table->unsignedBigInteger('idRestaurante');
             $table->string('nombrePersona');
             $table->integer('personas');
-            $table->date('fechaReserva');
-            $table->time('horaReserva');
+            $table->dateTime('fechaReserva');
             $table->foreign('idUsuario')
                 ->references('id')->on('users')
                 ->onDelete('restrict')

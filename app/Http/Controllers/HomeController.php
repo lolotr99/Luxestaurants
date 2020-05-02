@@ -31,7 +31,7 @@ class HomeController extends Controller
     }
 
     public function  getPerfil() {
-        $misReservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')->select('restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.horaReserva','reservas.id')->where('reservas.idUsuario', '=', Auth::user()->id)->get();
+        $misReservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')->select('restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')->where('reservas.idUsuario', '=', Auth::user()->id)->get();
         return view('perfil', array('reservas' => $misReservas));
     }
 

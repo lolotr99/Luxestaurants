@@ -14,14 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/locales', 'RestauranteController@getRestaurantes');
+Route::get('/locales', 'RestauranteController@getRestaurantes')->middleware('verified');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/locales/{id}','RestauranteController@detallesRestaurante');
     Route::post('/reservar','RestauranteController@reservar');
     Route::get('/miPerfil','HomeController@getPerfil');
     Route::get('/anularReserva/{id}','HomeController@anularReserva');
+    Route::get('/descargar','RestauranteController@createPDF');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');

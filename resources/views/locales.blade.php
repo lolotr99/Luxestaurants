@@ -4,8 +4,8 @@
         <h1 class="text-title">Reservas/Locales</h1>
         <section class="container">
             <div class="row">
-                Para solicitar su reserva, rellene el formulario de reserva. Se le otorgará un documento, el cuál será necesario para la entrada al restaurante.
-                Se puede anular la reserva del mismo hasta 24h antes del día indicado.
+                <span>Para solicitar su reserva, rellene el formulario de reserva. Se le otorgará un documento, el cuál será necesario para la entrada al restaurante.
+                    Se puede anular la reserva del mismo en cualquier momento sin problema.</span>
             </div>
         </section>
         <section class="mt-3">

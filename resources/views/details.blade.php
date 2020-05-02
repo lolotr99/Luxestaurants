@@ -44,21 +44,12 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="fecha" class="control-label">Fecha (*)</label>
-                    <div class='input-group date'>
-                        <input type="date" class="form-control" id="fecha" name="fecha">
-                    </div>
+                    <label for="datetime" class="control-label">Fecha (*)</label>
                 </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label for="hora" class="control-label">Hora (*)</label>
-                    <div class='input-group date'>
-                        <input type="time" id="hora" name="hora" min="09:00" max="23:30"  class="form-control">
-                    </div>
+                <div class="input-group form-group">
+                    <input type="datetime-local" class="form-control" id="datetime" name="datetime" value="{{now()}}" min="{{now()}}">
                 </div>
             </div>
         </div>

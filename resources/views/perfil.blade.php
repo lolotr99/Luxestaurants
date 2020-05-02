@@ -39,7 +39,7 @@
                                 <th>{{$value->zona}}- {{$value->ciudad}}</th>
                                 <td>{{$value->nombrePersona}}</td>
                                 <td>{{$value->personas}} personas</td>
-                                <td>{{$value->fechaReserva}} {{$value->horaReserva}}</td>
+                                <td>{{ date('d-m-Y H:i', strtotime($value->fechaReserva)) }}</td>
                                 <td class="text-center"><a href="{{url('/anularReserva', $value->id)}}" class="btnAnular" onclick="return confirm('¿Estás seguro de que deseas cancelar la reserva?')"><i class="fas fa-trash"></i></a></td>
                             </tr>
                         @endforeach

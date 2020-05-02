@@ -25,8 +25,7 @@ class RestauranteController extends Controller
         $idUsuario = $request->input('ocultoUsuario');
         $nombre = $request->input('nombre');
         $nPersonas = $request->input('numeroPersonas');
-        $fecha = $request->input('fecha');
-        $hora = $request->input('hora');
+        $fecha = $request->input('datetime');
 
         $restaurante = Restaurante::find($idRestaurante);
 
@@ -39,12 +38,12 @@ class RestauranteController extends Controller
             $reserva->nombrePersona = $nombre;
             $reserva->personas = $nPersonas;
             $reserva->fechaReserva = $fecha;
-            $reserva->horaReserva = $hora;
             $restaurante->numeromesas--;
             $reserva->save();
             $restaurante->save();
+            return redirect('/descargar');
         }
-        return redirect('/locales');
+
     }
 
     public function createPDF() {
