@@ -13,9 +13,7 @@
 </head>
 <body>
 @include('partials.navbar')
-<div class="container">
-    @yield('content')
-</div>
+@yield('content')
 @include('partials.footer')
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

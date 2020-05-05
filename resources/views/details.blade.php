@@ -45,9 +45,7 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <div class="form-group">
-                    <label for="datetime" class="control-label">Fecha (*)</label>
-                </div>
+                <label for="datetime" class="control-label">Fecha (*)</label>
                 <div class="input-group form-group">
                     <input type="datetime-local" class="form-control" id="datetime" name="datetime" value="{{now()}}" min="{{now()}}">
                 </div>
