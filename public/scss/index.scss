@@ -188,3 +188,18 @@ nav {
     width: 1.6rem;
   }
 }
+
+.hover-1 img {
+  position: relative;
+  left: -5%;
+  transition: all 0.3s;
+}
+
+.hover-1:hover img {
+  left: 0;
+}
+
+.imgCarta {
+  width: 25rem;
+  height: 16.625rem;
+}

@@ -27,7 +27,6 @@
     <form method="POST" action="{{url('/reservar')}}" enctype="multipart/form-data">
         {{csrf_field()}}
         <input type="hidden" name="ocultoRestaurante" value="{{$restaurante->id}}">
-        <input type="hidden" name="ocultoUsuario" value="{{(Auth::user()->id)}}">
         <div class="row">
                 <div class="col-sm-6">
                     <label for="nombre" class="d-flex justify-content-left">Nombre + Apellidos (*)</label>

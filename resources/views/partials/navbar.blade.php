@@ -13,7 +13,7 @@
                 <a class="nav-link" href="{{url('/locales')}}">Locales/Reservas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Carta</a>
+                <a class="nav-link" href="{{url('/carta')}}">Carta</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Sobre Nosotros</a>

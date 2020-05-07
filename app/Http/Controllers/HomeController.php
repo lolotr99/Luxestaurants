@@ -29,18 +29,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public function  getPerfil() {
-        $misReservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')->select('restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')->where('reservas.idUsuario', '=', Auth::user()->id)->get();
-        return view('perfil', array('reservas' => $misReservas));
-    }
-
-    public function anularReserva($id) {
-        $reserva = Reserva::find($id);
-        $restaurante = Restaurante::find($reserva->idRestaurante);
-        $restaurante->numeromesas++;
-        $restaurante->save();
-        $reserva->delete();
-        return redirect('/miPerfil');
-    }
 }

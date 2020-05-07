@@ -17,12 +17,17 @@ class CreateValoracionesTable extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->unsignedBigInteger('idUsuario');
+            $table->unsignedBigInteger('idRestaurante');
             $table->unsignedBigInteger('idPlato');
             $table->date('fechaValoracion');
             $table->string('comentario');
             $table->enum('valor', [1,2,3,4,5]);
             $table->foreign('idUsuario')
-                ->references('id')->on('users')
+                ->references('idUsuario')->on('reservas')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
+            $table->foreign('idRestaurante')
+                ->references('idRestaurante')->on('reservas')
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
             $table->foreign('idPlato')

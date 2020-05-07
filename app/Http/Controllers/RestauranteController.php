@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Plato;
 use App\Reserva;
 use App\Restaurante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 
 class RestauranteController extends Controller
@@ -22,7 +24,7 @@ class RestauranteController extends Controller
 
     public function reservar(Request $request) {
         $idRestaurante = $request->input('ocultoRestaurante');
-        $idUsuario = $request->input('ocultoUsuario');
+        $idUsuario = Auth::id();
         $nombre = $request->input('nombre');
         $nPersonas = $request->input('numeroPersonas');
         $fecha = $request->input('datetime');
@@ -50,6 +52,30 @@ class RestauranteController extends Controller
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML('<h1>Test</h1>');
         return $pdf->download();
+    }
+
+    public function getCarta() {
+        $carta = Plato::all();
+        return view('carta', array('carta' => $carta));
+    }
+
+    public function getIndex()
+    {
+        return view('home');
+    }
+
+    public function  getPerfil() {
+        $misReservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')->select('restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')->where('reservas.idUsuario', '=', Auth::user()->id)->get();
+        return view('perfil', array('reservas' => $misReservas));
+    }
+
+    public function anularReserva($id) {
+        $reserva = Reserva::find($id);
+        $restaurante = Restaurante::find($reserva->idRestaurante);
+        $restaurante->numeromesas++;
+        $restaurante->save();
+        $reserva->delete();
+        return redirect('/miPerfil');
     }
 
 }
