@@ -8,10 +8,16 @@ use App\Restaurante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 
 class RestauranteController extends Controller
 {
+    public function getIndex()
+    {
+        return view('home');
+    }
+
     public function getRestaurantes() {
         $restaurantes = Restaurante::all();
         return view('locales',array('arrayRestaurantes' => $restaurantes));
@@ -20,6 +26,22 @@ class RestauranteController extends Controller
     public function detallesRestaurante($id){
         $restaurante = Restaurante::find($id);
         return view('details',array('restaurante' => $restaurante));
+    }
+
+    public function getCarta() {
+        $carta = Plato::all();
+        return view('carta', array('carta' => $carta));
+    }
+
+    public function  getPerfil() {
+        $misReservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')->select('restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')->where('reservas.idUsuario', '=', Auth::user()->id)->get();
+        return view('perfil', array('reservas' => $misReservas));
+    }
+
+    public function descargarPDF($id) {
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->download('reserva.pdf');
     }
 
     public function reservar(Request $request) {
@@ -43,30 +65,29 @@ class RestauranteController extends Controller
             $restaurante->numeromesas--;
             $reserva->save();
             $restaurante->save();
-            return redirect('/descargar');
+
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML('<h1>Test</h1>');
+
+            $data = array(
+                'email' => Auth::user()->email,
+                'subject' => 'Reserva en Luxestaurants',
+                'bodyMessage' => 'Tu reserva ha sido realizada con éxito. Recuerda que debes presentar este pdf para acceder a nuestro restaurante. También puedes anular la reserva en cualquier momento. Un saludo y esperamos que disfrutes de la experiencia en Luxestaurants.',
+                'a_file' => $pdf
+            );
+
+
+            Mail::send('emails.reservar', $data, function ($message) use ($data) {
+                $message->from('aboutluxestaurants@gmail.com', 'Admin Luxestaurants');
+                $message->to($data['email']);
+                $message->subject($data['subject']);
+                $message->attachData($data['a_file']->output(), 'reserva.pdf');
+            });
+
+            flash('Se ha descargado un pdf con datos de la reserva. Consulta tu correo electrónico');
+            return redirect('/miPerfil');
         }
 
-    }
-
-    public function createPDF() {
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML('<h1>Test</h1>');
-        return $pdf->download();
-    }
-
-    public function getCarta() {
-        $carta = Plato::all();
-        return view('carta', array('carta' => $carta));
-    }
-
-    public function getIndex()
-    {
-        return view('home');
-    }
-
-    public function  getPerfil() {
-        $misReservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')->select('restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')->where('reservas.idUsuario', '=', Auth::user()->id)->get();
-        return view('perfil', array('reservas' => $misReservas));
     }
 
     public function anularReserva($id) {
@@ -75,7 +96,21 @@ class RestauranteController extends Controller
         $restaurante->numeromesas++;
         $restaurante->save();
         $reserva->delete();
+
+        $data = array(
+            'email' => Auth::user()->email,
+            'subject' => 'Cancelación en Luxestaurants',
+            'bodyMessage' => 'Tu reserva ha sido anulada. Si tienes alguna duda puedes ponerte en contacto con nosotros y te resolveremos cualquier problema. También puedes pedir una modificación de tu reserva. Un saludo desde el equipo de Luxestaurants'
+        );
+
+
+        Mail::send('emails.anular', $data, function ($message) use ($data) {
+            $message->from('aboutluxestaurants@gmail.com', 'Admin Luxestaurants');
+            $message->to($data['email']);
+            $message->subject($data['subject']);
+        });
+
+        flash('Se ha anulado la reserva. Consulta tu correo electrónico');
         return redirect('/miPerfil');
     }
-
 }

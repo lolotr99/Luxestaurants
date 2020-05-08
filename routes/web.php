@@ -17,12 +17,13 @@ Route::get('/', 'RestauranteController@getIndex');
 Route::get('/locales', 'RestauranteController@getRestaurantes');
 Route::get('/carta','RestauranteController@getCarta');
 Route::get('/locales/{id}','RestauranteController@detallesRestaurante');
+Route::post('/pruebaCorreo','RestauranteController@pruebaCorreo');
 
 Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
     Route::post('/reservar', 'RestauranteController@reservar');
     Route::get('/miPerfil', 'RestauranteController@getPerfil');
     Route::get('/anularReserva/{id}', 'RestauranteController@anularReserva');
-    Route::get('/descargar', 'RestauranteController@createPDF');
+    Route::get('/descargarPDF/{id}', 'RestauranteController@descargarPDF');
 
 });
 

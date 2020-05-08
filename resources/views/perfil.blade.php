@@ -2,6 +2,9 @@
 @section('content')
     <div class="container mt-5">
         <div class="row">
+            @include('flash::message')
+        </div>
+        <div class="row">
             <div class="col-sm-3">
                 <div class="text-center">
                     <?php
@@ -30,6 +33,7 @@
                             <th>Titular Reserva</th>
                             <th>Mesa para</th>
                             <th>Fecha</th>
+                            <th>Descargar pdf</th>
                             <th>Anular Reserva</th>
                         </tr>
                         </thead>
@@ -40,6 +44,7 @@
                                 <td>{{$value->nombrePersona}}</td>
                                 <td>{{$value->personas}} personas</td>
                                 <td>{{ date('d-m-Y H:i', strtotime($value->fechaReserva)) }}</td>
+                                <td class="text-center"><a href="{{url('/descargarPDF', $value->id)}}" class="btnAnular"><i class="fas fa-file-download"></i></a> </td>
                                 <td class="text-center"><a href="{{url('/anularReserva', $value->id)}}" class="btnAnular" onclick="return confirm('¿Estás seguro de que deseas cancelar la reserva?')"><i class="fas fa-trash"></i></a></td>
                             </tr>
                         @endforeach
