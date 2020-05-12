@@ -60,7 +60,7 @@
     <hr>
 
 
-    <a class="estiloEnlaces" href="#">
+    <a class="estiloEnlaces" href="{{url('/about')}}">
         <section class="row"  style="background-image: url('img/mantel4.jpg');">
             <div class=" col-sm-12 text-center pt-5 text-center">
                 <h1 style="color: #2E1E1F;">Descubre más sobre nosotros</h1>

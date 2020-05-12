@@ -7,8 +7,12 @@
                 <span>Para solicitar su reserva, rellene el formulario de reserva. Se le otorgará un documento, el cuál será necesario para la entrada al restaurante.
                     Se puede anular la reserva del mismo en cualquier momento sin problema.</span>
             </div>
+
+            <div class="row mt-3 form-group">
+                <input type="text" name="buscador" id="buscador" class="form-control" placeholder="Busca locales por ciudad o zona" />
+            </div>
         </section>
-        <section class="mt-3">
+        <section id="locales" class="mt-5">
     @foreach($arrayRestaurantes as $key => $restaurante)
             <div class="row mb-3 text-uppercase" style="background: #F9F9F9;">
                 <div class="col-4">

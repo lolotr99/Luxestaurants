@@ -17,15 +17,18 @@ Route::get('/', 'RestauranteController@getIndex');
 Route::get('/locales', 'RestauranteController@getRestaurantes');
 Route::get('/carta','RestauranteController@getCarta');
 Route::get('/locales/{id}','RestauranteController@detallesRestaurante');
-Route::post('/pruebaCorreo','RestauranteController@pruebaCorreo');
+Route::get('/about', 'RestauranteController@aboutUs');
+Route::post('/contacto','RestauranteController@contact');
 
 Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
     Route::post('/reservar', 'RestauranteController@reservar');
     Route::get('/miPerfil', 'RestauranteController@getPerfil');
     Route::get('/anularReserva/{id}', 'RestauranteController@anularReserva');
     Route::get('/descargarPDF/{id}', 'RestauranteController@descargarPDF');
-
+    Route::get('/editarPerfil', 'RestauranteController@editarPerfil');
+    Route::post('/postEditPerfil','RestauranteController@postEditPerfil');
 });
+Route::get('/localesAjax/action','RestauranteController@action')->name('localesAjax.action');
 
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');

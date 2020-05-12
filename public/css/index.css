@@ -86,6 +86,10 @@ nav {
   color: #212529 !important;
 }
 
+.page-break {
+  page-break-after: always;
+}
+
 /* social media buttons */
 .icon-button {
   background-color: #2E1E1F !important;

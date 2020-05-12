@@ -6,10 +6,15 @@
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <div class="text-center">
-                    <?php
-                    ?><img src="{{asset(Auth::user()->imagenusuario)}}" class="img-circle img-thumbnail" alt="imagen de perfil del usuario">
-                </div></hr><br>
+                <div class="row">
+                    <div class="text-center">
+                        <?php
+                        ?><img src="{{asset(Auth::user()->imagenusuario)}}" class="img-circle img-thumbnail" alt="imagen de perfil del usuario">
+                    </div></hr><br>
+                </div>
+               <div class="row">
+                   <a class="btn btn-primary" href="{{url('/editarPerfil')}}">Editar Perfil</a>
+               </div>
             </div>
             <div class="col-sm-9 text-left">
                 <div class="tab-content">
@@ -22,10 +27,11 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col">
                 <section class="table-responsive">
                     <h1>Historial de Reservas de {{auth()->user()->name}}</h1>
+                    @if($numeroReservas > 0)
                     <table class="table table-hover mt-5">
                         <thead>
                         <tr>
@@ -50,6 +56,10 @@
                         @endforeach
                         </tbody>
                     </table>
+                    @else
+                        <br><br>
+                        <h5 class="text-center">ESTE USUARIO NO HA REALIZADO NINGUNA RESERVA AÚN</h5>
+                    @endif
                 </section>
             </div>
         </div>
