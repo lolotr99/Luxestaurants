@@ -6,6 +6,7 @@ use App\Plato;
 use App\Reserva;
 use App\Restaurante;
 use App\User;
+use App\Valoracion;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -88,6 +89,50 @@ class RestauranteController extends Controller
     public function getCarta() {
         $carta = Plato::all();
         return view('carta', array('carta' => $carta));
+    }
+
+    public function detailsPlato($id) {
+        $plato = Plato::find($id);
+
+        if (Auth::check())
+        {
+            $restaurantes = Reserva::join('restaurantes','idRestaurante','restaurantes.id')
+                ->select('restaurantes.id','restaurantes.ciudad','restaurantes.zona')
+                ->where('reservas.idUsuario','=',auth()->user()->id)
+                ->get();
+        } else {
+            $restaurantes = array();
+        }
+        $nValoraciones = Valoracion::select(['valoraciones.*'])->where('valoraciones.idPlato','=',$plato->id)->count();
+
+        $valoracionesPlato = Valoracion::join('platos','idPlato','platos.id')
+            ->join('users','idUsuario','users.id')
+            ->join('restaurantes','idRestaurante','restaurantes.id')
+            ->select('users.id AS idUsuario','users.imagenusuario','users.name','valoraciones.id','valoraciones.idPlato','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona')
+            ->where('valoraciones.idPlato','=',$plato->id)
+            ->get();
+
+
+        return view('detailsPlato', array("plato" => $plato, "restaurantes" => $restaurantes,"nValoraciones" => $nValoraciones, "valoraciones" => $valoracionesPlato));
+    }
+
+    public function valorar(Request $request) {
+        $valoracion = new Valoracion();
+        $valoracion->idUsuario = auth()->user()->id;
+        $valoracion->idRestaurante = $request->input('restaurante');
+        $valoracion->idPlato = $request->input('ocultoPlato');
+        $valoracion->fechaValoracion = date(now());
+        $valoracion->comentario = $request->input('comentario');
+        $valoracion->valor = $request->input('estrellas');
+        $valoracion->save();
+
+        return redirect('/carta/'.$request->input('ocultoPlato'));
+    }
+
+    public function eliminarValoracion($id,$idPlato) {
+        $valoracion = Valoracion::find($id);
+        $valoracion->delete();
+        return redirect('/carta/'.$idPlato);
     }
 
     public function getPerfil() {

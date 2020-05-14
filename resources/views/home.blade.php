@@ -31,14 +31,14 @@
         </div>
     </section>
     <hr>
-    <section class="row">
-        <div class="col-sm-7">
+    <section class="row text-footer-cuerpo">
+        <div class="col-sm-7 text-justify  text-secondary">
             <h3 aria-hidden="true" class="font-weight-bold">SÍGUENOS EN NUESTRAS</h3>
-            <h1>REDES SOCIALES</h1>
+            <h1 class="redesSociales">REDES SOCIALES</h1>
             <p>¿Quieres ser el primero en conocer todas las novedades y estar informado sobre nosotros?  ¡Pues dale a seguir y forma parte de la comunidad Luxestaurants!</p>
         </div>
         <div class="col-sm-5 mt-5 text-center">
-            <div class="row">
+            <div class="row text-RS">
                 <div class="col-sm-4 border-right">
                     <h2>Facebook</h2>
                     <img src="img/icons8-facebook-rodeado-de-círculo-48.png" alt="facebook"><br>
@@ -62,8 +62,8 @@
 
     <a class="estiloEnlaces" href="{{url('/about')}}">
         <section class="row"  style="background-image: url('img/mantel4.jpg');">
-            <div class=" col-sm-12 text-center pt-5 text-center">
-                <h1 style="color: #2E1E1F;">Descubre más sobre nosotros</h1>
+            <div class=" col-sm-12 text-center pt-5 text-secondary">
+                <h1 class="text-about">Descubre más sobre nosotros</h1>
             </div>
         </section>
     </a>

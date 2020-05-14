@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container mt-5">
+    <div class="container mt-5 text-secondary">
         <div class="row">
             @include('flash::message')
         </div>
@@ -12,17 +12,17 @@
                         ?><img src="{{asset(Auth::user()->imagenusuario)}}" class="img-circle img-thumbnail" alt="imagen de perfil del usuario">
                     </div></hr><br>
                 </div>
-               <div class="row">
+               <div class="row mt-2">
                    <a class="btn btn-primary" href="{{url('/editarPerfil')}}">Editar Perfil</a>
                </div>
             </div>
             <div class="col-sm-9 text-left">
                 <div class="tab-content">
-                    <h1>DATOS DEL USUARIO</h1>
+                    <h1 class="text-title">DATOS DEL USUARIO</h1>
                     <hr>
                     <h1 class="h3">{{ auth()->user()->name }}</h1>
-                    <p class="m-0"><b></b><i class="fas fa-mail-bulk mr-2"></i>{{ auth()->user()->email }}</p>
-                    <p class="m-0"><b></b> <i class="fas fa-calendar-alt mr-2"></i>{{ auth()->user()->fechanacimiento }}</p>
+                    <p class="m-0"><i class="fas fa-mail-bulk mr-2"></i>{{ auth()->user()->email }}</p>
+                    <p class="m-0"><i class="fas fa-calendar-alt mr-2"></i>{{ auth()->user()->fechanacimiento }}</p>
                     <hr>
                 </div>
             </div>
@@ -30,7 +30,7 @@
         <div class="row mt-3">
             <div class="col">
                 <section class="table-responsive">
-                    <h1>Historial de Reservas de {{auth()->user()->name}}</h1>
+                    <h1 class="text-title">Historial de Reservas de {{auth()->user()->name}}</h1>
                     @if($numeroReservas > 0)
                     <table class="table table-hover mt-5">
                         <thead>

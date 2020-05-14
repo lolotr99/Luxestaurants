@@ -1,25 +1,86 @@
 $bg-primary : #2E1E1F !important;
 $bg-secundary : #AB2417 !important;
 $bg-white: #FFFFFF !important;
+$color-footer-cuerpo : #D4D4D4 !important;
+$color-footer-title : #d6d6d6 !important;
 
 .imgLogo {
-    width: 75px;
+  width: 75px;
 }
 .imgPerfil {
-    width: 50px;
+  width: 50px;
+}
+
+.hover-1 img {
+  position: relative;
+  left: -5%;
+  transition: all 0.3s;
+}
+
+.hover-1:hover img {
+  left: 0;
+}
+
+.imgCarta {
+  width: 25rem;
+  height: 16.625rem;
+}
+
+.imgPlato {
+  width: 37.5rem;
+  height: auto;
+}
+
+.comment-wrapper .panel-body {
+  max-height:650px;
+  overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+  width:64px;
+  height:64px;
+  border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+  border-bottom:1px dashed #efefef;
+  margin-bottom:25px;
+}
+
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
 }
 
 nav {
-    font-family: 'Be Vietnam', sans-serif;
+  font-family: 'Be Vietnam', sans-serif;
 }
 
 .text-navbar li a {
-    font-size: 1rem;
-    color: $bg-white;
+  font-size: 1rem;
+  color: $bg-white;
 }
 .text-navbar li a:hover {
-    text-decoration: none;
-    color: $bg-secundary;
+  text-decoration: none;
+  color: $bg-secundary;
 }
 .text-navbar a:hover {
   text-decoration: none;
@@ -29,6 +90,41 @@ nav {
   text-decoration: none;
   color: $bg-secundary;
 }
+
+.text-title {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 2.5rem !important;
+  color: $bg-secundary ;
+}
+
+.text-footer {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 3.2rem ;
+  color: $bg-white ;
+}
+.text-footer-cuerpo {
+  font-family: 'Lato', sans-serif ;
+  font-size: 1rem;
+  color: $bg-white ;
+}
+
+.text-secondary{
+  font-family: 'Lato', sans-serif !important;
+  font-size: 1.25rem !important;
+  color: black !important;
+}
+
+.text-RS{
+  color: $bg-secundary;
+}
+
+.text-about {
+  font-size: 3rem;
+  font-family: 'Lato', sans-serif ;
+  color: #2E1E1F;
+  font-weight: bold;
+}
+
 .btn-primary {
   background-color: $bg-primary;
   border-color: $bg-primary;
@@ -39,21 +135,9 @@ nav {
 }
 
 .bg-primary {
-    background-color:  $bg-primary;
+  background-color:  $bg-primary;
 }
 
-.text-title {
-  font-family: 'Open Sans Condensed', sans-serif;
-}
-
-.text-footer {
-  font-family: 'Open Sans Condensed', sans-serif;
-  color: $bg-white;
-}
-.text-general {
-  font-family: 'Lato', sans-serif ;
-  font-size: 1rem;
-}
 .btn-secundary{
   background-color: $bg-secundary;
   border-color: $bg-primary;
@@ -65,6 +149,14 @@ nav {
   color: $bg-white;
 }
 
+.btnAnular {
+  color: $bg-secundary;
+}
+
+.btnAnular:hover{
+  color: #212529 !important;
+}
+
 .estiloEnlaces{
   color: $bg-secundary;
 }
@@ -73,16 +165,18 @@ nav {
   text-decoration: none;
   color: #212529 !important;
 }
+.enlacesSinEstilo {
+  text-decoration: none;
+}
 
-.btnAnular {
+.enlacesSinEstilo:hover {
+  text-decoration: none;
+}
+
+.redesSociales{
+  font-size: 3rem;
+  font-weight: bold;
   color: $bg-secundary;
-}
-.btnAnular:hover{
-  color: #212529 !important;
-}
-
-.page-break {
-  page-break-after: always;
 }
 
 /* social media buttons */
@@ -193,17 +287,3 @@ nav {
   }
 }
 
-.hover-1 img {
-  position: relative;
-  left: -5%;
-  transition: all 0.3s;
-}
-
-.hover-1:hover img {
-  left: 0;
-}
-
-.imgCarta {
-  width: 25rem;
-  height: 16.625rem;
-}

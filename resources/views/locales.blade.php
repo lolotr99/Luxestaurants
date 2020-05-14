@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container text-general">
-        <h1 class="text-title">Reservas/Locales</h1>
+    <div class="container text-secondary mt-2">
+        <h1 class="text-title mt-3">Reservas/Locales</h1>
         <section class="container">
             <div class="row">
                 <span>Para solicitar su reserva, rellene el formulario de reserva. Se le otorgará un documento, el cuál será necesario para la entrada al restaurante.

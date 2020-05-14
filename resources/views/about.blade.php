@@ -1,13 +1,13 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container">
+    <div class="container text-secondary">
         <div class="row">
             @include('flash::message')
         </div>
         <div class="row">
             <section class="col-sm-9 text-justify pt-5">
                 <div class="row">
-                    <h1>Asi empezo</h1>
+                    <h1 class="text-title">Asi empezo</h1>
                 </div>
                 <div class="row">
                     <p>Aquí va el texto descriptivo de la empresa </p>
@@ -22,7 +22,7 @@
 
         <section class="mb-4">
 
-            <h2  style="color: #AB2417;" class="h1-responsive text-center my-4">Estamos disponibles para escucharte</h2>
+            <h2 class="h1-responsive text-title text-center my-4">Estamos disponibles para escucharte</h2>
             <p class="text-center w-responsive mx-auto mb-5">
                 Cualquier opinión, duda o sugerencia que desees hacernos, somos todo oídos. Puedes realizar tus consultas a través del siguiente formulario, te atenderemos a la mayor brevedad.
             </p>

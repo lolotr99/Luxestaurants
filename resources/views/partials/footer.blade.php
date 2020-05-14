@@ -1,26 +1,26 @@
 <!-- Footer -->
 <footer class="page-footer font-small bg-primary pt-4">
     <!-- Footer Links -->
-    <div class="container text-center text-footer text-md-left">
+    <div class="container bg-primary text-footer mt-1">
         <!-- Grid row -->
         <div class="row">
             <!-- Grid column -->
             <div class="col-md-4">
                 <!-- Content -->
-                <h5 class="mb-4 text-uppercase">Luxestaurants</h5>
-                <p class="text-general">¿Tienes alguna duda sobre nuestro funcionamiento? Te ayudaremos en lo que necesites</p>
-                <p class="text-general"> <i class="fas fa-envelope"></i><span class="ml-2">aboutluxestaurants@gmail.com</span></p>
+                <h5 class="mb-4 text-uppercase font-weight-bold">Luxestaurants</h5>
+                <p class="text-footer-cuerpo">¿Tienes alguna duda sobre nuestro funcionamiento? Te ayudaremos en lo que necesites</p>
+                <p class="text-footer-cuerpo"> <i class="fas fa-envelope"></i><span class="ml-2">aboutluxestaurants@gmail.com</span></p>
             </div>
             <!-- Grid column -->
 
             <!-- Grid column -->
             <div class="col-md-4">
-                <ul class="list-unstyled text-general list-inline text-center">
+                <ul class="list-unstyled list-inline text-center">
                     <li class="list-inline-item">
-                        <h5 class="mb-1 text-footer text-uppercase">Registarse es gratis</h5>
+                        <h5 class="mb-1 text-uppercase font-weight-bold">Registarse es gratis</h5>
                     </li>
                     <li class="mt-3">
-                        <a href="{{url('/register')}}" class="btn btn-secundary">Pulsa aquí para el registro</a>
+                        <a href="{{url('/register')}}" class="btn btn-secundary text-footer-cuerpo">Pulsa aquí para el registro</a>
                     </li>
                 </ul>
                 <!-- Call to action -->
@@ -30,8 +30,8 @@
             <!-- Grid column -->
             <div class="col-md-4">
                 <!-- Social buttons -->
-                <h5 class="mb-4 text-uppercase">¡¡SÍGUENOS!!</h5>
-                <span class="mb-4 text-general">Mantén el contacto con nosotros y comparte nuestra pasión</span>
+                <h5 class="mb-4 text-uppercase font-weight-bold">¡¡SÍGUENOS!!</h5>
+                <span class="mb-4 text-footer-cuerpo">Mantén el contacto con nosotros y comparte nuestra pasión</span>
                 <div class="row m-3">
                     <div class="col">
                         <a href="https://www.twitter.com" target="_blank" class="icon-button twitter"><i class="fa fa-twitter"></i><span></span></a>

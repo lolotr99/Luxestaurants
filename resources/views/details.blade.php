@@ -1,10 +1,10 @@
 @extends('layouts.master')
 @section('content')
-<div class="container">
+<div class="container text-secondary">
     <div class="row mt-5">
         <h2 class="text-title"> Luxestaurants {{$restaurante->zona}}</h2>
     </div>
-    <div class="row mt-4">
+    <div class="row mt-4 mb-2">
         <div class="col-sm-4">
                 <div class="card" style="width: 100%; height: 400px">
                     <img class="card-img-top" src="{{asset('img/logo1.png')}}" alt="Card image">
@@ -21,42 +21,48 @@
             </div>
         </div>
     </div>
-    <div class="row mt-5">
-        <h4>Rellena el formulario de reserva</h4>
+    <hr>
+    <div class="row">
+        <div class="col-12 text-center">
+            <h4 class="text-title">Rellena el formulario de reserva</h4>
+        </div>
     </div>
-    <form method="POST" action="{{url('/reservar')}}" enctype="multipart/form-data">
-        {{csrf_field()}}
-        <input type="hidden" name="ocultoRestaurante" value="{{$restaurante->id}}">
-        <div class="row">
-                <div class="col-sm-6">
-                    <label for="nombre" class="d-flex justify-content-left">Nombre + Apellidos (*)</label>
-                    <div class="input-group form-group">
-                        <input type="text" id="nombre" name="nombre"  class="form-control" placeholder="Nombre y Apellidos">
+    <div class="row">
+        <div class="col-md-12 mb-md-0 mb-5">
+            <form class="form" action="{{url('/reservar')}}" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="ocultoRestaurante" value="{{$restaurante->id}}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <label for="nombre">¿Para quién es la mesa? Nombre (*)</label>
+                            <input type="text" id="nombre" name="nombre"  class="form-control" placeholder="Nombre y Apellidos">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <label for="numeroPersonas">Nº de personas (*)</label>
+                            <input id="numeroPersonas" type="number" min="1" max="8" name="numeroPersonas" class="form-control" placeholder="Numero de Personas">
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <label for="numeroPersonas" class="d-flex justify-content-left">Nº de personas (*)</label>
-                    <div class="input-group form-group">
-                        <input id="numeroPersonas" type="number" min="1" max="8" name="numeroPersonas" class="form-control" placeholder="Numero de Personas">
+
+
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            <label for="datetime">Fecha (*)</label>
+                            <input type="datetime-local" class="form-control" id="datetime" name="datetime" value="{{date(now())}}" min="{{now()}}">
+                        </div>
                     </div>
                 </div>
-        </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <label for="datetime" class="control-label">Fecha (*)</label>
-                <div class="input-group form-group">
-                    <input type="datetime-local" class="form-control" id="datetime" name="datetime" value="{{now()}}" min="{{now()}}">
+                <div class="text-center text-md-left mt-3">
+                    <input class="btn btn-secundary" type="submit" value="Aceptar">
                 </div>
-            </div>
+            </form>
         </div>
-
-        <div class="row">
-            <div class="form-group">
-                <input id="btnEnviar" type="submit" name="enviar" value="Enviar" class="btn btn-secundary float-left">
-            </div>
-        </div>
-    </form>
     </div>
 </div>
 @endsection

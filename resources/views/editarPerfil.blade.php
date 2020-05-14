@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container ">
+    <div class="container text-secondary ">
         <div class="row mt-2">
             <div class="col-sm-3"></div>
-            <div class="col-sm-9"><h4>{{$user->email}}</h4></div>
+            <div class="col-sm-9"><h4 class="text-title">{{$user->email}}</h4></div>
         </div>
         <form class="form" action="{{url('/postEditPerfil')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
