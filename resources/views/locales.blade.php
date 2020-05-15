@@ -5,7 +5,7 @@
         <section class="container">
             <div class="row">
                 <span>Para solicitar su reserva, rellene el formulario de reserva. Se le otorgará un documento, el cuál será necesario para la entrada al restaurante.
-                    Se puede anular la reserva del mismo en cualquier momento sin problema.</span>
+                    Se puede anular la reserva del mismo hasta las 00:00 del día anterior a la fecha reservada.</span>
             </div>
 
             <div class="row mt-3 form-group">

@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="fechaNacimiento" class="h4">Fecha de nacimiento</label>
-                                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" value="{{$user->fechanacimiento}}">
+                                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" value="{{ $user->fechanacimiento }}">
                             </div>
                         </div>
                         <div class="form-group">

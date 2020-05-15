@@ -22,7 +22,7 @@
                     <hr>
                     <h1 class="h3">{{ auth()->user()->name }}</h1>
                     <p class="m-0"><i class="fas fa-mail-bulk mr-2"></i>{{ auth()->user()->email }}</p>
-                    <p class="m-0"><i class="fas fa-calendar-alt mr-2"></i>{{ auth()->user()->fechanacimiento }}</p>
+                    <p class="m-0"><i class="fas fa-calendar-alt mr-2"></i>{{ date('d/m/Y', strtotime(auth()->user()->fechanacimiento)) }}</p>
                     <hr>
                 </div>
             </div>
@@ -49,9 +49,13 @@
                                 <th>{{$value->zona}}- {{$value->ciudad}}</th>
                                 <td>{{$value->nombrePersona}}</td>
                                 <td>{{$value->personas}} personas</td>
-                                <td>{{ date('d-m-Y H:i', strtotime($value->fechaReserva)) }}</td>
+                                <td>{{$value->fechaReserva->toFormattedDateString()}} a las {{ date('H:i', strtotime($value->fechaReserva)) }}</td>
                                 <td class="text-center"><a href="{{url('/descargarPDF', $value->id)}}" class="btnAnular"><i class="fas fa-file-download"></i></a> </td>
-                                <td class="text-center"><a href="{{url('/anularReserva', $value->id)}}" class="btnAnular" onclick="return confirm('¿Estás seguro de que deseas cancelar la reserva?')"><i class="fas fa-trash"></i></a></td>
+                                @if (now()->diffInDays($value->fechaReserva) >= 1)
+                                    <td class="text-center"><a href="{{url('/anularReserva', $value->id)}}" class="btnAnular" onclick="return confirm('¿Estás seguro de que deseas cancelar la reserva?')"><i class="fas fa-trash"></i></a></td>
+                                @else
+                                    <td class="text-center"><a type="button" class="btn-disabled" disabled title="La reserva se puede anular como máximo un día antes"><i class="fas fa-trash"></i></a></td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

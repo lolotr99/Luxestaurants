@@ -70,14 +70,25 @@
                                                     <ul class="media-list">
                                                         @foreach ($valoraciones as $valoracion)
                                                             <li class="media">
-                                                                <a href="#" class="pull-left">
-                                                                    <img src="{{asset($valoracion->imagenusuario)}}"  class="imgLogo">
-                                                                </a>
+                                                                <span class="pull-left">
+                                                                    <div class="col">
+                                                                        <div class="row">
+                                                                            <img src="{{asset($valoracion->imagenusuario)}}">
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <small class="mt-2">
+                                                                                @for ($i = 0; $i <$valoracion->valor; $i++)
+                                                                                    <i class="text-warning fa fa-star"></i>
+                                                                                @endfor
+                                                                            </small>
+                                                                        </div>
+                                                                    </div>
+                                                                </span>
                                                                 <div class="media-body">
                                                                 <span class="text-muted pull-right">
                                                                     <div class="col">
                                                                         <div class="row">
-                                                                            <small class="text-muted">{{$valoracion->fechaValoracion}}</small>
+                                                                            <small class="text-muted">{{ $valoracion->fechaValoracion->diffForHumans() }}</small>
                                                                         </div>
                                                                        @if (Auth::check())
                                                                             @if ($valoracion->idUsuario == auth()->user()->id)
@@ -88,7 +99,7 @@
                                                                         @endif
                                                                     </div>
                                                                 </span>
-                                                                    <strong class="text-success">{{$valoracion->name}}</strong>
+                                                                    <strong class="text-secondary">{{$valoracion->name}}</strong>
                                                                     <p>
                                                                         {{$valoracion->comentario}}
                                                                     </p>

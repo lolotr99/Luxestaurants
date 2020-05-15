@@ -19,7 +19,7 @@ class CreateValoracionesTable extends Migration
             $table->unsignedBigInteger('idUsuario');
             $table->unsignedBigInteger('idRestaurante');
             $table->unsignedBigInteger('idPlato');
-            $table->date('fechaValoracion');
+            $table->dateTime('fechaValoracion');
             $table->string('comentario');
             $table->enum('valor', [1,2,3,4,5]);
             $table->foreign('idUsuario')
