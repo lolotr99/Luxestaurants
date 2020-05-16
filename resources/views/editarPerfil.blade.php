@@ -23,19 +23,19 @@
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="nombreUsuario" class="h4">Nombre de usuario</label>
-                                <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" value="{{$user->name}}">
+                                <input type="text" class="form-control" required id="nombreUsuario" name="nombreUsuario" value="{{$user->name}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="contrasenia" class="h4">Contraseña</label>
-                                <input type="password" class="form-control" id="contrasenia" name="contrasenia">
+                                <input type="password" required class="form-control" id="contrasenia" name="contrasenia">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="fechaNacimiento" class="h4">Fecha de nacimiento</label>
-                                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" value="{{ $user->fechanacimiento }}">
+                                <input type="date" class="form-control" required id="fechaNacimiento" name="fechaNacimiento" value="{{ $user->fechanacimiento }}">
                             </div>
                         </div>
                         <div class="form-group">
