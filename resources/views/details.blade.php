@@ -29,6 +29,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 mb-md-0 mb-5">
+            @if(Auth::check())
             <form class="form" action="{{url('/reservar')}}" method="post">
                 {{ csrf_field() }}
                 <input type="hidden" name="ocultoRestaurante" value="{{$restaurante->id}}">
@@ -36,14 +37,14 @@
                     <div class="col-md-6">
                         <div class="md-form mb-0">
                             <label for="nombre">¿Para quién es la mesa? Nombre (*)</label>
-                            <input type="text" id="nombre" name="nombre"  class="form-control" placeholder="Nombre y Apellidos">
+                            <input type="text" id="nombre" name="nombre"  required class="form-control" placeholder="Nombre y Apellidos">
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="md-form mb-0">
                             <label for="numeroPersonas">Nº de personas (*)</label>
-                            <input id="numeroPersonas" type="number" min="1" max="8" name="numeroPersonas" class="form-control" placeholder="Numero de Personas">
+                            <input id="numeroPersonas" type="number" min="1" max="8" required  name="numeroPersonas" class="form-control" placeholder="Numero de Personas">
                         </div>
                     </div>
                 </div>
@@ -53,8 +54,35 @@
                     <div class="col-md-12">
                         <div class="md-form mb-0">
                             <label for="datetime">Fecha (*)</label>
-                            <input type="datetime-local" class="form-control" id="datetime" name="datetime" value="{{date(now())}}" min="{{now()}}">
+                            <input type="text" id="datetime"  name="datetime" required onfocus="dateTime()" class="demo form-control">
                         </div>
+                        <script>
+                            function dateTime() {
+                                tail.DateTime("#datetime", {
+                                    dateFormat: "dd-mm-YYYY",
+                                    timeFormat: "HH:ii",
+                                    weekStart: 1, // Monday
+                                    position: "top",
+                                    dateStart: Date.now(),
+                                    dateRanges: [
+                                        {
+                                            days: ["MON"]
+                                        }
+                                    ],
+
+
+                                    timeHours: 0,
+                                    timeMinutes: 0,
+                                    timeSeconds: null,
+                                    timeIncrement: true,
+                                    timeStepHours: 1,
+                                    timeStepMinutes: 30,
+
+                                    locale: "es"
+                                });
+
+                            }
+                        </script>
                     </div>
                 </div>
 
@@ -62,6 +90,9 @@
                     <input class="btn btn-secundary" type="submit" value="Aceptar">
                 </div>
             </form>
+            @else
+                <h4 class="mt-3 text-center">Debes iniciar sesión para poder hacer reservas</h4>
+            @endif
         </div>
     </div>
 </div>

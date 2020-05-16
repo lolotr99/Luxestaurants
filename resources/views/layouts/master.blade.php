@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam|Exo|Lato|Open+Sans+Condensed:300|Patrick+Hand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('css/index.css')}}">
+    <link rel="stylesheet" href="{{asset('tail-datetime/css/tail.datetime-default-red.css')}}">
+
 </head>
 <body>
 @include('partials.navbar')
@@ -23,5 +25,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="{{asset('js/locales.js')}}"></script>
 <script src="{{asset('js/rating.js')}}"></script>
+<script src="{{asset('tail-datetime/js/tail.datetime.js')}}"></script>
+<script src="{{asset('tail-datetime/langs/tail.datetime-es.js')}}"></script>
+
+
+
 </body>
 </html>

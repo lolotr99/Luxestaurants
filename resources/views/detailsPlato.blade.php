@@ -39,7 +39,7 @@
                                                         <form action="{{url('/valorar')}}" method="post">
                                                         {{ csrf_field() }}
                                                         <input type="hidden" value="{{$plato->id}}" name="ocultoPlato">
-                                                        <textarea name="comentario" class="form-control" placeholder="escribe un comentario..." rows="3"></textarea>
+                                                        <textarea name="comentario" required maxlength="350" class="form-control" placeholder="escribe un comentario..." rows="3"></textarea>
                                                         <p class="clasificacion">
                                                             <input id="radio1" type="radio" name="estrellas" value="5" checked><!--
                                                         --><label for="radio1">★</label><!--
@@ -69,7 +69,7 @@
                                                     @if ($nValoraciones > 0)
                                                     <ul class="media-list">
                                                         @foreach ($valoraciones as $valoracion)
-                                                            <li class="media">
+                                                            <li class="media ">
                                                                 <span class="pull-left">
                                                                     <div class="col">
                                                                         <div class="row">
@@ -81,6 +81,9 @@
                                                                                     <i class="text-warning fa fa-star"></i>
                                                                                 @endfor
                                                                             </small>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <small class="mt-2 text-secondary">{{$valoracion->ciudad}} ~ {{$valoracion->zona}}</small>
                                                                         </div>
                                                                     </div>
                                                                 </span>

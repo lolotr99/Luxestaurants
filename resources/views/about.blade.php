@@ -58,7 +58,7 @@
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
                                     <label for="phone">Telefono *</label>
-                                    <input type="text" id="phone" required name="phone" class="form-control">
+                                    <input type="tel" id="phone" required  maxlength="9" name="phone" pattern='[0-9]{9}' class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                             <div class="col-md-12">
                                 <div class="md-form mb-0">
                                     <label for="subject">Asunto *</label>
-                                    <input type="text" id="subject" required name="subject" class="form-control">
+                                    <input type="text" id="subject" required maxlength="350" name="subject" class="form-control">
                                 </div>
                             </div>
                         </div>
