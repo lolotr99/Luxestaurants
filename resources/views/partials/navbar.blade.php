@@ -18,6 +18,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{url('/about')}}">Info/Contacto</a>
             </li>
+            @if(Auth::check() )
+                @if(Auth::user()->rol == "administrador")
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url('/control')}}">Control</a>
+                    </li>
+                @endif
+            @endif
         </ul>
         <ul class="navbar-nav ml-auto text-navbar mr-2">
             @if(Auth::check())

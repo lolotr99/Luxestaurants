@@ -6,7 +6,7 @@
     </div>
     <div class="row mt-4 mb-2">
         <div class="col-sm-4">
-                <div class="card" style="width: 100%; height: 400px">
+            <div class="card" style="width: 100%; height: 400px">
                     <img class="card-img-top" src="{{asset('img/logo1.png')}}" alt="Card image">
                     <div class="card-body">
                         <h4 class="card-title">{{$restaurante->ciudad}} - {{$restaurante->telefono}}</h4>

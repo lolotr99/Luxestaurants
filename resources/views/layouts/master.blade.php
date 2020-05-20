@@ -27,6 +27,13 @@
 <script src="{{asset('js/rating.js')}}"></script>
 <script src="{{asset('tail-datetime/js/tail.datetime.js')}}"></script>
 <script src="{{asset('tail-datetime/langs/tail.datetime-es.js')}}"></script>
+<script src="{{asset('js/orderUsers.js')}}"></script>
+<script src="{{asset('js/orderUsersEditar.js')}}"></script>
+<script src="{{asset('js/orderUsersEliminar.js')}}"></script>
+<script src="{{asset('js/selectLocales.js')}}"></script>
+<script src="{{asset('js/selectLocalesDelete.js')}}"></script>
+
+
 
 
 
