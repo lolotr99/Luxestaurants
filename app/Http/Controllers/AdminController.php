@@ -361,6 +361,72 @@ class AdminController extends Controller
         echo json_encode($data);
     }
 
+    public function buscaLocalesUpdate(Request $request) {
+        $output = '';
+        $query = $request->get('query');
+        if($query != '')
+        {
+            $data = DB::table('restaurantes')
+                ->where('ciudad', 'rlike', $query)
+                ->orWhere('zona', 'rlike', $query)
+                ->orderBy('id', 'asc')
+                ->get();
+
+        }
+        else
+        {
+            $data = DB::table('restaurantes')
+                ->orderBy('id', 'asc')
+                ->get();
+        }
+        $total_row = $data->count();
+        if($total_row > 0)
+        {
+            foreach($data as $restaurante)
+            {
+                $output .= " <div class='row mt-5'>
+                    <div class='row'>
+                        <h2 class='text-title'> Luxestaurants $restaurante->zona</h2> <span class='ml-5'><a href='".url('/updateRestaurante', $restaurante->id)."' class='btnAnular estiloEnlaces'><i class='fas fa-edit fa-2x'></i> Editar este restaurante</a></span>
+                    </div>
+                    <div class='row mt-5'>
+                        <div class='col-sm-4'>
+                            <div class='row'>
+                                <div class='card' style='width: 100%; height: 400px'>
+                                    <img class='card-img-top' src='".asset('img/logo1.png')."' alt='Card image'>
+                                    <div class='card-body'>
+                                        <h4 class='card-title'>$restaurante->ciudad - $restaurante->telefono</h4>
+                                        <p>Mesas disponibles: $restaurante->numeromesas</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-8'>
+                            <div class='row ml-3'>
+                                <div style='width: 100%'>
+                                    <iframe width='785' height='400' src='$restaurante->mapa' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'>
+                                        <a href='https://www.mapsdirections.info/marcar-radio-circulo-mapa/'>Calculadora de radio del mapa</a>
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+            }
+        } else {
+            $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>No tenemos restaurantes en ese lugar</h4>
+                    </div>
+            </div>";
+        }
+
+        $data = array(
+            'datos'  => $output,
+        );
+
+        echo json_encode($data);
+    }
+
     public function buscaLocalesDelete(Request $request) {
         $output = '';
         $query = $request->get('query');
@@ -425,6 +491,46 @@ class AdminController extends Controller
         );
 
         echo json_encode($data);
+    }
+
+    public function newRestaurante() {
+        return view('admin.restaurantes.newRestaurante');
+    }
+
+    public function postNewRestaurante(Request $request) {
+        $restaurante = new Restaurante();
+        $restaurante->ciudad = $request->input('ciudad');
+        $restaurante->zona = $request->input('zona');
+        $restaurante->numeromesas = $request->input('numeromesas');
+        $restaurante->telefono = $request->input('telefono');
+        $restaurante->mapa = $request->input('direccionMapa');
+        $restaurante->save();
+
+        flash('Restaurante creado correctamente');
+        return redirect('/selectRestaurantes');
+    }
+
+    public function updateRestaurante() {
+        $restaurantes = Restaurante::all();
+        return view('admin.restaurantes.updateRestaurantes',array("restaurantes" => $restaurantes));
+    }
+
+    public function postUpdateRestaurante(Request $request) {
+        $restaurante = Restaurante::find($request->input('ocultoId'));
+        $restaurante->ciudad = $request->input('ciudad');
+        $restaurante->zona = $request->input('zona');
+        $restaurante->numeromesas = $request->input('numeromesas');
+        $restaurante->telefono = $request->input('telefono');
+        $restaurante->mapa = $request->input('direccion');
+        $restaurante->save();
+
+        flash('Restaurante editado correctamente');
+        return redirect('/updateRestaurante');
+    }
+
+    public function viewUpdateRestaurante($id) {
+        $restaurante = Restaurante::find($id);
+        return view('admin.restaurantes.updateRestaurante',array("restaurante" =>$restaurante));
     }
 
     public function deleteRestaurante() {

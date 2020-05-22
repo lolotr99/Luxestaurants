@@ -4,6 +4,7 @@
         <div class="row">
             @include('flash::message')
         </div>
+
         <div class="row ml-5 mt-5">
             <div class="col-sm-12">
                 <a class="estiloEnlaces" href="{{url('/control')}}"><img src="{{asset('img/volver.png')}}"/><span class="ml-3">Volver a página de control</span></a>
@@ -11,15 +12,15 @@
         </div>
 
         <div class="row mt-5 form-group">
-            <label for="buscadorSelect">Buscador de locales</label>
-            <input type="text"  id="buscadorSelect" class="form-control" placeholder="Busca locales por ciudad o zona" />
+            <label for="restaurantesUpdate">Buscador de locales</label>
+            <input type="text"  id="restaurantesUpdate" class="form-control" placeholder="Busca locales por ciudad o zona" />
         </div>
 
-        <div class="row" id="selectLocales">
+        <div class="row" id="updateRestaurantes">
             @foreach($restaurantes as $restaurante)
                 <div class="row mt-5">
                     <div class="row">
-                        <h2 class="text-title"> Luxestaurants {{$restaurante->zona}}</h2>
+                        <h2 class="text-title"> Luxestaurants {{$restaurante->zona}}</h2> <span class="ml-5"><a href="{{url('/updateRestaurante', $restaurante->id)}}" class="btnAnular estiloEnlaces"><i class="fas fa-edit fa-2x"></i> Editar este restaurante</a></span>
                     </div>
                     <div class="row mt-5">
                         <div class="col-sm-4">

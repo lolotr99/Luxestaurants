@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="53fdce2f-2733-41ae-83e7-5cc95f711beb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/restaurantes/viewRestaurantes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/restaurantes/viewRestaurantes.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/navbar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,61 +36,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="395" column="16" lean-forward="true" selection-start-line="395" selection-end-line="396" />
+            <state relative-caret-position="57">
+              <caret line="51" column="35" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="35" />
               <folding>
-                <element signature="e#40#60#0#PHP" expanded="true" />
-                <element signature="e#166#240#0#PHP" />
-                <element signature="e#246#391#0#PHP" />
-                <element signature="e#397#2629#0#PHP" />
-                <element signature="e#2635#5071#0#PHP" />
-                <element signature="e#5077#7647#0#PHP" />
-                <element signature="e#5077#5154#0#PHP" />
-                <element signature="e#5160#5916#0#PHP" />
-                <element signature="e#5922#6071#0#PHP" />
-                <element signature="e#6077#6232#0#PHP" />
-                <element signature="e#6238#7040#0#PHP" />
-                <element signature="e#7046#7195#0#PHP" />
-                <element signature="e#7201#7543#0#PHP" />
-                <element signature="e#10166#10215#0#PHP" />
-                <element signature="e#10372#12835#0#PHP" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="e#13022#13074#0#PHP" />
-                <element signature="e#13212#13554#0#PHP" />
+                <element signature="e#1013#1614#1#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurantes/deleteRestaurantes.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurantes/updateRestaurante.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="22" column="58" selection-start-line="22" selection-end-line="23" />
+            <state relative-caret-position="204">
+              <caret line="95" column="26" lean-forward="true" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/selectLocalesDelete.js">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+            <state relative-caret-position="65">
+              <caret line="227" column="51" lean-forward="true" selection-start-line="227" selection-start-column="51" selection-end-line="227" selection-end-column="51" />
+              <folding>
+                <element signature="e#40#60#0#PHP" expanded="true" />
+                <element signature="e#187#261#0#PHP" />
+                <element signature="e#282#427#0#PHP" />
+                <element signature="e#433#2665#0#PHP" />
+                <element signature="e#2671#5107#0#PHP" />
+                <element signature="e#5113#7681#0#PHP" />
+                <element signature="e#7687#7764#0#PHP" />
+                <element signature="e#8532#8681#0#PHP" />
+                <element signature="e#8687#8842#0#PHP" />
+                <element signature="e#8848#9650#0#PHP" />
+                <element signature="e#9656#9805#0#PHP" />
+                <element signature="e#9811#10153#0#PHP" />
+                <element signature="e#10368#13012#0#PHP" />
+                <element signature="e#13018#15840#0#PHP" />
+                <element signature="e#15846#18745#0#PHP" />
+                <element signature="e#18751#18849#0#PHP" />
+                <element signature="e#18855#19374#0#PHP" />
+                <element signature="e#19380#19568#0#PHP" />
+                <element signature="e#19574#20139#0#PHP" />
+                <element signature="e#20145#20339#0#PHP" />
+                <element signature="e#20345#20534#0#PHP" />
+                <element signature="e#20540#20920#0#PHP" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurantes/viewRestaurantes.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="56" column="93" selection-start-line="56" selection-start-column="75" selection-end-line="56" selection-end-column="93" />
+            <state relative-caret-position="85">
+              <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -140,13 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/emails/contacto.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/emails/envioDatos.blade.php" />
-        <option value="$PROJECT_DIR$/public/js/conexion.php" />
-        <option value="$PROJECT_DIR$/public/js/prueba.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/LiveSearch.php" />
-        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/partials/footer.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/carta.blade.php" />
         <option value="$PROJECT_DIR$/app/Valoracion.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_04_17_100657_create_valoraciones_table.php" />
@@ -183,14 +176,21 @@
         <option value="$PROJECT_DIR$/public/js/orderUsersEliminar.js" />
         <option value="$PROJECT_DIR$/resources/views/admin/control.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/details.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/restaurantes/viewRestaurantes.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/users/deleteUsers.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/restaurantes/deleteRestaurantes.blade.php" />
         <option value="$PROJECT_DIR$/public/js/selectLocales.js" />
         <option value="$PROJECT_DIR$/public/js/selectLocalesDelete.js" />
+        <option value="$PROJECT_DIR$/resources/views/prueba.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/selectLocalesUpdate.js" />
+        <option value="$PROJECT_DIR$/resources/views/admin/restaurantes/updateRestaurantes.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/restaurantes/updateRestaurante.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/master.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/changeMap.js" />
+        <option value="$PROJECT_DIR$/public/js/newMap.js" />
+        <option value="$PROJECT_DIR$/resources/views/admin/restaurantes/newRestaurante.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/restaurantes/viewRestaurantes.blade.php" />
       </list>
     </option>
   </component>
@@ -387,6 +387,13 @@
             <path>
               <item name="Luxestaurants" type="b2602c69:ProjectViewProjectNode" />
               <item name="Luxestaurants" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Luxestaurants" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Luxestaurants" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -408,14 +415,14 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.1.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\Luxestaurants\public\js" />
-      <recent name="C:\xampp\htdocs\Luxestaurants\public\img" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\users" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\emails" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Luxestaurants\public\js" />
+      <recent name="C:\xampp\htdocs\Luxestaurants\public\img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -486,18 +493,20 @@
       <workItem from="1589818007551" duration="6108000" />
       <workItem from="1589882350134" duration="12887000" />
       <workItem from="1589905760259" duration="7406000" />
-      <workItem from="1589966912543" duration="10081000" />
+      <workItem from="1589966912543" duration="10342000" />
+      <workItem from="1589990956729" duration="4822000" />
+      <workItem from="1590141256228" duration="8049000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="360027000" />
+    <option name="totallyTimeSpent" value="373159000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="639" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30257186" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30711043" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -519,7 +528,7 @@
       <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30257186" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30711043" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -545,37 +554,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/emails/anular.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/emails/reservar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/emails/contacto.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/conexion.php" />
-    <entry file="file://$PROJECT_DIR$/public/js/prueba.php" />
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LiveSearch.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/partials/footer.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="142">
@@ -696,13 +674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/updateUser.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-438">
-          <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/editarPerfil.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
@@ -710,24 +681,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/newUser.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/orderUsers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/updateUsers.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -742,13 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="121" column="18" selection-start-line="121" selection-start-column="18" selection-end-line="121" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/perfil.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="54" column="240" lean-forward="true" selection-start-line="54" selection-start-column="240" selection-end-line="54" selection-end-column="240" />
         </state>
       </provider>
     </entry>
@@ -773,37 +723,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/viewUsers.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/details.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="27" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="27" />
-          <folding>
-            <element signature="e#295#329#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/locales.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/control.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="70" column="50" lean-forward="true" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
-          <folding>
-            <element signature="e#280#1684#0#HTML" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -839,27 +762,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurantes/viewRestaurantes.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="35" column="45" lean-forward="true" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
-          <folding>
-            <element signature="e#806#840#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/users/deleteUsers.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/master.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -870,54 +776,167 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/selectLocalesDelete.js">
+    <entry file="file://$PROJECT_DIR$/resources/views/perfil.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+        <state>
+          <caret selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/prueba.blade.php" />
+    <entry file="file://$PROJECT_DIR$/resources/views/details.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="30" lean-forward="true" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/control.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="63" column="90" selection-start-line="63" selection-start-column="73" selection-end-line="63" selection-end-column="90" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurantes/deleteRestaurantes.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="22" column="58" selection-start-line="22" selection-end-line="23" />
+        <state relative-caret-position="935">
+          <caret line="55" column="10" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="55" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/selectLocalesUpdate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="57" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/selectLocalesDelete.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/updateUsers.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="5" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurantes/updateRestaurantes.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/newUser.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/updateUser.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="20" column="56" lean-forward="true" selection-start-line="20" selection-start-column="56" selection-end-line="20" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/changeMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="21" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="56" column="93" selection-start-line="56" selection-start-column="75" selection-end-line="56" selection-end-column="93" />
+        <state relative-caret-position="57">
+          <caret line="51" column="35" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="35" />
+          <folding>
+            <element signature="e#1013#1614#1#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/users/viewUsers.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="5" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurantes/newRestaurante.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="89" column="38" lean-forward="true" selection-start-line="89" selection-start-column="38" selection-end-line="89" selection-end-column="38" />
+          <folding>
+            <element signature="e#682#7618#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/newMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurantes/updateRestaurante.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="95" column="26" lean-forward="true" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="395" column="16" lean-forward="true" selection-start-line="395" selection-end-line="396" />
+        <state relative-caret-position="65">
+          <caret line="227" column="51" lean-forward="true" selection-start-line="227" selection-start-column="51" selection-end-line="227" selection-end-column="51" />
           <folding>
             <element signature="e#40#60#0#PHP" expanded="true" />
-            <element signature="e#166#240#0#PHP" />
-            <element signature="e#246#391#0#PHP" />
-            <element signature="e#397#2629#0#PHP" />
-            <element signature="e#2635#5071#0#PHP" />
-            <element signature="e#5077#7647#0#PHP" />
-            <element signature="e#5077#5154#0#PHP" />
-            <element signature="e#5160#5916#0#PHP" />
-            <element signature="e#5922#6071#0#PHP" />
-            <element signature="e#6077#6232#0#PHP" />
-            <element signature="e#6238#7040#0#PHP" />
-            <element signature="e#7046#7195#0#PHP" />
-            <element signature="e#7201#7543#0#PHP" />
-            <element signature="e#10166#10215#0#PHP" />
-            <element signature="e#10372#12835#0#PHP" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#13022#13074#0#PHP" />
-            <element signature="e#13212#13554#0#PHP" />
+            <element signature="e#187#261#0#PHP" />
+            <element signature="e#282#427#0#PHP" />
+            <element signature="e#433#2665#0#PHP" />
+            <element signature="e#2671#5107#0#PHP" />
+            <element signature="e#5113#7681#0#PHP" />
+            <element signature="e#7687#7764#0#PHP" />
+            <element signature="e#8532#8681#0#PHP" />
+            <element signature="e#8687#8842#0#PHP" />
+            <element signature="e#8848#9650#0#PHP" />
+            <element signature="e#9656#9805#0#PHP" />
+            <element signature="e#9811#10153#0#PHP" />
+            <element signature="e#10368#13012#0#PHP" />
+            <element signature="e#13018#15840#0#PHP" />
+            <element signature="e#15846#18745#0#PHP" />
+            <element signature="e#18751#18849#0#PHP" />
+            <element signature="e#18855#19374#0#PHP" />
+            <element signature="e#19380#19568#0#PHP" />
+            <element signature="e#19574#20139#0#PHP" />
+            <element signature="e#20145#20339#0#PHP" />
+            <element signature="e#20345#20534#0#PHP" />
+            <element signature="e#20540#20920#0#PHP" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/restaurantes/viewRestaurantes.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
         </state>
       </provider>
     </entry>

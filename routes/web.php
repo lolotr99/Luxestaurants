@@ -52,7 +52,11 @@ Route::group(['middleware' => 'auth', 'middleware' => 'admin'], function() {
     Route::get('/selectRestaurantes','AdminController@getRestaurantes');
     Route::get('/selectRestaurantes/buscador','AdminController@buscaSelectLocales')->name('selectRestaurantes.buscador');
     Route::get('/newRestaurante','AdminController@newRestaurante');
+    Route::post('/postNewRestaurante','AdminController@postNewRestaurante');
     Route::get('/updateRestaurante','AdminController@updateRestaurante');
+    Route::get('/selectRestaurantesUpdate/buscadorUpdate','AdminController@buscaLocalesUpdate')->name('selectRestaurantesUpdate.buscadorUpdate');
+    Route::get('/updateRestaurante/{id}','AdminController@viewUpdateRestaurante');
+    Route::post('/postUpdateRestaurante','AdminController@postUpdateRestaurante');
     Route::get('/deleteRestaurante','AdminController@deleteRestaurante');
     Route::get('/selectRestaurantesDelete/buscadorDelete','AdminController@buscaLocalesDelete')->name('selectRestaurantesDelete.buscadorDelete');
     Route::get('/deleteRestaurante/{id}', 'AdminController@borrarRestaurante');

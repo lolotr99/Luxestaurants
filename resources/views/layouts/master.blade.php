@@ -31,7 +31,11 @@
 <script src="{{asset('js/orderUsersEditar.js')}}"></script>
 <script src="{{asset('js/orderUsersEliminar.js')}}"></script>
 <script src="{{asset('js/selectLocales.js')}}"></script>
+<script src="{{asset('js/selectLocalesUpdate.js')}}"></script>
 <script src="{{asset('js/selectLocalesDelete.js')}}"></script>
+<script src="{{asset('js/changeMap.js')}}"></script>
+<script src="{{asset('js/newMap.js')}}"></script>
+
 
 
 
