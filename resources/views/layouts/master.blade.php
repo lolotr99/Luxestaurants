@@ -35,6 +35,10 @@
 <script src="{{asset('js/selectLocalesDelete.js')}}"></script>
 <script src="{{asset('js/changeMap.js')}}"></script>
 <script src="{{asset('js/newMap.js')}}"></script>
+<script src="{{asset('js/orderPlatos.js')}}"></script>
+<script src="{{asset('js/orderPlatosEditar.js')}}"></script>
+<script src="{{asset('js/orderPlatosEliminar.js')}}"></script>
+
 
 
 

@@ -4,44 +4,45 @@
         <div class="row">
             @include('flash::message')
         </div>
+
         <div class="row ml-5 mt-5">
             <div class="col-sm-12">
                 <a class="estiloEnlaces" href="{{url('/control')}}"><img src="{{asset('img/volver.png')}}"/><span class="ml-3">Volver a página de control</span></a>
             </div>
         </div>
+
         <div class="row mt-5">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="filtroEditar">Ordenar por: </label>
-                    <select id="filtroEditar" name="filtroEditar" class="form-control">
+                    <label for="filtroPlatoEliminar">Ordenar por: </label>
+                    <select id="filtroPlatoEliminar" name="filtroPlatoEliminar" class="form-control">
                         <option value="nombreAsc">A-Z</option>
                         <option value="nombreDesc">Z-A</option>
-                        <option value="fechaDesc">Jóvenes Primero</option>
-                        <option value="fechaAsc">Mayores Primero</option>
+                        <option value="precioAsc">Más barato primero</option>
+                        <option value="precioDesc">Más caro primero</option>
                     </select>
                 </div>
             </div>
         </div>
-        <div class="row" id="usuariosEditar">
-            @foreach ($usuarios as $usuario)
+        <div class="row" id="platosEliminar">
+            @foreach ($platos as $plato)
                 <div class="row mt-5">
                     <div class="col-sm-3">
                         <div class="row">
                             <div class="text-center">
-                                <img src="{{asset($usuario->imagenusuario)}}" class="img-circle img-thumbnail" alt="imagen de perfil del usuario">
+                                <img src="{{asset($plato->imagenPlato)}}" class="img-circle img-thumbnail">
                             </div><hr><br>
                         </div>
                         <div class="row mt-2">
-                            <a class="btn btn-secundary" href="{{url('/updateUser',$usuario->id)}}">Editar este usuario</a>
+                            <a href="{{url('/deletePlato', $plato->id)}}" onclick="return confirm('¿Estas seguro de eliminar este plato?')" class="btnAnular estiloEnlaces"><i class="fas fa-trash fa-2x"></i> Eliminar este plato</a>
                         </div>
                     </div>
                     <div class="col-sm-9 text-left">
                         <div class="tab-content">
-                            <h1 class="text-title">Datos de {{$usuario->email}}</h1>
+                            <h1 class="text-title">{{$plato->nombrePlato}}</h1>
                             <hr>
-                            <p class="m-0"><b>Nombre Usuario: </b> {{ $usuario->name}}</p>
-                            <p class="m-0"><b>Fecha de Nacimiento: </b> {{ date('d/m/Y', strtotime($usuario->fechanacimiento))}}</p>
-                            <p class="m-0"><b>Rol: </b> {{$usuario->rol}}</p>
+                            <p class="m-0"><b>Descripción: </b> {{ $plato->descripcion}}</p>
+                            <p class="m-0"><b>Precio: </b>{{$plato->precioPlato}} €</p>
                             <hr>
                         </div>
                     </div>

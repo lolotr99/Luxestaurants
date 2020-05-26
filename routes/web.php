@@ -63,9 +63,16 @@ Route::group(['middleware' => 'auth', 'middleware' => 'admin'], function() {
 
 
     Route::get('/selectPlatos','AdminController@getPlatos');
+    Route::get('/orderPlatos/filtroPlato','AdminController@orderPlatos')->name('orderPlatos.filtroPlato');
     Route::get('/newPlato','AdminController@newPlato');
+    Route::post('/postNewPlato','AdminController@postNewPlato');
     Route::get('/updatePlato','AdminController@updatePlato');
+    Route::get('/orderPlatosEditar/filtroPlatoEditar','AdminController@orderPlatosEditar')->name('orderPlatosEditar.filtroPlatoEditar');
+    Route::get('/updatePlato/{id}','AdminController@viewUpdatePlato');
+    Route::post('/postUpdatePlato','AdminController@postUpdatePlato');
     Route::get('/deletePlato','AdminController@deletePlato');
+    Route::get('/orderPlatosEliminar/filtroPlatoEliminar','AdminController@orderPlatosEliminar')->name('orderPlatosEliminar.filtroPlatoEliminar');
+    Route::get('/deletePlato/{id}', 'AdminController@borrarPlato');
 
     Route::get('/selectReservas','AdminController@getReservas');
     Route::get('/newReserva','AdminController@newReserva');

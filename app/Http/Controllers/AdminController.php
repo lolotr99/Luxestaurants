@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Plato;
 use App\Restaurante;
 use App\User;
 use Illuminate\Http\Request;
@@ -66,9 +67,9 @@ class AdminController extends Controller
                     <div class='tab-content'>
                         <h1 class='text-title'>Datos de $usuario->email</h1>
                         <hr>
-                        <p class='m-0'>Nombre Usuario: $usuario->name</p>
-                        <p class='m-0'>Fecha de Nacimiento: ".date('d/m/Y', strtotime($usuario->fechanacimiento))."</p>
-                        <p class='m-0'>Rol: $usuario->rol</p>
+                        <p class='m-0'><b>Nombre Usuario:</b> $usuario->name</p>
+                        <p class='m-0'><b>Fecha de Nacimiento:</b> ".date('d/m/Y', strtotime($usuario->fechanacimiento))."</p>
+                        <p class='m-0'><b>Rol:</b> $usuario->rol</p>
                         <hr>
                     </div>
                 </div>
@@ -134,9 +135,9 @@ class AdminController extends Controller
                     <div class='tab-content'>
                         <h1 class='text-title'>Datos de $usuario->email</h1>
                         <hr>
-                        <p class='m-0'>Nombre Usuario: $usuario->name</p>
-                        <p class='m-0'>Fecha de Nacimiento: ".date('d/m/Y', strtotime($usuario->fechanacimiento))."</p>
-                        <p class='m-0'>Rol: $usuario->rol</p>
+                        <p class='m-0'><b>Nombre Usuario:</b> $usuario->name</p>
+                        <p class='m-0'><b>Fecha de Nacimiento:</b> ".date('d/m/Y', strtotime($usuario->fechanacimiento))."</p>
+                        <p class='m-0'><b>Rol:</b> $usuario->rol</p>
                         <hr>
                     </div>
                 </div>
@@ -197,15 +198,15 @@ class AdminController extends Controller
                      <div class='row mt-2'>
                             <a href='".url('/deleteUser', $usuario->id)."' onclick=\"return confirm('¿Estas seguro de eliminar este usuario?')\" class='btnAnular estiloEnlaces'><i class='fas fa-trash fa-2x'></i> Eliminar este usuario</a>
                      </div>
-                 
+
                 </div>
                 <div class='col-sm-9 text-left'>
                     <div class='tab-content'>
                         <h1 class='text-title'>Datos de $usuario->email</h1>
                         <hr>
-                        <p class='m-0'>Nombre Usuario: $usuario->name</p>
-                        <p class='m-0'>Fecha de Nacimiento: ".date('d/m/Y', strtotime($usuario->fechanacimiento))."</p>
-                        <p class='m-0'>Rol: $usuario->rol</p>
+                        <p class='m-0'><b>Nombre Usuario:</b> $usuario->name</p>
+                        <p class='m-0'><b>Fecha de Nacimiento:</b> ".date('d/m/Y', strtotime($usuario->fechanacimiento))."</p>
+                        <p class='m-0'><b>Rol:</b> $usuario->rol</p>
                         <hr>
                     </div>
                 </div>
@@ -545,6 +546,268 @@ class AdminController extends Controller
         $restaurante->delete();
         flash('Restaurante eliminado correctamente');
         return redirect('/deleteRestaurante');
+    }
+
+    //PLATOS
+
+    public function getPlatos() {
+        $platos = Plato::all();
+        return view('admin.platos.viewPlatos',array('platos' => $platos));
+    }
+
+    public function orderPlatos(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query == "precioAsc") {
+                $data = DB::table('platos')
+                    ->orderBy('precioPlato', 'asc')
+                    ->get();
+            }
+            else if ($query == "precioDesc") {
+                $data = DB::table('platos')
+                    ->orderBy('precioPlato', 'desc')
+                    ->get();
+            }
+            else if ($query == "nombreAsc") {
+                $data = DB::table('platos')
+                    ->orderBy('nombrePlato', 'asc')
+                    ->get();
+            }
+            else if ($query == "nombreDesc") {
+                $data = DB::table('platos')
+                    ->orderBy('nombrePlato', 'desc')
+                    ->get();
+            }
+            else {
+                $data = DB::table('platos')
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
+
+
+            foreach($data as $plato)
+            {
+                $output .= "<div class='row mt-5'>
+                <div class='col-sm-3'>
+                    <div class='row'>
+                        <div class='text-center'>
+                            <img src='".asset($plato->imagenPlato)."' class='img-circle img-thumbnail'>
+                        </div><hr><br>
+                    </div>
+                </div>
+                <div class='col-sm-9 text-left'>
+                    <div class='tab-content'>
+                        <h1 class='text-title'>$plato->nombrePlato</h1>
+                        <hr>
+                        <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
+                        <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
+                        <hr>
+                    </div>
+                </div>
+                <hr>
+            </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function orderPlatosEditar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query == "precioAsc") {
+                $data = DB::table('platos')
+                    ->orderBy('precioPlato', 'asc')
+                    ->get();
+            }
+            else if ($query == "precioDesc") {
+                $data = DB::table('platos')
+                    ->orderBy('precioPlato', 'desc')
+                    ->get();
+            }
+            else if ($query == "nombreAsc") {
+                $data = DB::table('platos')
+                    ->orderBy('nombrePlato', 'asc')
+                    ->get();
+            }
+            else if ($query == "nombreDesc") {
+                $data = DB::table('platos')
+                    ->orderBy('nombrePlato', 'desc')
+                    ->get();
+            }
+            else {
+                $data = DB::table('platos')
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
+
+
+            foreach($data as $plato)
+            {
+                $output .= "<div class='row mt-5'>
+                <div class='col-sm-3'>
+                    <div class='row'>
+                        <div class='text-center'>
+                            <img src='".asset($plato->imagenPlato)."' class='img-circle img-thumbnail'>
+                        </div><hr><br>
+                    </div>
+                    <div class='row mt-2'>
+                            <a class='btn btn-secundary' href='".url('/updatePlato',$plato->id)."'>Editar este plato</a>
+                    </div>
+                </div>
+                <div class='col-sm-9 text-left'>
+                    <div class='tab-content'>
+                        <h1 class='text-title'>$plato->nombrePlato</h1>
+                        <hr>
+                        <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
+                        <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
+                        <hr>
+                    </div>
+                </div>
+                <hr>
+            </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function orderPlatosEliminar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query == "precioAsc") {
+                $data = DB::table('platos')
+                    ->orderBy('precioPlato', 'asc')
+                    ->get();
+            }
+            else if ($query == "precioDesc") {
+                $data = DB::table('platos')
+                    ->orderBy('precioPlato', 'desc')
+                    ->get();
+            }
+            else if ($query == "nombreAsc") {
+                $data = DB::table('platos')
+                    ->orderBy('nombrePlato', 'asc')
+                    ->get();
+            }
+            else if ($query == "nombreDesc") {
+                $data = DB::table('platos')
+                    ->orderBy('nombrePlato', 'desc')
+                    ->get();
+            }
+            else {
+                $data = DB::table('platos')
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
+
+
+            foreach($data as $plato)
+            {
+                $output .= "<div class='row mt-5'>
+                <div class='col-sm-3'>
+                    <div class='row'>
+                        <div class='text-center'>
+                            <img src='".asset($plato->imagenPlato)."' class='img-circle img-thumbnail'>
+                        </div><hr><br>
+                    </div>
+                    <div class='row mt-2'>
+                            <a href='".url('/deletePlato', $plato->id)."' onclick=\"return confirm('¿Estas seguro de eliminar este plato?')\" class='btnAnular estiloEnlaces'><i class='fas fa-trash fa-2x'></i> Eliminar este plato</a>
+                    </div>
+                </div>
+                <div class='col-sm-9 text-left'>
+                    <div class='tab-content'>
+                        <h1 class='text-title'>$plato->nombrePlato</h1>
+                        <hr>
+                        <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
+                        <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
+                        <hr>
+                    </div>
+                </div>
+                <hr>
+            </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function newPlato() {
+        return view("admin.platos.newPlato");
+    }
+
+    public function postNewPlato(Request $request) {
+        $plato = new Plato();
+        $plato->nombrePlato = $request->input('nombrePlato');
+        $plato->precioPlato = $request->input('precioPlato');
+        $plato->descripcion = $request->input('descripcion');
+        $plato->imagenPlato = $request->file('imagenPlato')->move('img',$request->file('imagenPlato')->getClientOriginalName());
+        $plato->save();
+        flash('Nuevo plato creado correctamente');
+        return redirect('/selectPlatos');
+    }
+
+    public function updatePlato() {
+        $platos = Plato::all();
+        return view('admin.platos.updatePlatos', array("platos" => $platos));
+    }
+
+    public function viewUpdatePlato($id) {
+        $plato = Plato::find($id);
+        return view('admin.platos.updatePlato',array("plato" =>$plato));
+    }
+
+    public function postUpdatePlato(Request $request) {
+        $plato = Plato::find($request->input('ocultoPlato'));
+
+        $plato->nombrePlato = $request->input('nombrePlato');
+        $plato->descripcion = $request->input('descripcion');
+        $plato->precioPlato = $request->input('precioPlato');
+
+        if ($request->hasFile('imagenPlato')) {
+            $plato->imagenPlato = $request->file('imagenPlato')->move('img',$request->file('imagenPlato')->getClientOriginalName());
+        } else {
+            $plato->imagenPlato = $request->input('imagenAntigua');
+        }
+
+        $plato->save();
+        flash('Plato editado correctamente');
+
+        return redirect('/updatePlato');
+    }
+
+    public function deletePlato() {
+        $platos = Plato::all();
+        return view("admin.platos.deletePlatos",array("platos" => $platos));
+    }
+
+    public function borrarPlato($id) {
+        DB::table('valoraciones')->where("idPlato", '=', $id)->delete();
+        $plato = Plato::find($id);
+        $plato->delete();
+        flash('Plato eliminado correctamente');
+        return redirect('/deletePlato');
     }
 
 

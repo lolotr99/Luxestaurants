@@ -39,9 +39,9 @@
                         <div class="tab-content">
                             <h1 class="text-title">Datos de {{$usuario->email}}</h1>
                             <hr>
-                            <p class="m-0">Nombre Usuario: {{ $usuario->name}}</p>
-                            <p class="m-0">Fecha de Nacimiento: {{ date('d/m/Y', strtotime($usuario->fechanacimiento))}}</p>
-                            <p class="m-0">Rol: {{$usuario->rol}}</p>
+                            <p class="m-0"><b>Nombre Usuario:</b> {{ $usuario->name}}</p>
+                            <p class="m-0"><b>Fecha de Nacimiento:</b> {{ date('d/m/Y', strtotime($usuario->fechanacimiento))}}</p>
+                            <p class="m-0"><b>Rol:</b> {{$usuario->rol}}</p>
                             <hr>
                         </div>
                     </div>
