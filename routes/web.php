@@ -75,9 +75,19 @@ Route::group(['middleware' => 'auth', 'middleware' => 'admin'], function() {
     Route::get('/deletePlato/{id}', 'AdminController@borrarPlato');
 
     Route::get('/selectReservas','AdminController@getReservas');
+    Route::get('/orderReservas/filtroReserva','AdminController@orderReservas')->name('orderReservas.filtroReserva');
+    Route::get('/buscaReservas/buscadorReservas','AdminController@buscaReservas')->name('buscaReservas.buscadorReservas');
     Route::get('/newReserva','AdminController@newReserva');
+    Route::post('/postNewReserva','AdminController@postNewReserva');
     Route::get('/updateReserva','AdminController@updateReserva');
+    Route::get('/orderReservasEditar/filtroReservaEditar','AdminController@orderReservasEditar')->name('orderReservasEditar.filtroReservaEditar');
+    Route::get('/buscaReservasEditar/buscadorReservasEditar','AdminController@buscaReservasEditar')->name('buscaReservasEditar.buscadorReservasEditar');
+    Route::get('/updateReserva/{id}','AdminController@viewUpdateReserva');
+    Route::post('/postUpdateReserva','AdminController@postUpdateReserva');
     Route::get('/deleteReserva','AdminController@deleteReserva');
+    Route::get('/orderReservasEliminar/filtroReservaEliminar','AdminController@orderReservasEliminar')->name('orderReservasEliminar.filtroReservaEliminar');
+    Route::get('/buscaReservasEliminar/buscadorReservasEliminar','AdminController@buscaReservasEliminar')->name('buscaReservasEliminar.buscadorReservasEliminar');
+    Route::get('/deleteReserva/{id}', 'AdminController@borrarReserva');
 
     Route::get('/selectValoraciones','AdminController@getValoraciones');
     Route::get('/newValoracion','AdminController@newValoracion');

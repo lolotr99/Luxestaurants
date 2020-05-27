@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Plato;
+use App\Reserva;
 use App\Restaurante;
 use App\User;
 use Illuminate\Http\Request;
@@ -810,5 +811,480 @@ class AdminController extends Controller
         return redirect('/deletePlato');
     }
 
+    //RESERVAS
+    public function getReservas() {
+        $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+            ->join('users','idUsuario','=','users.id')
+            ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')->get();
 
+        return view('admin.reservas.viewReservas',array("reservas" => $reservas));
+    }
+
+    public function orderReservas(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query == "fechaAsc") {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('fechaReserva', 'asc')
+                    ->get();
+            }
+            else if ($query == "fechaDesc") {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('fechaReserva', 'desc')
+                    ->get();
+            }
+            else {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
+
+
+            foreach($data as $reserva)
+            {
+                $output .= " <div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($reserva->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div><hr><br>
+                        </div>
+                    </div>
+                    <div class='col-sm-9 text-left'>
+                        <div class='tab-content'>
+                            <h1 class='text-title'>$reserva->name ~ $reserva->email</h1>
+                            <hr>
+                            <p class='m-0'><b>Restaurante: </b>  $reserva->ciudad ~ $reserva->zona</p>
+                            <p class='m-0'><b>Titular de la Reserva: </b>$reserva->nombrePersona</p>
+                            <p class='m-0'><b>Mesa para: </b>$reserva->personas personas</p>
+                            <p class='m-0'><b>Fecha y hora: </b>".$reserva->fechaReserva->toFormattedDateString()." a las ".date('H:i', strtotime($reserva->fechaReserva))."</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <hr>
+                </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function buscaReservas(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->where('name', 'rlike', $query)
+                    ->orWhere('email', 'rlike', $query)
+                    ->orderBy('fechaReserva', 'asc')
+                    ->get();
+            }
+            else {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
+
+
+            $total_row = $data->count();
+            if($total_row > 0)
+            {
+                foreach($data as $reserva)
+                {
+                    $output .= " <div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($reserva->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div><hr><br>
+                        </div>
+                    </div>
+                    <div class='col-sm-9 text-left'>
+                        <div class='tab-content'>
+                            <h1 class='text-title'>$reserva->name ~ $reserva->email</h1>
+                            <hr>
+                            <p class='m-0'><b>Restaurante: </b>  $reserva->ciudad ~ $reserva->zona</p>
+                            <p class='m-0'><b>Titular de la Reserva: </b>$reserva->nombrePersona</p>
+                            <p class='m-0'><b>Mesa para: </b>$reserva->personas personas</p>
+                            <p class='m-0'><b>Fecha y hora: </b>".$reserva->fechaReserva->toFormattedDateString()." a las ".date('H:i', strtotime($reserva->fechaReserva))."</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <hr>
+                </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún usuario coincide con esos parámetros</h4>
+                    </div>
+            </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function orderReservasEditar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query == "fechaAsc") {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('fechaReserva', 'asc')
+                    ->get();
+            }
+            else if ($query == "fechaDesc") {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('fechaReserva', 'desc')
+                    ->get();
+            }
+            else {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
+
+
+            foreach($data as $reserva)
+            {
+                $output .= " <div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($reserva->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div><hr><br>
+                        </div>
+                        <div class='row mt-2'>
+                            <a class='btn btn-secundary' href='".url('/updateReserva',$reserva->id)."'>Editar esta reserva</a>
+                        </div>
+                    </div>
+                    <div class='col-sm-9 text-left'>
+                        <div class='tab-content'>
+                            <h1 class='text-title'>$reserva->name ~ $reserva->email</h1>
+                            <hr>
+                            <p class='m-0'><b>Restaurante: </b>  $reserva->ciudad ~ $reserva->zona</p>
+                            <p class='m-0'><b>Titular de la Reserva: </b>$reserva->nombrePersona</p>
+                            <p class='m-0'><b>Mesa para: </b>$reserva->personas personas</p>
+                            <p class='m-0'><b>Fecha y hora: </b>".$reserva->fechaReserva->toFormattedDateString()." a las ".date('H:i', strtotime($reserva->fechaReserva))."</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <hr>
+                </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function buscaReservasEditar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->where('name', 'rlike', $query)
+                    ->orWhere('email', 'rlike', $query)
+                    ->orderBy('fechaReserva', 'asc')
+                    ->get();
+            }
+            else {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
+
+
+            $total_row = $data->count();
+            if($total_row > 0)
+            {
+                foreach($data as $reserva)
+                {
+                    $output .= " <div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($reserva->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div><hr><br>
+                        </div>
+                        <div class='row mt-2'>
+                            <a class='btn btn-secundary' href='".url('/updateReserva',$reserva->id)."'>Editar esta reserva</a>
+                        </div>
+                    </div>
+                    <div class='col-sm-9 text-left'>
+                        <div class='tab-content'>
+                            <h1 class='text-title'>$reserva->name ~ $reserva->email</h1>
+                            <hr>
+                            <p class='m-0'><b>Restaurante: </b>  $reserva->ciudad ~ $reserva->zona</p>
+                            <p class='m-0'><b>Titular de la Reserva: </b>$reserva->nombrePersona</p>
+                            <p class='m-0'><b>Mesa para: </b>$reserva->personas personas</p>
+                            <p class='m-0'><b>Fecha y hora: </b>".$reserva->fechaReserva->toFormattedDateString()." a las ".date('H:i', strtotime($reserva->fechaReserva))."</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <hr>
+                </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún usuario coincide con esos parámetros</h4>
+                    </div>
+            </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function orderReservasEliminar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query == "fechaAsc") {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('fechaReserva', 'asc')
+                    ->get();
+            }
+            else if ($query == "fechaDesc") {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('fechaReserva', 'desc')
+                    ->get();
+            }
+            else {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
+
+
+            foreach($data as $reserva)
+            {
+                $output .= " <div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($reserva->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div><hr><br>
+                        </div>
+                        <div class='row mt-2'>
+                            <a href='".url('/deleteReserva', $reserva->id)."' onclick=\"return confirm('¿Estas seguro de eliminar esta reserva?')\" class='btnAnular estiloEnlaces'><i class='fas fa-trash fa-2x'></i> Eliminar esta reserva</a>
+                        </div>
+                    </div>
+                    <div class='col-sm-9 text-left'>
+                        <div class='tab-content'>
+                            <h1 class='text-title'>$reserva->name ~ $reserva->email</h1>
+                            <hr>
+                            <p class='m-0'><b>Restaurante: </b>  $reserva->ciudad ~ $reserva->zona</p>
+                            <p class='m-0'><b>Titular de la Reserva: </b>$reserva->nombrePersona</p>
+                            <p class='m-0'><b>Mesa para: </b>$reserva->personas personas</p>
+                            <p class='m-0'><b>Fecha y hora: </b>".$reserva->fechaReserva->toFormattedDateString()." a las ".date('H:i', strtotime($reserva->fechaReserva))."</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <hr>
+                </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function buscaReservasEliminar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->where('name', 'rlike', $query)
+                    ->orWhere('email', 'rlike', $query)
+                    ->orderBy('fechaReserva', 'asc')
+                    ->get();
+            }
+            else {
+                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                    ->join('users','idUsuario','=','users.id')
+                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
+
+
+            $total_row = $data->count();
+            if($total_row > 0)
+            {
+                foreach($data as $reserva)
+                {
+                    $output .= " <div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($reserva->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div><hr><br>
+                        </div>
+                        <div class='row mt-2'>
+                            <a href='".url('/deleteReserva', $reserva->id)."' onclick=\"return confirm('¿Estas seguro de eliminar esta reserva?')\" class='btnAnular estiloEnlaces'><i class='fas fa-trash fa-2x'></i> Eliminar esta reserva</a>
+                        </div>
+                    </div>
+                    <div class='col-sm-9 text-left'>
+                        <div class='tab-content'>
+                            <h1 class='text-title'>$reserva->name ~ $reserva->email</h1>
+                            <hr>
+                            <p class='m-0'><b>Restaurante: </b>  $reserva->ciudad ~ $reserva->zona</p>
+                            <p class='m-0'><b>Titular de la Reserva: </b>$reserva->nombrePersona</p>
+                            <p class='m-0'><b>Mesa para: </b>$reserva->personas personas</p>
+                            <p class='m-0'><b>Fecha y hora: </b>".$reserva->fechaReserva->toFormattedDateString()." a las ".date('H:i', strtotime($reserva->fechaReserva))."</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <hr>
+                </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún usuario coincide con esos parámetros</h4>
+                    </div>
+            </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function newReserva() {
+        $usuarios = User::all();
+        $restaurantes = Restaurante::all();
+        return view('admin.reservas.newReserva',array('usuarios' => $usuarios, 'restaurantes' => $restaurantes));
+    }
+
+    public function postNewReserva(Request $request) {
+        $reserva = new Reserva();
+        $reserva->idUsuario = $request->input('usuario');
+        $reserva->idRestaurante = $request->input('restaurante');
+        $reserva->nombrePersona = $request->input('titular');
+        $reserva->personas = $request->input('numeroPersonas');
+        $reserva->fechaReserva = $request->input('datetime');
+        $reserva->save();
+        flash('Nueva reserva creada correctamente');
+        return redirect('/selectReservas');
+    }
+
+    public function updateReserva() {
+        $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+            ->join('users','idUsuario','=','users.id')
+            ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')->get();
+
+        return view('admin.reservas.updateReservas',array("reservas" => $reservas));
+    }
+
+    public function viewUpdateReserva($id) {
+        $reserva = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+            ->join('users','idUsuario','=','users.id')
+            ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id','restaurantes.id as idRestaurante','users.id as idUsuario')
+            ->where('reservas.id', '=', $id)
+            ->get();
+
+        $usuarios = User::all();
+        $restaurantes = Restaurante::all();
+
+        return view('admin.reservas.updateReserva', array("reservas" => $reserva, "usuarios" => $usuarios, "restaurantes" => $restaurantes));
+    }
+
+    public function postUpdateReserva(Request $request) {
+        $reserva = Reserva::find($request->input('ocultoReserva'));
+        $reserva->idUsuario = $request->input('usuario');
+        $reserva->idRestaurante = $request->input('restaurante');
+        $reserva->nombrePersona = $request->input('titular');
+        $reserva->personas = $request->input('numeroPersonas');
+        $reserva->fechaReserva = $request->input('datetime');
+        $reserva->save();
+        flash('Reserva actualizada correctamente');
+        return redirect('/updateReserva');
+    }
+
+    public function deleteReserva() {
+        $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+            ->join('users','idUsuario','=','users.id')
+            ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')->get();
+
+        return view('admin.reservas.deleteReservas',array("reservas" => $reservas));
+    }
+
+    public function borrarReserva($id) {
+        $reserva = Reserva::find($id);
+        $reserva->delete();
+        flash('Reserva eliminada correctamente');
+        return redirect('/deleteReserva');
+    }
 }

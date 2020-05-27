@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53fdce2f-2733-41ae-83e7-5cc95f711beb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Luxestaurants.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Luxestaurants.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/deleteUsers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/deleteUsers.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/updateUsers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/updateUsers.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/viewUsers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/viewUsers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/restaurantes/newRestaurante.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/restaurantes/newRestaurante.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -181,12 +177,6 @@
       <path value="$PROJECT_DIR$/vendor/laracasts/flash" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="697" />
-    <option name="height" value="177" />
-  </component>
   <component name="ProjectId" id="1cPznhjstyIyNKXIuogVQDTKakR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -198,7 +188,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/platos" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/reservas" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -206,15 +196,16 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.1.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\platos" />
-      <recent name="C:\xampp\htdocs\Luxestaurants\public\js" />
-      <recent name="C:\xampp\htdocs\Luxestaurants\public\img" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\users" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\emails" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\reservas" />
+      <recent name="C:\xampp\htdocs\Luxestaurants\public\js" />
+      <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\platos" />
+      <recent name="C:\xampp\htdocs\Luxestaurants\public\img" />
     </key>
   </component>
   <component name="RunManager">
@@ -277,7 +268,8 @@
       <workItem from="1589990956729" duration="4822000" />
       <workItem from="1590141256228" duration="8049000" />
       <workItem from="1590445190465" duration="45000" />
-      <workItem from="1590476878833" duration="6291000" />
+      <workItem from="1590476878833" duration="6535000" />
+      <workItem from="1590567860710" duration="16999000" />
     </task>
     <servers />
   </component>
@@ -285,13 +277,25 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590580721770">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1590580721770" />
     <state x="465" y="43" key="#updateUsers.blade.php" timestamp="1590480404512">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="465" y="43" key="#updateUsers.blade.php/0.0.1366.728@0.0.1366.728" timestamp="1590480404512" />
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1590476883442">
+    <state x="517" y="287" key="NewPhpFileDialog" timestamp="1590580974471">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1590476883442" />
+    <state x="517" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1590580974471" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1590567868941">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1590567868941" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1590586633160">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1590586633160" />
   </component>
 </project>

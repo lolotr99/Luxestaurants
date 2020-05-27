@@ -95,6 +95,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Guardar Restaurante</button>
+                        <a class="btn btn-secundary" href="{{url('/control')}}">Cancelar</a>
                     </div>
                 </form>
             </div>
