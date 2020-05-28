@@ -125,13 +125,14 @@ class RestauranteController extends Controller
         $valoracion->comentario = $request->input('comentario');
         $valoracion->valor = $request->input('estrellas');
         $valoracion->save();
-
+        flash('Valoración realizada con éxito');
         return redirect('/carta/'.$request->input('ocultoPlato'));
     }
 
     public function eliminarValoracion($id,$idPlato) {
         $valoracion = Valoracion::find($id);
         $valoracion->delete();
+        flash('Tu valoración ha sido eliminada cor éxito');
         return redirect('/carta/'.$idPlato);
     }
 

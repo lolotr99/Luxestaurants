@@ -6,6 +6,7 @@ use App\Plato;
 use App\Reserva;
 use App\Restaurante;
 use App\User;
+use App\Valoracion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -1286,5 +1287,629 @@ class AdminController extends Controller
         $reserva->delete();
         flash('Reserva eliminada correctamente');
         return redirect('/deleteReserva');
+    }
+
+    //VALORACIONES
+    public function getValoraciones() {
+        $valoraciones = Valoracion::join('platos','idPlato','platos.id')
+            ->join('users','idUsuario','users.id')
+            ->join('restaurantes','idRestaurante','restaurantes.id')
+            ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+            ->get();
+        return view("admin.valoraciones.viewValoraciones",array('valoraciones' => $valoraciones));
+    }
+
+    public function orderValoraciones(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query == "fechaAsc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+                    ->orderBy('fechaValoracion','asc')
+                    ->get();
+            }
+            else if ($query == "fechaDesc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+                    ->orderBy('fechaValoracion','desc')
+                    ->get();
+            }
+            else if ($query == "valorAsc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+                    ->orderBy('valor','asc')
+                    ->get();
+            }
+            else if ($query == "valorDesc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+                    ->orderBy('valor','desc')
+                    ->get();
+            }
+            else {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+                    ->orderBy('id','asc')
+                    ->get();
+            }
+
+
+            foreach($data as $valoracion)
+            {
+                $output .= "<div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-sm-6 text-left'>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class='tab-content'>
+                                    <h1 class='text-title'>$valoracion->ciudad ~ $valoracion->zona</h1>
+                                    <hr>
+                                    <p class='m-0'><b>Nombre del usuario que valora:</b> $valoracion->name</p>
+                                    <p class='m-0'><b>Email del usuario que valora:</b> $valoracion->email</p>
+                                    <p class='m-0'><b>Fecha de Valoración:</b> ".date('d/m/Y H:i', strtotime($valoracion->fechaValoracion))."</p>
+                                    <p class='m-0'><b>Comentario:</b> $valoracion->comentario</p>
+                                    <p class='m-0'><b>Valoración: </b>
+                                        <span>";
+                                            for ($i = 0; $i <$valoracion->valor; $i++)
+                                                $output.= "<i class='text-warning fa fa-star'></i>";
+                                        $output.= "</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenPlato)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function buscaValoraciones(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+                    ->where('name', 'rlike', $query)
+                    ->orWhere('email', 'rlike', $query)
+                    ->get();
+            }
+            else {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+                    ->get();
+            }
+
+
+            $total_row = $data->count();
+            if($total_row > 0)
+            {
+                foreach($data as $valoracion)
+                {
+                    $output .= "<div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-sm-6 text-left'>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class='tab-content'>
+                                    <h1 class='text-title'>$valoracion->ciudad ~ $valoracion->zona</h1>
+                                    <hr>
+                                    <p class='m-0'><b>Nombre del usuario que valora:</b> $valoracion->name</p>
+                                    <p class='m-0'><b>Email del usuario que valora:</b> $valoracion->email</p>
+                                    <p class='m-0'><b>Fecha de Valoración:</b> ".date('d/m/Y H:i', strtotime($valoracion->fechaValoracion))."</p>
+                                    <p class='m-0'><b>Comentario:</b> $valoracion->comentario</p>
+                                    <p class='m-0'><b>Valoración: </b>
+                                        <span>";
+                    for ($i = 0; $i <$valoracion->valor; $i++)
+                        $output.= "<i class='text-warning fa fa-star'></i>";
+                    $output.= "</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenPlato)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún usuario coincide con esos parámetros</h4>
+                    </div>
+            </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function orderValoracionesEditar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query == "fechaAsc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->orderBy('fechaValoracion','asc')
+                    ->get();
+            }
+            else if ($query == "fechaDesc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->orderBy('fechaValoracion','desc')
+                    ->get();
+            }
+            else if ($query == "valorAsc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->orderBy('valor','asc')
+                    ->get();
+            }
+            else if ($query == "valorDesc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->orderBy('valor','desc')
+                    ->get();
+            }
+            else {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->orderBy('id','asc')
+                    ->get();
+            }
+
+
+            foreach($data as $valoracion)
+            {
+                $output .= "<div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                         <div class='row mt-2'>
+                            <a class='btn btn-secundary' href='".url('/updateValoracion',$valoracion->id)."'>Editar esta valoración</a>
+                        </div>
+                    </div>
+                    <div class='col-sm-6 text-left'>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class='tab-content'>
+                                    <h1 class='text-title'>$valoracion->ciudad ~ $valoracion->zona</h1>
+                                    <hr>
+                                    <p class='m-0'><b>Nombre del usuario que valora:</b> $valoracion->name</p>
+                                    <p class='m-0'><b>Email del usuario que valora:</b> $valoracion->email</p>
+                                    <p class='m-0'><b>Fecha de Valoración:</b> ".date('d/m/Y H:i', strtotime($valoracion->fechaValoracion))."</p>
+                                    <p class='m-0'><b>Comentario:</b> $valoracion->comentario</p>
+                                    <p class='m-0'><b>Valoración: </b>
+                                        <span>";
+                for ($i = 0; $i <$valoracion->valor; $i++)
+                    $output.= "<i class='text-warning fa fa-star'></i>";
+                $output.= "</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenPlato)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function buscaValoracionesEditar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->where('name', 'rlike', $query)
+                    ->orWhere('email', 'rlike', $query)
+                    ->get();
+            }
+            else {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->get();
+            }
+
+
+            $total_row = $data->count();
+            if($total_row > 0)
+            {
+                foreach($data as $valoracion)
+                {
+                    $output .= "<div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                         <div class='row mt-2'>
+                            <a class='btn btn-secundary' href='".url('/updateValoracion',$valoracion->id)."'>Editar esta valoración</a>
+                        </div>
+                    </div>
+                    <div class='col-sm-6 text-left'>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class='tab-content'>
+                                    <h1 class='text-title'>$valoracion->ciudad ~ $valoracion->zona</h1>
+                                    <hr>
+                                    <p class='m-0'><b>Nombre del usuario que valora:</b> $valoracion->name</p>
+                                    <p class='m-0'><b>Email del usuario que valora:</b> $valoracion->email</p>
+                                    <p class='m-0'><b>Fecha de Valoración:</b> ".date('d/m/Y H:i', strtotime($valoracion->fechaValoracion))."</p>
+                                    <p class='m-0'><b>Comentario:</b> $valoracion->comentario</p>
+                                    <p class='m-0'><b>Valoración: </b>
+                                        <span>";
+                    for ($i = 0; $i <$valoracion->valor; $i++)
+                        $output.= "<i class='text-warning fa fa-star'></i>";
+                    $output.= "</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenPlato)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún usuario coincide con esos parámetros</h4>
+                    </div>
+            </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function orderValoracionesEliminar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query == "fechaAsc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->orderBy('fechaValoracion','asc')
+                    ->get();
+            }
+            else if ($query == "fechaDesc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->orderBy('fechaValoracion','desc')
+                    ->get();
+            }
+            else if ($query == "valorAsc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->orderBy('valor','asc')
+                    ->get();
+            }
+            else if ($query == "valorDesc") {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->orderBy('valor','desc')
+                    ->get();
+            }
+            else {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->orderBy('id','asc')
+                    ->get();
+            }
+
+
+            foreach($data as $valoracion)
+            {
+                $output .= "<div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                         <div class='row mt-2'>
+                            <a href='".url('/deleteValoracion', $valoracion->id)."' onclick=\"return confirm('¿Estas seguro de eliminar esta valoración?')\" class='btnAnular estiloEnlaces'><i class='fas fa-trash fa-2x'></i> Eliminar esta valoración</a>
+                        </div>
+                    </div>
+                    <div class='col-sm-6 text-left'>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class='tab-content'>
+                                    <h1 class='text-title'>$valoracion->ciudad ~ $valoracion->zona</h1>
+                                    <hr>
+                                    <p class='m-0'><b>Nombre del usuario que valora:</b> $valoracion->name</p>
+                                    <p class='m-0'><b>Email del usuario que valora:</b> $valoracion->email</p>
+                                    <p class='m-0'><b>Fecha de Valoración:</b> ".date('d/m/Y H:i', strtotime($valoracion->fechaValoracion))."</p>
+                                    <p class='m-0'><b>Comentario:</b> $valoracion->comentario</p>
+                                    <p class='m-0'><b>Valoración: </b>
+                                        <span>";
+                for ($i = 0; $i <$valoracion->valor; $i++)
+                    $output.= "<i class='text-warning fa fa-star'></i>";
+                $output.= "</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenPlato)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function buscaValoracionesEliminar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->where('name', 'rlike', $query)
+                    ->orWhere('email', 'rlike', $query)
+                    ->get();
+            }
+            else {
+                $data = Valoracion::join('platos','idPlato','platos.id')
+                    ->join('users','idUsuario','users.id')
+                    ->join('restaurantes','idRestaurante','restaurantes.id')
+                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+                    ->get();
+            }
+
+
+            $total_row = $data->count();
+            if($total_row > 0)
+            {
+                foreach($data as $valoracion)
+                {
+                    $output .= "<div class='row mt-5'>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenusuario)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                         <div class='row mt-2'>
+                            <a href='".url('/deleteValoracion', $valoracion->id)."' onclick=\"return confirm('¿Estas seguro de eliminar esta valoración?')\" class='btnAnular estiloEnlaces'><i class='fas fa-trash fa-2x'></i> Eliminar esta valoración</a>
+                        </div>
+                    </div>
+                    <div class='col-sm-6 text-left'>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class='tab-content'>
+                                    <h1 class='text-title'>$valoracion->ciudad ~ $valoracion->zona</h1>
+                                    <hr>
+                                    <p class='m-0'><b>Nombre del usuario que valora:</b> $valoracion->name</p>
+                                    <p class='m-0'><b>Email del usuario que valora:</b> $valoracion->email</p>
+                                    <p class='m-0'><b>Fecha de Valoración:</b> ".date('d/m/Y H:i', strtotime($valoracion->fechaValoracion))."</p>
+                                    <p class='m-0'><b>Comentario:</b> $valoracion->comentario</p>
+                                    <p class='m-0'><b>Valoración: </b>
+                                        <span>";
+                    for ($i = 0; $i <$valoracion->valor; $i++)
+                        $output.= "<i class='text-warning fa fa-star'></i>";
+                    $output.= "</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <div class='row'>
+                            <div class='text-center'>
+                                <img src='".asset($valoracion->imagenPlato)."' class='img-circle img-thumbnail'>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún usuario coincide con esos parámetros</h4>
+                    </div>
+            </div>";
+            }
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    public function updateValoracion() {
+        $valoraciones = Valoracion::join('platos','idPlato','platos.id')
+            ->join('users','idUsuario','users.id')
+            ->join('restaurantes','idRestaurante','restaurantes.id')
+            ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+            ->get();
+        return view("admin.valoraciones.updateValoraciones",array('valoraciones' => $valoraciones));
+    }
+
+    public function viewUpdateValoracion($id) {
+        $valoraciones = Valoracion::join('platos','idPlato','platos.id')
+            ->join('users','idUsuario','users.id')
+            ->join('restaurantes','idRestaurante','restaurantes.id')
+            ->select('users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','valoraciones.idPlato','platos.nombrePlato','valoraciones.id','valoraciones.idUsuario','valoraciones.idRestaurante')
+            ->where('valoraciones.id','=',$id)
+            ->get();
+
+        $reservas = Reserva::join('users','idUsuario','users.id')
+        ->join('restaurantes','idRestaurante','restaurantes.id')
+        ->select('reservas.idUsuario','reservas.idRestaurante','users.name','users.email','restaurantes.ciudad','restaurantes.zona')
+        ->get();
+
+        $platos = Plato::all();
+        return view("admin.valoraciones.updateValoracion",array('valoraciones' => $valoraciones, 'reservas' => $reservas, 'platos' => $platos));
+    }
+
+    public function postUpdateValoracion(Request $request) {
+        $valoracion = Valoracion::find($request->input('ocultoValoracion'));
+        $values =  $request->input('usuarioRestaurante');
+        $idUsuario = (int)substr($values,0,1);
+        $idRestaurante = (int)substr("$values",1,1);
+        $valoracion->idUsuario = $idUsuario;
+        $valoracion->idRestaurante = $idRestaurante;
+        $valoracion->idPlato = $request->input('plato');
+        $valoracion->fechaValoracion = $request->input('datetime');
+        $valoracion->comentario = $request->input('comentario');
+        $valoracion->valor = $request->input('valor');
+        $valoracion->save();
+        flash('Valoración actualizada correctamente');
+        return redirect('/updateValoracion');
+
+    }
+
+    public function deleteValoracion() {
+        $valoraciones = Valoracion::join('platos','idPlato','platos.id')
+            ->join('users','idUsuario','users.id')
+            ->join('restaurantes','idRestaurante','restaurantes.id')
+            ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
+            ->get();
+        return view("admin.valoraciones.deleteValoraciones",array('valoraciones' => $valoraciones));
+    }
+
+    public function borrarValoracion($id) {
+        $valoracion = Valoracion::find($id);
+        $valoracion->delete();
+        flash('Valoración eliminada correctamente');
+        return redirect('/deleteValoracion');
     }
 }

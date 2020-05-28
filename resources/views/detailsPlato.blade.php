@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('content')
     <div class="container-fluid text-secondary">
+        <div class="row">
+            @include('flash::message')
+        </div>
         <div class="row ml-5 mt-5">
             <div class="col-sm-12">
                 <a class="estiloEnlaces" href="{{url('/carta')}}"><img src="{{asset('img/volver.png')}}"/><span class="ml-3">Volver a carta</span></a>

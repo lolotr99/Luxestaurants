@@ -90,9 +90,18 @@ Route::group(['middleware' => 'auth', 'middleware' => 'admin'], function() {
     Route::get('/deleteReserva/{id}', 'AdminController@borrarReserva');
 
     Route::get('/selectValoraciones','AdminController@getValoraciones');
+    Route::get('/orderValoraciones/filtroValoracion','AdminController@orderValoraciones')->name('orderValoraciones.filtroValoracion');
+    Route::get('/buscaValoraciones/buscadorValoraciones','AdminController@buscaValoraciones')->name('buscaValoraciones.buscadorValoraciones');
     Route::get('/newValoracion','AdminController@newValoracion');
     Route::get('/updateValoracion','AdminController@updateValoracion');
+    Route::get('/orderValoracionesEditar/filtroValoracionEditar','AdminController@orderValoracionesEditar')->name('orderValoracionesEditar.filtroValoracionEditar');
+    Route::get('/buscaValoracionesEditar/buscadorValoracionesEditar','AdminController@buscaValoracionesEditar')->name('buscaValoracionesEditar.buscadorValoracionesEditar');
+    Route::get('/updateValoracion/{id}','AdminController@viewUpdateValoracion');
+    Route::post('/postUpdateValoracion','AdminController@postUpdateValoracion');
     Route::get('/deleteValoracion','AdminController@deleteValoracion');
+    Route::get('/orderValoracionesEliminar/filtroValoracionEliminar','AdminController@orderValoracionesEliminar')->name('orderValoracionesEliminar.filtroValoracionEliminar');
+    Route::get('/buscaValoracionesEliminar/buscadorValoracionesEliminar','AdminController@buscaValoracionesEliminar')->name('buscaValoracionesEliminar.buscadorValoracionesEliminar');
+    Route::get('/deleteValoracion/{id}', 'AdminController@borrarValoracion');
 });
 
 

@@ -50,6 +50,14 @@
 <script src="{{asset('js/orderReservasEliminar.js')}}"></script>
 <script src="{{asset('js/buscaReservasEliminar.js')}}"></script>
 
+<script src="{{asset('js/orderValoraciones.js')}}"></script>
+<script src="{{asset('js/buscaValoraciones.js')}}"></script>
+<script src="{{asset('js/orderValoracionesEditar.js')}}"></script>
+<script src="{{asset('js/buscaValoracionesEditar.js')}}"></script>
+<script src="{{asset('js/orderValoracionesEliminar.js')}}"></script>
+<script src="{{asset('js/buscaValoracionesEliminar.js')}}"></script>
+
+
 
 
 

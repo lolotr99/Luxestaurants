@@ -4,7 +4,8 @@
     <list default="true" id="53fdce2f-2733-41ae-83e7-5cc95f711beb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/restaurantes/newRestaurante.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/restaurantes/newRestaurante.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/detailsPlato.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/detailsPlato.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -188,7 +189,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/reservas" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -202,8 +203,9 @@
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\emails" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\reservas" />
       <recent name="C:\xampp\htdocs\Luxestaurants\public\js" />
+      <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\valoraciones" />
+      <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\reservas" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\platos" />
       <recent name="C:\xampp\htdocs\Luxestaurants\public\img" />
     </key>
@@ -269,7 +271,9 @@
       <workItem from="1590141256228" duration="8049000" />
       <workItem from="1590445190465" duration="45000" />
       <workItem from="1590476878833" duration="6535000" />
-      <workItem from="1590567860710" duration="16999000" />
+      <workItem from="1590567860710" duration="17259000" />
+      <workItem from="1590593777941" duration="7935000" />
+      <workItem from="1590655289063" duration="10497000" />
     </task>
     <servers />
   </component>
@@ -277,25 +281,29 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590580721770">
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590595144480">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1590580721770" />
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1590595144480" />
     <state x="465" y="43" key="#updateUsers.blade.php" timestamp="1590480404512">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="465" y="43" key="#updateUsers.blade.php/0.0.1366.728@0.0.1366.728" timestamp="1590480404512" />
-    <state x="517" y="287" key="NewPhpFileDialog" timestamp="1590580974471">
+    <state x="517" y="287" key="NewPhpFileDialog" timestamp="1590594681256">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="517" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1590580974471" />
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1590567868941">
+    <state x="517" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1590594681256" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1590655335661">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1590567868941" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1590586633160">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1590655335661" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1590667705758">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1590586633160" />
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1590667705758" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1590663594846">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1590663594846" />
   </component>
 </project>
