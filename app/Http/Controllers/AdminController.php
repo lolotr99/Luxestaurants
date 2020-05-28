@@ -1854,6 +1854,36 @@ class AdminController extends Controller
         }
     }
 
+    public function newValoracion() {
+        $reservas = Reserva::join('users','idUsuario','users.id')
+            ->join('restaurantes','idRestaurante','restaurantes.id')
+            ->select('reservas.idUsuario','reservas.idRestaurante','users.name','users.email','restaurantes.ciudad','restaurantes.zona')
+            ->get();
+
+        $platos = Plato::all();
+        return view('admin.valoraciones.newValoracion',array('reservas' => $reservas, 'platos' => $platos));
+    }
+
+    public function postNewValoracion(Request $request) {
+        $valoracion = new Valoracion();
+        $values =  $request->input('usuarioRestaurante');
+        $idUsuario = (int)substr($values,0,1);
+        if (is_numeric((int)substr("$values",2,1)))
+            $idRestaurante = (int)substr("$values",1,2);
+        else
+            $idRestaurante = (int)substr("$values",1,1);
+        $valoracion->idUsuario = $idUsuario;
+        $valoracion->idRestaurante = $idRestaurante;
+        $valoracion->idPlato = $request->input('plato');
+        $valoracion->fechaValoracion = $request->input('datetime');
+        $valoracion->comentario = $request->input('comentario');
+        $valoracion->valor = $request->input('valor');
+        $valoracion->save();
+        flash('Nueva valoración creada correctamente');
+        return redirect('/selectValoraciones');
+        echo $idUsuario. " ".$idRestaurante;
+    }
+
     public function updateValoracion() {
         $valoraciones = Valoracion::join('platos','idPlato','platos.id')
             ->join('users','idUsuario','users.id')
@@ -1884,7 +1914,10 @@ class AdminController extends Controller
         $valoracion = Valoracion::find($request->input('ocultoValoracion'));
         $values =  $request->input('usuarioRestaurante');
         $idUsuario = (int)substr($values,0,1);
-        $idRestaurante = (int)substr("$values",1,1);
+        if (is_numeric((int)substr("$values",2,1)))
+            $idRestaurante = (int)substr("$values",1,2);
+        else
+            $idRestaurante = (int)substr("$values",1,1);
         $valoracion->idUsuario = $idUsuario;
         $valoracion->idRestaurante = $idRestaurante;
         $valoracion->idPlato = $request->input('plato');
@@ -1894,7 +1927,6 @@ class AdminController extends Controller
         $valoracion->save();
         flash('Valoración actualizada correctamente');
         return redirect('/updateValoracion');
-
     }
 
     public function deleteValoracion() {

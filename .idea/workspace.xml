@@ -4,9 +4,6 @@
     <list default="true" id="53fdce2f-2733-41ae-83e7-5cc95f711beb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/detailsPlato.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/detailsPlato.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,7 +186,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/valoraciones" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -203,8 +200,8 @@
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\emails" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\Luxestaurants\public\js" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\valoraciones" />
+      <recent name="C:\xampp\htdocs\Luxestaurants\public\js" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\reservas" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\platos" />
       <recent name="C:\xampp\htdocs\Luxestaurants\public\img" />
@@ -273,7 +270,7 @@
       <workItem from="1590476878833" duration="6535000" />
       <workItem from="1590567860710" duration="17259000" />
       <workItem from="1590593777941" duration="7935000" />
-      <workItem from="1590655289063" duration="10497000" />
+      <workItem from="1590655289063" duration="12768000" />
     </task>
     <servers />
   </component>
@@ -301,9 +298,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1590667705758" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1590663594846">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1590669058981">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1590663594846" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1590669058981" />
   </component>
 </project>
