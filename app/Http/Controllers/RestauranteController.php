@@ -217,6 +217,7 @@ border: 1px solid black;
 
         if ($restaurante->numeromesas <= 0) {
             //no hay sitio para reservar
+            abort('360');
         } else {
             $reserva = new Reserva();
             $reserva->idUsuario = $idUsuario;
