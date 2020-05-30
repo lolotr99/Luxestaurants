@@ -3,11 +3,38 @@
   <component name="ChangeListManager">
     <list default="true" id="53fdce2f-2733-41ae-83e7-5cc95f711beb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RestauranteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/errors/404.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_04_17_100533_create_platos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_04_17_100533_create_platos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/orderUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/orderUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/platos/deletePlatos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/platos/deletePlatos.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/platos/updatePlatos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/platos/updatePlatos.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/platos/viewPlatos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/platos/viewPlatos.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/reservas/deleteReservas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/reservas/deleteReservas.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/reservas/updateReservas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/reservas/updateReservas.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/reservas/viewReservas.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/reservas/viewReservas.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/restaurantes/deleteRestaurantes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/restaurantes/deleteRestaurantes.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/restaurantes/updateRestaurantes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/restaurantes/updateRestaurantes.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/restaurantes/viewRestaurantes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/restaurantes/viewRestaurantes.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/deleteUsers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/deleteUsers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/updateUsers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/updateUsers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/viewUsers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/viewUsers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/valoraciones/deleteValoraciones.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/valoraciones/deleteValoraciones.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/valoraciones/updateValoraciones.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/valoraciones/updateValoraciones.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/valoraciones/viewValoraciones.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/valoraciones/viewValoraciones.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/confirm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/confirm.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/carta.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/carta.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,30 +69,6 @@
         <option value="JavaScript File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>text</find>
-      <find>general</find>
-      <find>Barry</find>
-      <find>Barryvdh\\DomPDF\\Facade</find>
-      <find>text-title</find>
-      <find>text-</find>
-      <find>enlaces</find>
-      <find>locale</find>
-      <find>error-container</find>
-      <find>error</find>
-      <find>text-se</find>
-      <find>card</find>
-      <find>action</find>
-      <find>filtro</find>
-    </findStrings>
-    <replaceStrings>
-      <replace />
-    </replaceStrings>
-    <dirStrings>
-      <dir>C:\xampp\htdocs\Luxestaurants\resources\views\errors</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -187,9 +190,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/errors" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -198,9 +202,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Luxestaurants\public\js" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\errors" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\valoraciones" />
-      <recent name="C:\xampp\htdocs\Luxestaurants\public\js" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\reservas" />
       <recent name="C:\xampp\htdocs\Luxestaurants\resources\views\admin\platos" />
     </key>
@@ -274,7 +278,9 @@
       <workItem from="1590567860710" duration="17259000" />
       <workItem from="1590593777941" duration="7935000" />
       <workItem from="1590655289063" duration="13250000" />
-      <workItem from="1590678297378" duration="2178000" />
+      <workItem from="1590678297378" duration="4831000" />
+      <workItem from="1590741061270" duration="27004000" />
+      <workItem from="1590827752432" duration="3592000" />
     </task>
     <servers />
   </component>
@@ -282,10 +288,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590595144480">
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590830674560">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1590595144480" />
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1590830674560" />
     <state x="465" y="43" key="#updateUsers.blade.php" timestamp="1590480404512">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -294,17 +300,21 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="517" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1590679887443" />
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1590678307337">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1590827757721">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1590678307337" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1590667705758">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1590827757721" />
+    <state x="379" y="0" width="607" height="728" key="find.popup" timestamp="1590830591245">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1590667705758" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1590669058981">
+    <state x="379" y="0" width="607" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1590830591245" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1590754181813">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1590669058981" />
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1590754181813" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1590745591802">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1590745591802" />
   </component>
 </project>

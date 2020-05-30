@@ -14,13 +14,25 @@
     <div class="row mt-5">
         <div class="col-sm-12">
             <div class="form-group">
-                <label for="filtroPlato">Ordenar por: </label>
-                <select id="filtroPlato" name="filtroPlato" class="form-control">
-                    <option value="nombreAsc">A-Z</option>
-                    <option value="nombreDesc">Z-A</option>
-                    <option value="precioAsc">Más barato primero</option>
-                    <option value="precioDesc">Más caro primero</option>
-                </select>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row">
+                            <label for="filtroPlato">Ordenar por: </label>
+                            <select id="filtroPlato" name="filtroPlato" class="form-control">
+                                <option value="nombreAsc">A-Z</option>
+                                <option value="nombreDesc">Z-A</option>
+                                <option value="precioAsc">Más barato primero</option>
+                                <option value="precioDesc">Más caro primero</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row ml-2">
+                            <label for="buscadorPlatos">Busca por nombre de plato </label>
+                            <input type="text" class="form-control" name="buscadorPlatos" id="buscadorPlatos" placeholder="busca por nombre de plato">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -48,7 +60,11 @@
         @endforeach
     </div>
 
-    <div class="row ml-5 mt-5">
+    <div class="row mt-5">
+        {!! $platos->render() !!}
+    </div>
+
+    <div class="row ml-5 mt-5 mb-3">
         <div class="col-sm-12">
             <a class="estiloEnlaces" href="{{url('/control')}}"><img src="{{asset('img/volver.png')}}"/><span class="ml-3">Volver a página de control</span></a>
         </div>

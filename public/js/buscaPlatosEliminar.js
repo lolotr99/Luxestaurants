@@ -5,18 +5,18 @@ $(document).ready(function(){
     function fetch_customer_data(query = '')
     {
         $.ajax({
-            url: "orderUsers/filtro",
+            url: "buscaPlatosEliminar/buscadorPlatosEliminar",
             method:'GET',
             data:{query:query},
             dataType:'json',
             success:function(data)
             {
-                $('#usuarios').html(data.datos);
+                $('#platosEliminar').html(data.datos);
             }
         })
     }
 
-    $(document).on('change', '#filtro', function(){
+    $(document).on('keyup', '#buscadorPlatosEliminar', function(){
         var query = $(this).val();
         fetch_customer_data(query);
     });

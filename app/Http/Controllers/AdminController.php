@@ -18,8 +18,8 @@ class AdminController extends Controller
 
     //USUARIOS
     public function getUsers() {
-        $usuarios = User::all();
-        return view('admin.users.viewUsers', array("usuarios" => $usuarios));
+        $usuarios = DB::table('users')->paginate(5);
+        return view('admin.users.viewUsers', compact('usuarios'));
     }
 
     public function orderUsers(Request $request) {
@@ -29,33 +29,29 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "fechaAsc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('fechanacimiento', 'asc')
                     ->get();
             }
             else if ($query == "fechaDesc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('fechanacimiento', 'desc')
                     ->get();
             }
             else if ($query == "nombreAsc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('name', 'asc')
                     ->get();
             }
             else if ($query == "nombreDesc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('name', 'desc')
                     ->get();
             }
-            else {
-                $data = DB::table('users')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $usuario)
+            foreach($usuarios as $usuario)
             {
                 $output .= "            <div class='row mt-5'>
                 <div class='col-sm-3'>
@@ -79,11 +75,70 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $usuarios = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($usuarios);
+
+        }
+    }
+
+    public function buscarUsers(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $usuarios = DB::table('users')
+                    ->where('name', 'rlike', $query)
+                    ->orWhere('email', 'rlike', $query)
+                    ->get();
+            }
+            else {}
+
+
+            $total_row = $usuarios->count();
+            if($total_row > 0)
+            {
+                foreach($usuarios as $usuario)
+                {
+                    $output .= "            <div class='row mt-5'>
+                <div class='col-sm-3'>
+                    <div class='row'>
+                        <div class='text-center'>
+                            <img src=".asset($usuario->imagenusuario)." class='img-circle img-thumbnail' alt='imagen de perfil del usuario'>
+                        </div><hr><br>
+                    </div>
+                </div>
+                <div class='col-sm-9 text-left'>
+                    <div class='tab-content'>
+                        <h1 class='text-title'>Datos de $usuario->email</h1>
+                        <hr>
+                        <p class='m-0'><b>Nombre Usuario:</b> $usuario->name</p>
+                        <p class='m-0'><b>Fecha de Nacimiento:</b> ".date('d/m/Y', strtotime($usuario->fechanacimiento))."</p>
+                        <p class='m-0'><b>Rol:</b> $usuario->rol</p>
+                        <hr>
+                    </div>
+                </div>
+                <hr>
+            </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún usuario coincide con esos parámetros</h4>
+                    </div>
+            </div>";
+            }
+
+            $usuarios = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($usuarios);
         }
     }
 
@@ -94,33 +149,29 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "fechaAsc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('fechanacimiento', 'asc')
                     ->get();
             }
             else if ($query == "fechaDesc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('fechanacimiento', 'desc')
                     ->get();
             }
             else if ($query == "nombreAsc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('name', 'asc')
                     ->get();
             }
             else if ($query == "nombreDesc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('name', 'desc')
                     ->get();
             }
-            else {
-                $data = DB::table('users')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $usuario)
+            foreach($usuarios as $usuario)
             {
                 $output .= "            <div class='row mt-5'>
                 <div class='col-sm-3'>
@@ -147,11 +198,72 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $usuarios = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($usuarios);
+        }
+    }
+
+    public function buscarUsersEditar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $usuarios = DB::table('users')
+                    ->where('name', 'rlike', $query)
+                    ->orWhere('email', 'rlike', $query)
+                    ->get();
+            }
+            else {}
+
+
+            $total_row = $usuarios->count();
+            if($total_row > 0)
+            {
+                foreach($usuarios as $usuario)
+                {
+                    $output .= "            <div class='row mt-5'>
+                <div class='col-sm-3'>
+                    <div class='row'>
+                        <div class='text-center'>
+                            <img src=".asset($usuario->imagenusuario)." class='img-circle img-thumbnail' alt='imagen de perfil del usuario'>
+                        </div><hr><br>
+                    </div>
+                    <div class='row mt-2'>
+                            <a class='btn btn-secundary' href='".url('/updateUser',$usuario->id)."'>Editar este usuario</a>
+                        </div>
+                </div>
+                <div class='col-sm-9 text-left'>
+                    <div class='tab-content'>
+                        <h1 class='text-title'>Datos de $usuario->email</h1>
+                        <hr>
+                        <p class='m-0'><b>Nombre Usuario:</b> $usuario->name</p>
+                        <p class='m-0'><b>Fecha de Nacimiento:</b> ".date('d/m/Y', strtotime($usuario->fechanacimiento))."</p>
+                        <p class='m-0'><b>Rol:</b> $usuario->rol</p>
+                        <hr>
+                    </div>
+                </div>
+                <hr>
+            </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún usuario coincide con esos parámetros</h4>
+                    </div>
+            </div>";
+            }
+
+            $usuarios = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($usuarios);
         }
     }
 
@@ -162,33 +274,29 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "fechaAsc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('fechanacimiento', 'asc')
                     ->get();
             }
             else if ($query == "fechaDesc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('fechanacimiento', 'desc')
                     ->get();
             }
             else if ($query == "nombreAsc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('name', 'asc')
                     ->get();
             }
             else if ($query == "nombreDesc") {
-                $data = DB::table('users')
+                $usuarios = DB::table('users')
                     ->orderBy('name', 'desc')
                     ->get();
             }
-            else {
-                $data = DB::table('users')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $usuario)
+            foreach($usuarios as $usuario)
             {
                 $output .= "            <div class='row mt-5'>
                 <div class='col-sm-3'>
@@ -216,11 +324,72 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $usuarios = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($usuarios);
+        }
+    }
+
+    public function buscarUsersEliminar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $usuarios = DB::table('users')
+                    ->where('name', 'rlike', $query)
+                    ->orWhere('email', 'rlike', $query)
+                    ->get();
+            }
+            else {}
+
+
+            $total_row = $usuarios->count();
+            if($total_row > 0)
+            {
+                foreach($usuarios as $usuario)
+                {
+                    $output .= "            <div class='row mt-5'>
+                <div class='col-sm-3'>
+                    <div class='row'>
+                        <div class='text-center'>
+                            <img src=".asset($usuario->imagenusuario)." class='img-circle img-thumbnail' alt='imagen de perfil del usuario'>
+                        </div><hr><br>
+                    </div>
+                    <div class='row mt-2'>
+                            <a href='".url('/deleteUser', $usuario->id)."' onclick=\"return confirm('¿Estas seguro de eliminar este usuario?')\" class='btnAnular estiloEnlaces'><i class='fas fa-trash fa-2x'></i> Eliminar este usuario</a>
+                     </div>
+                </div>
+                <div class='col-sm-9 text-left'>
+                    <div class='tab-content'>
+                        <h1 class='text-title'>Datos de $usuario->email</h1>
+                        <hr>
+                        <p class='m-0'><b>Nombre Usuario:</b> $usuario->name</p>
+                        <p class='m-0'><b>Fecha de Nacimiento:</b> ".date('d/m/Y', strtotime($usuario->fechanacimiento))."</p>
+                        <p class='m-0'><b>Rol:</b> $usuario->rol</p>
+                        <hr>
+                    </div>
+                </div>
+                <hr>
+            </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún usuario coincide con esos parámetros</h4>
+                    </div>
+            </div>";
+            }
+
+            $usuarios = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($usuarios);
         }
     }
 
@@ -247,8 +416,8 @@ class AdminController extends Controller
     }
 
     public function updateUser() {
-        $usuarios = User::all();
-        return view('admin.users.updateUsers', array("usuarios" => $usuarios));
+        $usuarios = DB::table('users')->paginate(5);
+        return view('admin.users.updateUsers', compact('usuarios'));
     }
 
     public function viewUpdateUser($id) {
@@ -278,8 +447,8 @@ class AdminController extends Controller
     }
 
     public function deleteUser() {
-        $usuarios = User::all();
-        return view('admin.users.deleteUsers', array("usuarios" => $usuarios));
+        $usuarios = DB::table('users')->paginate(5);
+        return view('admin.users.deleteUsers', compact("usuarios"));
     }
 
     public function borrarUsuario($id) {
@@ -294,8 +463,8 @@ class AdminController extends Controller
     //RESTAURANTES
 
     public function getRestaurantes(){
-        $restaurantes = Restaurante::all();
-        return view('admin.restaurantes.viewRestaurantes',array("restaurantes" => $restaurantes));
+        $restaurantes = DB::table('restaurantes')->paginate(5);
+        return view('admin.restaurantes.viewRestaurantes',compact("restaurantes"));
     }
 
     public function buscaSelectLocales(Request $request) {
@@ -303,23 +472,18 @@ class AdminController extends Controller
         $query = $request->get('query');
         if($query != '')
         {
-            $data = DB::table('restaurantes')
+            $restaurantes = DB::table('restaurantes')
                 ->where('ciudad', 'rlike', $query)
                 ->orWhere('zona', 'rlike', $query)
                 ->orderBy('id', 'asc')
                 ->get();
 
         }
-        else
-        {
-            $data = DB::table('restaurantes')
-                ->orderBy('id', 'asc')
-                ->get();
-        }
-        $total_row = $data->count();
+        else {}
+        $total_row = $restaurantes->count();
         if($total_row > 0)
         {
-            foreach($data as $restaurante)
+            foreach($restaurantes as $restaurante)
             {
                 $output .= " <div class='row mt-5'>
                     <div class='row'>
@@ -357,11 +521,11 @@ class AdminController extends Controller
             </div>";
         }
 
-        $data = array(
+        $restaurantes = array(
             'datos'  => $output,
         );
 
-        echo json_encode($data);
+        echo json_encode($restaurantes);
     }
 
     public function buscaLocalesUpdate(Request $request) {
@@ -369,23 +533,18 @@ class AdminController extends Controller
         $query = $request->get('query');
         if($query != '')
         {
-            $data = DB::table('restaurantes')
+            $restaurantes = DB::table('restaurantes')
                 ->where('ciudad', 'rlike', $query)
                 ->orWhere('zona', 'rlike', $query)
                 ->orderBy('id', 'asc')
                 ->get();
 
         }
-        else
-        {
-            $data = DB::table('restaurantes')
-                ->orderBy('id', 'asc')
-                ->get();
-        }
-        $total_row = $data->count();
+        else {}
+        $total_row = $restaurantes->count();
         if($total_row > 0)
         {
-            foreach($data as $restaurante)
+            foreach($restaurantes as $restaurante)
             {
                 $output .= " <div class='row mt-5'>
                     <div class='row'>
@@ -423,11 +582,11 @@ class AdminController extends Controller
             </div>";
         }
 
-        $data = array(
+        $restaurantes = array(
             'datos'  => $output,
         );
 
-        echo json_encode($data);
+        echo json_encode($restaurantes);
     }
 
     public function buscaLocalesDelete(Request $request) {
@@ -435,23 +594,18 @@ class AdminController extends Controller
         $query = $request->get('query');
         if($query != '')
         {
-            $data = DB::table('restaurantes')
+            $restaurantes = DB::table('restaurantes')
                 ->where('ciudad', 'rlike', $query)
                 ->orWhere('zona', 'rlike', $query)
                 ->orderBy('id', 'asc')
                 ->get();
 
         }
-        else
-        {
-            $data = DB::table('restaurantes')
-                ->orderBy('id', 'asc')
-                ->get();
-        }
-        $total_row = $data->count();
+        else{}
+        $total_row = $restaurantes->count();
         if($total_row > 0)
         {
-            foreach($data as $restaurante)
+            foreach($restaurantes as $restaurante)
             {
                 $output .= " <div class='row mt-5'>
                     <div class='row'>
@@ -489,11 +643,11 @@ class AdminController extends Controller
             </div>";
         }
 
-        $data = array(
+        $restaurantes = array(
             'datos'  => $output,
         );
 
-        echo json_encode($data);
+        echo json_encode($restaurantes);
     }
 
     public function newRestaurante() {
@@ -514,8 +668,8 @@ class AdminController extends Controller
     }
 
     public function updateRestaurante() {
-        $restaurantes = Restaurante::all();
-        return view('admin.restaurantes.updateRestaurantes',array("restaurantes" => $restaurantes));
+        $restaurantes = DB::table('restaurantes')->paginate(5);
+        return view('admin.restaurantes.updateRestaurantes',compact("restaurantes"));
     }
 
     public function postUpdateRestaurante(Request $request) {
@@ -537,8 +691,8 @@ class AdminController extends Controller
     }
 
     public function deleteRestaurante() {
-        $restaurantes = Restaurante::all();
-        return view('admin.restaurantes.deleteRestaurantes', array("restaurantes" => $restaurantes));
+        $restaurantes = DB::table('restaurantes')->paginate(5);
+        return view('admin.restaurantes.deleteRestaurantes', compact("restaurantes"));
     }
 
     public function borrarRestaurante($id) {
@@ -553,8 +707,8 @@ class AdminController extends Controller
     //PLATOS
 
     public function getPlatos() {
-        $platos = Plato::all();
-        return view('admin.platos.viewPlatos',array('platos' => $platos));
+        $platos = DB::table('platos')->paginate(5);
+        return view('admin.platos.viewPlatos',compact('platos'));
     }
 
     public function orderPlatos(Request $request) {
@@ -564,33 +718,29 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "precioAsc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('precioPlato', 'asc')
                     ->get();
             }
             else if ($query == "precioDesc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('precioPlato', 'desc')
                     ->get();
             }
             else if ($query == "nombreAsc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('nombrePlato', 'asc')
                     ->get();
             }
             else if ($query == "nombreDesc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('nombrePlato', 'desc')
                     ->get();
             }
-            else {
-                $data = DB::table('platos')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $plato)
+            foreach($platos as $plato)
             {
                 $output .= "<div class='row mt-5'>
                 <div class='col-sm-3'>
@@ -613,11 +763,67 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $platos = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($platos);
+        }
+    }
+
+    public function buscarPlatos(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $platos = DB::table('platos')
+                    ->where('nombrePlato', 'rlike', $query)
+                    ->get();
+            }
+            else {}
+
+
+            $total_row = $platos->count();
+            if($total_row > 0)
+            {
+                foreach($platos as $plato)
+                {
+                    $output .= "<div class='row mt-5'>
+                <div class='col-sm-3'>
+                    <div class='row'>
+                        <div class='text-center'>
+                            <img src='".asset($plato->imagenPlato)."' class='img-circle img-thumbnail'>
+                        </div><hr><br>
+                    </div>
+                </div>
+                <div class='col-sm-9 text-left'>
+                    <div class='tab-content'>
+                        <h1 class='text-title'>$plato->nombrePlato</h1>
+                        <hr>
+                        <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
+                        <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
+                        <hr>
+                    </div>
+                </div>
+                <hr>
+            </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún plato coincide con ese nombre</h4>
+                    </div>
+            </div>";
+            }
+
+            $platos = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($platos);
         }
     }
 
@@ -628,33 +834,29 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "precioAsc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('precioPlato', 'asc')
                     ->get();
             }
             else if ($query == "precioDesc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('precioPlato', 'desc')
                     ->get();
             }
             else if ($query == "nombreAsc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('nombrePlato', 'asc')
                     ->get();
             }
             else if ($query == "nombreDesc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('nombrePlato', 'desc')
                     ->get();
             }
-            else {
-                $data = DB::table('platos')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $plato)
+            foreach($platos as $plato)
             {
                 $output .= "<div class='row mt-5'>
                 <div class='col-sm-3'>
@@ -680,11 +882,70 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $platos = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($platos);
+        }
+    }
+
+    public function buscarPlatosEditar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $platos = DB::table('platos')
+                    ->where('nombrePlato', 'rlike', $query)
+                    ->get();
+            }
+            else {}
+
+
+            $total_row = $platos->count();
+            if($total_row > 0)
+            {
+                foreach($platos as $plato)
+                {
+                    $output .= "<div class='row mt-5'>
+                <div class='col-sm-3'>
+                    <div class='row'>
+                        <div class='text-center'>
+                            <img src='".asset($plato->imagenPlato)."' class='img-circle img-thumbnail'>
+                        </div><hr><br>
+                    </div>
+                    <div class='row mt-2'>
+                            <a class='btn btn-secundary' href='".url('/updatePlato',$plato->id)."'>Editar este plato</a>
+                    </div>
+                </div>
+                <div class='col-sm-9 text-left'>
+                    <div class='tab-content'>
+                        <h1 class='text-title'>$plato->nombrePlato</h1>
+                        <hr>
+                        <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
+                        <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
+                        <hr>
+                    </div>
+                </div>
+                <hr>
+            </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún plato coincide con ese nombre</h4>
+                    </div>
+            </div>";
+            }
+
+            $platos = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($platos);
         }
     }
 
@@ -695,33 +956,29 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "precioAsc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('precioPlato', 'asc')
                     ->get();
             }
             else if ($query == "precioDesc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('precioPlato', 'desc')
                     ->get();
             }
             else if ($query == "nombreAsc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('nombrePlato', 'asc')
                     ->get();
             }
             else if ($query == "nombreDesc") {
-                $data = DB::table('platos')
+                $platos = DB::table('platos')
                     ->orderBy('nombrePlato', 'desc')
                     ->get();
             }
-            else {
-                $data = DB::table('platos')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $plato)
+            foreach($platos as $plato)
             {
                 $output .= "<div class='row mt-5'>
                 <div class='col-sm-3'>
@@ -747,11 +1004,70 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $platos = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($platos);
+        }
+    }
+
+    public function buscarPlatosEliminar(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if($query != '') {
+                $platos = DB::table('platos')
+                    ->where('nombrePlato', 'rlike', $query)
+                    ->get();
+            }
+            else {}
+
+
+            $total_row = $platos->count();
+            if($total_row > 0)
+            {
+                foreach($platos as $plato)
+                {
+                    $output .= "<div class='row mt-5'>
+                <div class='col-sm-3'>
+                    <div class='row'>
+                        <div class='text-center'>
+                            <img src='".asset($plato->imagenPlato)."' class='img-circle img-thumbnail'>
+                        </div><hr><br>
+                    </div>
+                    <div class='row mt-2'>
+                            <a href='".url('/deletePlato', $plato->id)."' onclick=\"return confirm('¿Estas seguro de eliminar este plato?')\" class='btnAnular estiloEnlaces'><i class='fas fa-trash fa-2x'></i> Eliminar este plato</a>
+                    </div>
+                </div>
+                <div class='col-sm-9 text-left'>
+                    <div class='tab-content'>
+                        <h1 class='text-title'>$plato->nombrePlato</h1>
+                        <hr>
+                        <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
+                        <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
+                        <hr>
+                    </div>
+                </div>
+                <hr>
+            </div>";
+                }
+
+            } else {
+                $output = " <div class='row mb-3 text-uppercase'>
+                    <div class='col-12 text-center'>
+                        <h4>Ningún plato coincide con ese nombre</h4>
+                    </div>
+            </div>";
+            }
+
+            $platos = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($platos);
         }
     }
 
@@ -771,8 +1087,8 @@ class AdminController extends Controller
     }
 
     public function updatePlato() {
-        $platos = Plato::all();
-        return view('admin.platos.updatePlatos', array("platos" => $platos));
+        $platos = DB::table('platos')->paginate(5);
+        return view('admin.platos.updatePlatos', compact("platos"));
     }
 
     public function viewUpdatePlato($id) {
@@ -800,8 +1116,8 @@ class AdminController extends Controller
     }
 
     public function deletePlato() {
-        $platos = Plato::all();
-        return view("admin.platos.deletePlatos",array("platos" => $platos));
+        $platos = DB::table('platos')->paginate(5);
+        return view("admin.platos.deletePlatos",compact("platos"));
     }
 
     public function borrarPlato($id) {
@@ -814,11 +1130,13 @@ class AdminController extends Controller
 
     //RESERVAS
     public function getReservas() {
-        $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+        $reservas = DB::table('reservas')
+            ->join('restaurantes','idRestaurante', '=', 'restaurantes.id')
             ->join('users','idUsuario','=','users.id')
-            ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')->get();
+            ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+            ->paginate('1');
 
-        return view('admin.reservas.viewReservas',array("reservas" => $reservas));
+        return view('admin.reservas.viewReservas',compact("reservas"));
     }
 
     public function orderReservas(Request $request) {
@@ -828,29 +1146,23 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "fechaAsc") {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
                     ->join('users','idUsuario','=','users.id')
                     ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
                     ->orderBy('fechaReserva', 'asc')
                     ->get();
             }
             else if ($query == "fechaDesc") {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
                     ->join('users','idUsuario','=','users.id')
                     ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
                     ->orderBy('fechaReserva', 'desc')
                     ->get();
             }
-            else {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
-                    ->join('users','idUsuario','=','users.id')
-                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $reserva)
+            foreach($reservas as $reserva)
             {
                 $output .= " <div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -875,11 +1187,11 @@ class AdminController extends Controller
                 </div>";
             }
 
-            $data = array(
+            $reservas = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($reservas);
         }
     }
 
@@ -890,7 +1202,7 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query != '') {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
                     ->join('users','idUsuario','=','users.id')
                     ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
                     ->where('name', 'rlike', $query)
@@ -898,19 +1210,13 @@ class AdminController extends Controller
                     ->orderBy('fechaReserva', 'asc')
                     ->get();
             }
-            else {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
-                    ->join('users','idUsuario','=','users.id')
-                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            $total_row = $data->count();
+            $total_row = $reservas->count();
             if($total_row > 0)
             {
-                foreach($data as $reserva)
+                foreach($reservas as $reserva)
                 {
                     $output .= " <div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -943,11 +1249,11 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $reservas = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($reservas);
         }
     }
 
@@ -958,29 +1264,23 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "fechaAsc") {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
                     ->join('users','idUsuario','=','users.id')
                     ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
                     ->orderBy('fechaReserva', 'asc')
                     ->get();
             }
             else if ($query == "fechaDesc") {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
                     ->join('users','idUsuario','=','users.id')
                     ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
                     ->orderBy('fechaReserva', 'desc')
                     ->get();
             }
-            else {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
-                    ->join('users','idUsuario','=','users.id')
-                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $reserva)
+            foreach($reservas as $reserva)
             {
                 $output .= " <div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -1008,11 +1308,11 @@ class AdminController extends Controller
                 </div>";
             }
 
-            $data = array(
+            $reservas = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($reservas);
         }
     }
 
@@ -1023,7 +1323,7 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query != '') {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
                     ->join('users','idUsuario','=','users.id')
                     ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
                     ->where('name', 'rlike', $query)
@@ -1031,19 +1331,13 @@ class AdminController extends Controller
                     ->orderBy('fechaReserva', 'asc')
                     ->get();
             }
-            else {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
-                    ->join('users','idUsuario','=','users.id')
-                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            $total_row = $data->count();
+            $total_row = $reservas->count();
             if($total_row > 0)
             {
-                foreach($data as $reserva)
+                foreach($reservas as $reserva)
                 {
                     $output .= " <div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -1079,11 +1373,11 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $reservas = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($reservas);
         }
     }
 
@@ -1094,29 +1388,23 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "fechaAsc") {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
                     ->join('users','idUsuario','=','users.id')
                     ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
                     ->orderBy('fechaReserva', 'asc')
                     ->get();
             }
             else if ($query == "fechaDesc") {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
                     ->join('users','idUsuario','=','users.id')
                     ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
                     ->orderBy('fechaReserva', 'desc')
                     ->get();
             }
-            else {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
-                    ->join('users','idUsuario','=','users.id')
-                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $reserva)
+            foreach($reservas as $reserva)
             {
                 $output .= " <div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -1144,11 +1432,11 @@ class AdminController extends Controller
                 </div>";
             }
 
-            $data = array(
+            $reservas = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($reservas);
         }
     }
 
@@ -1159,7 +1447,7 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query != '') {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+                $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
                     ->join('users','idUsuario','=','users.id')
                     ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
                     ->where('name', 'rlike', $query)
@@ -1167,19 +1455,13 @@ class AdminController extends Controller
                     ->orderBy('fechaReserva', 'asc')
                     ->get();
             }
-            else {
-                $data = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
-                    ->join('users','idUsuario','=','users.id')
-                    ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
-                    ->orderBy('id', 'asc')
-                    ->get();
-            }
+            else {}
 
 
-            $total_row = $data->count();
+            $total_row = $reservas->count();
             if($total_row > 0)
             {
-                foreach($data as $reserva)
+                foreach($reservas as $reserva)
                 {
                     $output .= " <div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -1215,11 +1497,11 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $reservas = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($reservas);
         }
     }
 
@@ -1242,11 +1524,13 @@ class AdminController extends Controller
     }
 
     public function updateReserva() {
-        $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+        $reservas = DB::table('reservas')
+            ->join('restaurantes','idRestaurante', '=', 'restaurantes.id')
             ->join('users','idUsuario','=','users.id')
-            ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')->get();
+            ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+            ->paginate(5);
 
-        return view('admin.reservas.updateReservas',array("reservas" => $reservas));
+        return view('admin.reservas.updateReservas',compact("reservas"));
     }
 
     public function viewUpdateReserva($id) {
@@ -1275,11 +1559,13 @@ class AdminController extends Controller
     }
 
     public function deleteReserva() {
-        $reservas = Reserva::join('restaurantes','idRestaurante', '=', 'restaurantes.id')
+        $reservas = DB::table('reservas')
+            ->join('restaurantes','idRestaurante', '=', 'restaurantes.id')
             ->join('users','idUsuario','=','users.id')
-            ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')->get();
+            ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
+            ->paginate(5);
 
-        return view('admin.reservas.deleteReservas',array("reservas" => $reservas));
+        return view('admin.reservas.deleteReservas',compact("reservas" ));
     }
 
     public function borrarReserva($id) {
@@ -1291,12 +1577,12 @@ class AdminController extends Controller
 
     //VALORACIONES
     public function getValoraciones() {
-        $valoraciones = Valoracion::join('platos','idPlato','platos.id')
+        $valoraciones = DB::table('valoraciones')->join('platos','idPlato','platos.id')
             ->join('users','idUsuario','users.id')
             ->join('restaurantes','idRestaurante','restaurantes.id')
             ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
-            ->get();
-        return view("admin.valoraciones.viewValoraciones",array('valoraciones' => $valoraciones));
+            ->paginate(5);
+        return view("admin.valoraciones.viewValoraciones",compact('valoraciones'));
     }
 
     public function orderValoraciones(Request $request) {
@@ -1306,7 +1592,7 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "fechaAsc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
@@ -1314,7 +1600,7 @@ class AdminController extends Controller
                     ->get();
             }
             else if ($query == "fechaDesc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
@@ -1322,7 +1608,7 @@ class AdminController extends Controller
                     ->get();
             }
             else if ($query == "valorAsc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
@@ -1330,24 +1616,17 @@ class AdminController extends Controller
                     ->get();
             }
             else if ($query == "valorDesc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
                     ->orderBy('valor','desc')
                     ->get();
             }
-            else {
-                $data = Valoracion::join('platos','idPlato','platos.id')
-                    ->join('users','idUsuario','users.id')
-                    ->join('restaurantes','idRestaurante','restaurantes.id')
-                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
-                    ->orderBy('id','asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $valoracion)
+            foreach($valoraciones as $valoracion)
             {
                 $output .= "<div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -1388,11 +1667,11 @@ class AdminController extends Controller
                 </div>";
             }
 
-            $data = array(
+            $valoraciones = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($valoraciones);
         }
     }
 
@@ -1403,7 +1682,7 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query != '') {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
@@ -1411,19 +1690,13 @@ class AdminController extends Controller
                     ->orWhere('email', 'rlike', $query)
                     ->get();
             }
-            else {
-                $data = Valoracion::join('platos','idPlato','platos.id')
-                    ->join('users','idUsuario','users.id')
-                    ->join('restaurantes','idRestaurante','restaurantes.id')
-                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
-                    ->get();
-            }
+            else {}
 
 
-            $total_row = $data->count();
+            $total_row = $valoraciones->count();
             if($total_row > 0)
             {
-                foreach($data as $valoracion)
+                foreach($valoraciones as $valoracion)
                 {
                     $output .= "<div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -1472,11 +1745,11 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $valoraciones = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($valoraciones);
         }
     }
 
@@ -1487,7 +1760,7 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "fechaAsc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
@@ -1495,7 +1768,7 @@ class AdminController extends Controller
                     ->get();
             }
             else if ($query == "fechaDesc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
@@ -1503,7 +1776,7 @@ class AdminController extends Controller
                     ->get();
             }
             else if ($query == "valorAsc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
@@ -1511,24 +1784,17 @@ class AdminController extends Controller
                     ->get();
             }
             else if ($query == "valorDesc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
                     ->orderBy('valor','desc')
                     ->get();
             }
-            else {
-                $data = Valoracion::join('platos','idPlato','platos.id')
-                    ->join('users','idUsuario','users.id')
-                    ->join('restaurantes','idRestaurante','restaurantes.id')
-                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
-                    ->orderBy('id','asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $valoracion)
+            foreach($valoraciones as $valoracion)
             {
                 $output .= "<div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -1572,11 +1838,11 @@ class AdminController extends Controller
                 </div>";
             }
 
-            $data = array(
+            $valoraciones = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($valoraciones);
         }
     }
 
@@ -1587,7 +1853,7 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query != '') {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
@@ -1595,19 +1861,13 @@ class AdminController extends Controller
                     ->orWhere('email', 'rlike', $query)
                     ->get();
             }
-            else {
-                $data = Valoracion::join('platos','idPlato','platos.id')
-                    ->join('users','idUsuario','users.id')
-                    ->join('restaurantes','idRestaurante','restaurantes.id')
-                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
-                    ->get();
-            }
+            else {}
 
 
-            $total_row = $data->count();
+            $total_row = $valoraciones->count();
             if($total_row > 0)
             {
-                foreach($data as $valoracion)
+                foreach($valoraciones as $valoracion)
                 {
                     $output .= "<div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -1659,11 +1919,11 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $valoraciones = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($valoraciones);
         }
     }
 
@@ -1674,7 +1934,7 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query == "fechaAsc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
@@ -1682,7 +1942,7 @@ class AdminController extends Controller
                     ->get();
             }
             else if ($query == "fechaDesc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
@@ -1690,7 +1950,7 @@ class AdminController extends Controller
                     ->get();
             }
             else if ($query == "valorAsc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
@@ -1698,24 +1958,17 @@ class AdminController extends Controller
                     ->get();
             }
             else if ($query == "valorDesc") {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
                     ->orderBy('valor','desc')
                     ->get();
             }
-            else {
-                $data = Valoracion::join('platos','idPlato','platos.id')
-                    ->join('users','idUsuario','users.id')
-                    ->join('restaurantes','idRestaurante','restaurantes.id')
-                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
-                    ->orderBy('id','asc')
-                    ->get();
-            }
+            else {}
 
 
-            foreach($data as $valoracion)
+            foreach($valoraciones as $valoracion)
             {
                 $output .= "<div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -1759,11 +2012,11 @@ class AdminController extends Controller
                 </div>";
             }
 
-            $data = array(
+            $valoraciones = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($valoraciones);
         }
     }
 
@@ -1774,7 +2027,7 @@ class AdminController extends Controller
             $query = $request->get('query');
 
             if($query != '') {
-                $data = Valoracion::join('platos','idPlato','platos.id')
+                $valoraciones = Valoracion::join('platos','idPlato','platos.id')
                     ->join('users','idUsuario','users.id')
                     ->join('restaurantes','idRestaurante','restaurantes.id')
                     ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
@@ -1782,19 +2035,13 @@ class AdminController extends Controller
                     ->orWhere('email', 'rlike', $query)
                     ->get();
             }
-            else {
-                $data = Valoracion::join('platos','idPlato','platos.id')
-                    ->join('users','idUsuario','users.id')
-                    ->join('restaurantes','idRestaurante','restaurantes.id')
-                    ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
-                    ->get();
-            }
+            else {}
 
 
-            $total_row = $data->count();
+            $total_row = $valoraciones->count();
             if($total_row > 0)
             {
-                foreach($data as $valoracion)
+                foreach($valoraciones as $valoracion)
                 {
                     $output .= "<div class='row mt-5'>
                     <div class='col-sm-3'>
@@ -1846,11 +2093,11 @@ class AdminController extends Controller
             </div>";
             }
 
-            $data = array(
+            $valoraciones = array(
                 'datos'  => $output,
             );
 
-            echo json_encode($data);
+            echo json_encode($valoraciones);
         }
     }
 
@@ -1885,12 +2132,12 @@ class AdminController extends Controller
     }
 
     public function updateValoracion() {
-        $valoraciones = Valoracion::join('platos','idPlato','platos.id')
+        $valoraciones = DB::table('valoraciones')->join('platos','idPlato','platos.id')
             ->join('users','idUsuario','users.id')
             ->join('restaurantes','idRestaurante','restaurantes.id')
-            ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
-            ->get();
-        return view("admin.valoraciones.updateValoraciones",array('valoraciones' => $valoraciones));
+            ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+            ->paginate(5);
+        return view("admin.valoraciones.viewValoraciones",compact('valoraciones'));
     }
 
     public function viewUpdateValoracion($id) {
@@ -1930,12 +2177,12 @@ class AdminController extends Controller
     }
 
     public function deleteValoracion() {
-        $valoraciones = Valoracion::join('platos','idPlato','platos.id')
+        $valoraciones = DB::table('valoraciones')->join('platos','idPlato','platos.id')
             ->join('users','idUsuario','users.id')
             ->join('restaurantes','idRestaurante','restaurantes.id')
-            ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
-            ->get();
-        return view("admin.valoraciones.deleteValoraciones",array('valoraciones' => $valoraciones));
+            ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+            ->paginate(5);
+        return view("admin.valoraciones.viewValoraciones",compact('valoraciones'));
     }
 
     public function borrarValoracion($id) {

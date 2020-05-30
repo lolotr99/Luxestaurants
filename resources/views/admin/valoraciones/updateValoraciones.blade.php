@@ -81,7 +81,11 @@
             @endforeach
         </div>
 
-        <div class="row ml-5 mt-5">
+        <div class="row mt-5">
+            {!! $valoraciones->render() !!}
+        </div>
+
+        <div class="row ml-5 mt-5 mb-3">
             <div class="col-sm-12">
                 <a class="estiloEnlaces" href="{{url('/control')}}"><img src="{{asset('img/volver.png')}}"/><span class="ml-3">Volver a página de control</span></a>
             </div>

@@ -12,13 +12,25 @@
         <div class="row mt-5">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="filtroEditar">Ordenar por: </label>
-                    <select id="filtroEditar" name="filtroEditar" class="form-control">
-                        <option value="nombreAsc">A-Z</option>
-                        <option value="nombreDesc">Z-A</option>
-                        <option value="fechaDesc">Jóvenes Primero</option>
-                        <option value="fechaAsc">Mayores Primero</option>
-                    </select>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <label for="filtroEditar">Ordenar por: </label>
+                                <select id="filtroEditar" name="filtroEditar" class="form-control">
+                                    <option value="nombreAsc">A-Z</option>
+                                    <option value="nombreDesc">Z-A</option>
+                                    <option value="fechaDesc">Jóvenes Primero</option>
+                                    <option value="fechaAsc">Mayores Primero</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row ml-2">
+                                <label for="buscadorUsersEditar">Busca por email o nombre de usuario </label>
+                                <input type="text" class="form-control" name="buscadorUsersEditar" id="buscadorUsersEditar" placeholder="busca por email o nombre de usuario">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,6 +61,11 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="row mt-5">
+            {!! $usuarios->render() !!}
+        </div>
+
 
         <div class="row ml-5 mt-5">
             <div class="col-sm-12">

@@ -87,8 +87,68 @@ class RestauranteController extends Controller
     }
 
     public function getCarta() {
-        $carta = Plato::all();
-        return view('carta', array('carta' => $carta));
+        $carta = DB::table('platos')->orderBy('categoria', 'asc')->paginate(6);
+        return view('carta', compact('carta'));
+    }
+
+    public function filtrarCarta(Request $request) {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+
+            if ($query == "entrante") {
+                $data = DB::table('platos')
+                    ->orderBy('id', 'asc')
+                    ->where('categoria', '=', $query)
+                    ->get();
+            }
+            else if ($query == "plato") {
+                $data = DB::table('platos')
+                    ->orderBy('id', 'asc')
+                    ->where('categoria', '=', $query)
+                    ->get();
+            }
+            else if ($query == "postre") {
+                $data = DB::table('platos')
+                    ->orderBy('id', 'asc')
+                    ->where('categoria', '=', $query)
+                    ->get();
+            }
+            else {}
+
+
+            $output .= "<article>
+            <section class='row'>
+                <div class='col-sm-12 text-center pt-5'>
+                    <h1 class='text-title text-uppercase'>$query"."S</h1>
+                    <hr>
+                </div>
+            </section>
+
+            <div class='row text-secondary'>";
+            foreach($data as $plato)
+            {
+                $output.="
+                        <div class='col-sm-4 text-center'>
+                            <a class='estiloEnlaces' href='".url('/carta',$plato->id)."'>
+                                <div class='hover hover-1'>
+                                    <img class='imgCarta' src='".asset($plato->imagenPlato)."'>
+                                </div>
+                                <span>$plato->nombrePlato</span>
+                                <img src='".asset('img/ir.png')."'>
+                            </a></div>";
+
+            }
+
+            $output.="</div></article>";
+
+            $data = array(
+                'datos'  => $output,
+            );
+
+            echo json_encode($data);
+        }
     }
 
     public function detailsPlato($id) {

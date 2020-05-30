@@ -18,11 +18,12 @@ Route::get('/locales', 'RestauranteController@getRestaurantes');
 Route::get('/localesAjax/action','RestauranteController@action')->name('localesAjax.action');
 Route::get('/locales/{id}','RestauranteController@detallesRestaurante');
 Route::get('/carta','RestauranteController@getCarta');
+Route::get('/carta/filtroCarta','RestauranteController@filtrarCarta')->name('carta.filtroCarta');
 Route::get('/carta/{id}','RestauranteController@detailsPlato');
 Route::get('/about', 'RestauranteController@aboutUs');
 Route::post('/contacto','RestauranteController@contact');
 
-Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
+Route::group(['middleware' => 'auth',  'middleware' => 'verified'], function() {
     Route::post('/reservar', 'RestauranteController@reservar');
     Route::get('/anularReserva/{id}', 'RestauranteController@anularReserva');
     Route::get('/descargarPDF/{id}', 'RestauranteController@descargarPDF');
@@ -38,14 +39,17 @@ Route::group(['middleware' => 'auth', 'middleware' => 'admin'], function() {
 
     Route::get('/selectUsers','AdminController@getUsers');
     Route::get('/orderUsers/filtro','AdminController@orderUsers')->name('orderUsers.filtro');
+    Route::get('/buscaUsers/buscadorUsers','AdminController@buscarUsers')->name('buscaUsers.buscadorUsers');
     Route::get('/newUser','AdminController@newUser');
     Route::post('/postNewUser','AdminController@postNewUser');
     Route::get('/updateUser','AdminController@updateUser');
     Route::get('/orderUsersEditar/filtroEditar','AdminController@orderUsersEditar')->name('orderUsersEditar.filtroEditar');
+    Route::get('/buscaUsersEditar/buscadorUsersEditar','AdminController@buscarUsersEditar')->name('buscaUsersEditar.buscadorUsersEditar');
     Route::get('/updateUser/{id}','AdminController@viewUpdateUser');
     Route::post('/postUpdateUser','AdminController@postUpdateUser');
     Route::get('/deleteUser','AdminController@deleteUser');
     Route::get('/orderUsersEliminar/filtroEliminar','AdminController@orderUsersEliminar')->name('orderUsersEliminar.filtroEliminar');
+    Route::get('/buscaUsersEliminar/buscadorUsersEliminar','AdminController@buscarUsersEliminar')->name('buscaUsersEliminar.buscadorUsersEliminar');
     Route::get('/deleteUser/{id}', 'AdminController@borrarUsuario');
 
 
@@ -64,14 +68,17 @@ Route::group(['middleware' => 'auth', 'middleware' => 'admin'], function() {
 
     Route::get('/selectPlatos','AdminController@getPlatos');
     Route::get('/orderPlatos/filtroPlato','AdminController@orderPlatos')->name('orderPlatos.filtroPlato');
+    Route::get('/buscaPlatos/buscadorPlatos','AdminController@buscarPlatos')->name('buscaPlatos.buscadorPlatos');
     Route::get('/newPlato','AdminController@newPlato');
     Route::post('/postNewPlato','AdminController@postNewPlato');
     Route::get('/updatePlato','AdminController@updatePlato');
     Route::get('/orderPlatosEditar/filtroPlatoEditar','AdminController@orderPlatosEditar')->name('orderPlatosEditar.filtroPlatoEditar');
+    Route::get('/buscaPlatosEditar/buscadorPlatosEditar','AdminController@buscarPlatosEditar')->name('buscaPlatosEditar.buscadorPlatosEditar');
     Route::get('/updatePlato/{id}','AdminController@viewUpdatePlato');
     Route::post('/postUpdatePlato','AdminController@postUpdatePlato');
     Route::get('/deletePlato','AdminController@deletePlato');
     Route::get('/orderPlatosEliminar/filtroPlatoEliminar','AdminController@orderPlatosEliminar')->name('orderPlatosEliminar.filtroPlatoEliminar');
+    Route::get('/buscaPlatosEliminar/buscadorPlatosEliminar','AdminController@buscarPlatosEliminar')->name('buscaPlatosEliminar.buscadorPlatosEliminar');
     Route::get('/deletePlato/{id}', 'AdminController@borrarPlato');
 
     Route::get('/selectReservas','AdminController@getReservas');
@@ -104,7 +111,6 @@ Route::group(['middleware' => 'auth', 'middleware' => 'admin'], function() {
     Route::get('/buscaValoracionesEliminar/buscadorValoracionesEliminar','AdminController@buscaValoracionesEliminar')->name('buscaValoracionesEliminar.buscadorValoracionesEliminar');
     Route::get('/deleteValoracion/{id}', 'AdminController@borrarValoracion');
 });
-
 
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');

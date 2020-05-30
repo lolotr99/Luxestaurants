@@ -27,10 +27,14 @@
 <script src="{{asset('js/rating.js')}}"></script>
 <script src="{{asset('tail-datetime/js/tail.datetime.js')}}"></script>
 <script src="{{asset('tail-datetime/langs/tail.datetime-es.js')}}"></script>
+<script src="{{asset('js/filtroCarta.js')}}"></script>
 
 <script src="{{asset('js/orderUsers.js')}}"></script>
+<script src="{{asset('js/buscaUsers.js')}}"></script>
 <script src="{{asset('js/orderUsersEditar.js')}}"></script>
+<script src="{{asset('js/buscaUsersEditar.js')}}"></script>
 <script src="{{asset('js/orderUsersEliminar.js')}}"></script>
+<script src="{{asset('js/buscaUsersEliminar.js')}}"></script>
 
 <script src="{{asset('js/selectLocales.js')}}"></script>
 <script src="{{asset('js/selectLocalesUpdate.js')}}"></script>
@@ -40,8 +44,11 @@
 <script src="{{asset('js/newMap.js')}}"></script>
 
 <script src="{{asset('js/orderPlatos.js')}}"></script>
+<script src="{{asset('js/buscaPlatos.js')}}"></script>
 <script src="{{asset('js/orderPlatosEditar.js')}}"></script>
+<script src="{{asset('js/buscaPlatosEditar.js')}}"></script>
 <script src="{{asset('js/orderPlatosEliminar.js')}}"></script>
+<script src="{{asset('js/buscaPlatosEliminar.js')}}"></script>
 
 <script src="{{asset('js/orderReservas.js')}}"></script>
 <script src="{{asset('js/buscaReservas.js')}}"></script>

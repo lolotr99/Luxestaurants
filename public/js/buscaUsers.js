@@ -5,7 +5,7 @@ $(document).ready(function(){
     function fetch_customer_data(query = '')
     {
         $.ajax({
-            url: "orderUsers/filtro",
+            url: "buscaUsers/buscadorUsers",
             method:'GET',
             data:{query:query},
             dataType:'json',
@@ -16,7 +16,7 @@ $(document).ready(function(){
         })
     }
 
-    $(document).on('change', '#filtro', function(){
+    $(document).on('keyup', '#buscadorUsers', function(){
         var query = $(this).val();
         fetch_customer_data(query);
     });

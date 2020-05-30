@@ -51,7 +51,7 @@
                             <p class="m-0"><b>Restaurante: </b> {{ $reserva->ciudad}} ~ {{$reserva->zona}}</p>
                             <p class="m-0"><b>Titular de la Reserva: </b>{{$reserva->nombrePersona}}</p>
                             <p class="m-0"><b>Mesa para: </b>{{$reserva->personas}} personas</p>
-                            <p class="m-0"><b>Fecha y hora: </b>{{$reserva->fechaReserva->toFormattedDateString()}} a las {{ date('H:i', strtotime($reserva->fechaReserva)) }}</p>
+                            <p class="m-0"><b>Fecha y hora: </b>{{date('d/m/Y',strtotime($reserva->fechaReserva))}} a las {{ date('H:i', strtotime($reserva->fechaReserva)) }}</p>
                             <hr>
                         </div>
                     </div>
@@ -60,7 +60,11 @@
             @endforeach
         </div>
 
-        <div class="row ml-5 mt-5">
+        <div class="row mt-5">
+            {!! $reservas->render() !!}
+        </div>
+
+        <div class="row ml-5 mt-5 mb-3">
             <div class="col-sm-12">
                 <a class="estiloEnlaces" href="{{url('/control')}}"><img src="{{asset('img/volver.png')}}"/><span class="ml-3">Volver a página de control</span></a>
             </div>

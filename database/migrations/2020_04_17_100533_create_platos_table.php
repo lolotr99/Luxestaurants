@@ -19,6 +19,7 @@ class CreatePlatosTable extends Migration
             $table->longText('descripcion');
             $table->string('imagenPlato');
             $table->double('precioPlato');
+            $table->enum('categoria',['entrante','plato','postre']);
             $table->timestamps();
         });
     }

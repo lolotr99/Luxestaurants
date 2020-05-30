@@ -5,18 +5,18 @@ $(document).ready(function(){
     function fetch_customer_data(query = '')
     {
         $.ajax({
-            url: "orderUsers/filtro",
+            url: "buscaUsersEditar/buscadorUsersEditar",
             method:'GET',
             data:{query:query},
             dataType:'json',
             success:function(data)
             {
-                $('#usuarios').html(data.datos);
+                $('#usuariosEditar').html(data.datos);
             }
         })
     }
 
-    $(document).on('change', '#filtro', function(){
+    $(document).on('keyup', '#buscadorUsersEditar', function(){
         var query = $(this).val();
         fetch_customer_data(query);
     });
