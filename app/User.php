@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Notifications\CustomEmailVerification;
+use App\Notifications\CustomEmailVerify;
 use App\Notifications\CustomResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,6 +45,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function sendEmailVerificationNotification() {
-        $this->notify(new CustomEmailVerification());
+        $this->notify(new CustomEmailVerify());
     }
 }

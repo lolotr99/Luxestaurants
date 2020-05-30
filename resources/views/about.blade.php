@@ -7,14 +7,16 @@
         <div class="row">
             <section class="col-sm-9 text-justify pt-5">
                 <div class="row">
-                    <h1 class="text-title">Asi empezo</h1>
+                    <h1 class="text-title">Así empezó</h1>
                 </div>
                 <div class="row">
-                    <p>Aquí va el texto descriptivo de la empresa </p>
+                    <p>Luxestaurantes ofrece desde 1994 un servicio de restauración exclusivo, con el único objetivo de responder a altos estándares de calidad.
+                        La carta de Luxestaurants abarca una amplia gama de platos, cuyos ingredientes proceden de lugares exóticos de diversos países del mundo.
+                        Nuestros cocineros poseen altas cualidades para preparar todos y cada uno de nuestros platos. ¡Disfruta de la experiencia en Luxestaurants!</p>
                 </div>
             </section>
             <aside class="col-sm-3 pt-5">
-                <div class="row">
+                <div class="row ml-3 mt-3">
                     <img class="" src="img/logo1.png">
                 </div>
             </aside>
