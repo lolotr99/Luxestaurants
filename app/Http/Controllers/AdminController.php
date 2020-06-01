@@ -754,6 +754,7 @@ class AdminController extends Controller
                     <div class='tab-content'>
                         <h1 class='text-title'>$plato->nombrePlato</h1>
                         <hr>
+                        <p class='m-0'><b>Categoría: </b>$plato->categoria</p>
                         <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
                         <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
                         <hr>
@@ -802,6 +803,7 @@ class AdminController extends Controller
                     <div class='tab-content'>
                         <h1 class='text-title'>$plato->nombrePlato</h1>
                         <hr>
+                        <p class='m-0'><b>Categoría: </b>$plato->categoria</p>
                         <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
                         <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
                         <hr>
@@ -873,6 +875,7 @@ class AdminController extends Controller
                     <div class='tab-content'>
                         <h1 class='text-title'>$plato->nombrePlato</h1>
                         <hr>
+                        <p class='m-0'><b>Categoría: </b>$plato->categoria</p>
                         <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
                         <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
                         <hr>
@@ -924,6 +927,7 @@ class AdminController extends Controller
                     <div class='tab-content'>
                         <h1 class='text-title'>$plato->nombrePlato</h1>
                         <hr>
+                        <p class='m-0'><b>Categoría: </b>$plato->categoria</p>
                         <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
                         <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
                         <hr>
@@ -995,6 +999,7 @@ class AdminController extends Controller
                     <div class='tab-content'>
                         <h1 class='text-title'>$plato->nombrePlato</h1>
                         <hr>
+                        <p class='m-0'><b>Categoría: </b>$plato->categoria</p>
                         <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
                         <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
                         <hr>
@@ -1046,6 +1051,7 @@ class AdminController extends Controller
                     <div class='tab-content'>
                         <h1 class='text-title'>$plato->nombrePlato</h1>
                         <hr>
+                        <p class='m-0'><b>Categoría: </b>$plato->categoria</p>
                         <p class='m-0'><b>Descripción: </b> $plato->descripcion</p>
                         <p class='m-0'><b>Precio: </b> $plato->precioPlato €</p>
                         <hr>
@@ -1081,6 +1087,7 @@ class AdminController extends Controller
         $plato->precioPlato = $request->input('precioPlato');
         $plato->descripcion = $request->input('descripcion');
         $plato->imagenPlato = $request->file('imagenPlato')->move('img',$request->file('imagenPlato')->getClientOriginalName());
+        $plato->categoria = $request->input('categoria');
         $plato->save();
         flash('Nuevo plato creado correctamente');
         return redirect('/selectPlatos');
@@ -1109,6 +1116,7 @@ class AdminController extends Controller
             $plato->imagenPlato = $request->input('imagenAntigua');
         }
 
+        $plato->categoria = $request->input('categoria');
         $plato->save();
         flash('Plato editado correctamente');
 

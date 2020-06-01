@@ -53,11 +53,13 @@
                 <div class="row mt-4">
                     <div class="col-md-12">
                         <div class="md-form mb-0">
-                            <label for="datetime">Fecha (*)</label>
-                            <input type="text" id="datetime"  name="datetime" required onfocus="dateTime()" class="demo form-control">
+                            <label for="datetime">Fecha y hora de reserva(*)</label>
+                            <input type="text" id="datetime"  name="datetime" minlength="19" maxlength="19" readonly required onfocus="dateTime()" class="demo form-control">
                         </div>
                         <script>
                             function dateTime() {
+                                var d = new Date();
+
                                 tail.DateTime("#datetime", {
                                     dateFormat: "dd-mm-YYYY",
                                     timeFormat: "HH:ii",
@@ -71,8 +73,8 @@
                                     ],
 
 
-                                    timeHours: 0,
-                                    timeMinutes: 0,
+                                    timeHours: d.getHours(),
+                                    timeMinutes: d.getMinutes(),
                                     timeSeconds: null,
                                     timeIncrement: true,
                                     timeStepHours: 1,

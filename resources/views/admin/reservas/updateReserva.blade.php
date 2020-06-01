@@ -12,8 +12,8 @@
                         <input type="hidden" name="ocultoReserva" id="ocultoReserva" value="{{$reserva->id}}">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="usuario">Elige el usuario</label>
-                                <select id="usuario" name="usuario" class="form-control">
+                                <label for="usuario">Elige el usuario (*)</label>
+                                <select id="usuario" name="usuario" required class="form-control">
                                     @foreach ($usuarios as $usuario)
                                         @if($usuario->id == $reserva->idUsuario)
                                             <option value="{{$usuario->id}}" selected>{{$usuario->name}} ~ {{$usuario->email}}</option>
@@ -24,8 +24,8 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="restaurante">Elige el restaurante</label>
-                                <select id="restaurante" name="restaurante" class="form-control">
+                                <label for="restaurante">Elige el restaurante (*)</label>
+                                <select id="restaurante" name="restaurante" required class="form-control">
                                     @foreach ($restaurantes as $restaurante)
                                         @if($restaurante->id == $reserva->idRestaurante)
                                             <option value="{{$restaurante->id}}" selected>{{$restaurante->ciudad}} ~ {{$restaurante->zona}}</option>
@@ -39,7 +39,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
-                                    <label for="titular">Titular de la reserva</label>
+                                    <label for="titular">Titular de la reserva (*)</label>
                                     <input type="text" id="titular" name="titular"  class="form-control" required  value="{{$reserva->nombrePersona}}" placeholder="Nombre y Apellidos">
                                 </div>
                             </div>
@@ -55,11 +55,12 @@
                         <div class="row mt-4">
                             <div class="col-md-12">
                                 <div class="md-form mb-0">
-                                    <label for="datetime">Fecha (*)</label>
-                                    <input type="text" id="datetime"  name="datetime" minlength="19" maxlength="19" value="{{$reserva->fechaReserva}}" required onfocus="dateTime()" class="demo form-control">
+                                    <label for="datetime">Fecha y hora de la reserva(*)</label>
+                                    <input type="text" id="datetime"  name="datetime" readonly minlength="19" maxlength="19" value="{{$reserva->fechaReserva}}" required onfocus="dateTime()" class="demo form-control">
                                 </div>
                                 <script>
                                     function dateTime() {
+                                        var d = new Date();
                                         tail.DateTime("#datetime", {
                                             dateFormat: "dd-mm-YYYY",
                                             timeFormat: "HH:ii",
@@ -73,8 +74,8 @@
                                             ],
 
 
-                                            timeHours: 0,
-                                            timeMinutes: 0,
+                                            timeHours: d.getHours(),
+                                            timeMinutes: d.getMinutes(),
                                             timeSeconds: null,
                                             timeIncrement: true,
                                             timeStepHours: 1,

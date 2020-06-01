@@ -11,8 +11,8 @@
                     <input type="hidden" value="{{$restaurante->id}}" name="ocultoId" id="ocultoId">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="ciudad">Ciudad</label>
-                            <select name="ciudad" id="ciudad" class="form-control" size="1">
+                            <label for="ciudad">Ciudad (*)</label>
+                            <select name="ciudad" id="ciudad" required class="form-control" size="1">
                                 <option value='A Coruña' {{ ("A Coruña" == $restaurante->ciudad ? "selected":"") }}>A Coruña</option>
                                 <option value='Álava' {{ ("Álava" == $restaurante->ciudad ? "selected":"") }}> Álava</option>
                                 <option value='Albacete' {{ ("Albacete" == $restaurante->ciudad ? "selected":"") }}>Albacete</option>
@@ -68,17 +68,17 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="zona">Zona</label>
+                            <label for="zona">Zona (*)</label>
                             <input type="text" name="zona" value="{{$restaurante->zona}}" class="form-control" required id="zona">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="numeromesas">Nº de mesas</label>
-                            <input type="number" class="form-control" value="{{$restaurante->numeromesas}}" id="numeromesas" name="numeromesas">
+                            <label for="numeromesas">Nº de mesas (*)</label>
+                            <input type="number" class="form-control" required value="{{$restaurante->numeromesas}}" id="numeromesas" name="numeromesas">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="telefono">Nº de Teléfono</label>
+                            <label for="telefono">Nº de Teléfono (*)</label>
                             <input type="tel" name="telefono" value="{{$restaurante->telefono}}" class="form-control" required id="telefono">
                         </div>
                     </div>

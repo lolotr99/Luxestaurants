@@ -43,6 +43,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="categoria" class="col-form-label">Categoria (*)</label>
+                        <select name="categoria" class="form-control" required id="categoria">
+                            <option value="entrante" {{ ("entrante" == $plato->categoria ? "selected":"") }}>Entrante</option>
+                            <option value="plato"  {{ ("plato" == $plato->categoria ? "selected":"") }}>Plato</option>
+                            <option value="postre"  {{ ("postre" == $plato->categoria ? "selected":"") }}>Postre</option>
+                        </select>
+                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Guardar Plato</button>
                         <a class="btn btn-secundary" href="{{url('/updatePlato')}}">Cancelar</a>

@@ -10,7 +10,7 @@
                         {{csrf_field()}}
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="usuario">Elige el usuario</label>
+                                <label for="usuario">Elige el usuario (*)</label>
                                 <select id="usuario" name="usuario" required class="form-control">
                                     @foreach ($usuarios as $usuario)
                                         <option value="{{$usuario->id}}">{{$usuario->name}} ~ {{$usuario->email}}</option>
@@ -18,7 +18,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="restaurante">Elige el restaurante</label>
+                                <label for="restaurante">Elige el restaurante (*)</label>
                                 <select id="restaurante" name="restaurante" required class="form-control">
                                     @foreach ($restaurantes as $restaurante)
                                         <option value="{{$restaurante->id}}">{{$restaurante->ciudad}} ~ {{$restaurante->zona}}</option>
@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
-                                    <label for="titular">Titular de la reserva</label>
+                                    <label for="titular">Titular de la reserva (*)</label>
                                     <input type="text" id="titular" name="titular"  class="form-control" required  placeholder="Nombre y Apellidos">
                                 </div>
                             </div>
@@ -45,8 +45,8 @@
                         <div class="row mt-4">
                             <div class="col-md-12">
                                 <div class="md-form mb-0">
-                                    <label for="datetime">Fecha (*)</label>
-                                    <input type="text" id="datetime"  name="datetime" minlength="19" maxlength="19" required onfocus="dateTime()" class="demo form-control">
+                                    <label for="datetime">Fecha y hora de la reserva (*)</label>
+                                    <input type="text" id="datetime"  name="datetime" readonly minlength="19" maxlength="19" required onfocus="dateTime()" class="demo form-control">
                                 </div>
                                 <script>
                                     function dateTime() {

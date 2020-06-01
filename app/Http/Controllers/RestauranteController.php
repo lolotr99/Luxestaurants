@@ -87,7 +87,7 @@ class RestauranteController extends Controller
     }
 
     public function getCarta() {
-        $carta = DB::table('platos')->orderBy('categoria', 'asc')->paginate(6);
+        $carta = DB::table('platos')->orderBy('categoria', 'asc')->get();
         return view('carta', compact('carta'));
     }
 
@@ -97,7 +97,12 @@ class RestauranteController extends Controller
             $output = '';
             $query = $request->get('query');
 
-            if ($query == "entrante") {
+            if ($query == "todos") {
+                $data = DB::table('platos')
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
+            else if ($query == "entrante") {
                 $data = DB::table('platos')
                     ->orderBy('id', 'asc')
                     ->where('categoria', '=', $query)
@@ -118,7 +123,8 @@ class RestauranteController extends Controller
             else {}
 
 
-            $output .= "<article>
+            if ($query != "todos") {
+                $output .= "<article>
             <section class='row'>
                 <div class='col-sm-12 text-center pt-5'>
                     <h1 class='text-title text-uppercase'>$query"."S</h1>
@@ -127,9 +133,10 @@ class RestauranteController extends Controller
             </section>
 
             <div class='row text-secondary'>";
-            foreach($data as $plato)
-            {
-                $output.="
+                foreach($data as $plato)
+                {
+
+                        $output.="
                         <div class='col-sm-4 text-center'>
                             <a class='estiloEnlaces' href='".url('/carta',$plato->id)."'>
                                 <div class='hover hover-1'>
@@ -139,9 +146,84 @@ class RestauranteController extends Controller
                                 <img src='".asset('img/ir.png')."'>
                             </a></div>";
 
-            }
 
-            $output.="</div></article>";
+
+                }
+                $output.="</div></article>";
+            }
+            else {
+                $output.= " <article>
+            <section class='row'>
+                <div class='col-sm-12 text-center pt-5'>
+                    <h1 class='text-title text-uppercase'>ENTRANTES</h1>
+                    <hr>
+                </div>
+            </section>
+
+            <div class='row text-secondary'>";
+                foreach($data as $plato)
+                {
+                    if($plato->categoria == "entrante") {
+                        $output .= "<div class='col-sm-4 text-center'>
+                            <a class='estiloEnlaces' href='" . url('/carta', $plato->id) . "'>
+                                <div class='hover hover-1'>
+                                    <img class='imgCarta' src='" . asset($plato->imagenPlato) . "'>
+                                </div>
+                                <span>$plato->nombrePlato</span>
+                                <img src='" . asset('img/ir.png') . "'>
+                            </a></div>";
+                    }
+                }
+                $output.="</div></article>";
+
+                $output.= " <article>
+            <section class='row'>
+                <div class='col-sm-12 text-center pt-5'>
+                    <h1 class='text-title text-uppercase'>PLATOS</h1>
+                    <hr>
+                </div>
+            </section>
+
+            <div class='row text-secondary'>";
+                foreach($data as $plato)
+                {
+                    if($plato->categoria == "plato") {
+                        $output .= "<div class='col-sm-4 text-center'>
+                            <a class='estiloEnlaces' href='" . url('/carta', $plato->id) . "'>
+                                <div class='hover hover-1'>
+                                    <img class='imgCarta' src='" . asset($plato->imagenPlato) . "'>
+                                </div>
+                                <span>$plato->nombrePlato</span>
+                                <img src='" . asset('img/ir.png') . "'>
+                            </a></div>";
+                    }
+                }
+                $output.="</div></article>";
+
+                $output.= " <article>
+            <section class='row'>
+                <div class='col-sm-12 text-center pt-5'>
+                    <h1 class='text-title text-uppercase'>POSTRES</h1>
+                    <hr>
+                </div>
+            </section>
+
+            <div class='row text-secondary'>";
+                foreach($data as $plato)
+                {
+                    if($plato->categoria == "postre") {
+                        $output .= "<div class='col-sm-4 text-center'>
+                            <a class='estiloEnlaces' href='" . url('/carta', $plato->id) . "'>
+                                <div class='hover hover-1'>
+                                    <img class='imgCarta' src='" . asset($plato->imagenPlato) . "'>
+                                </div>
+                                <span>$plato->nombrePlato</span>
+                                <img src='" . asset('img/ir.png') . "'>
+                            </a></div>";
+                    }
+                }
+                $output.="</div></article>";
+            }
 
             $data = array(
                 'datos'  => $output,

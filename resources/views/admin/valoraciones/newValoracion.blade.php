@@ -10,7 +10,7 @@
                         {{csrf_field()}}
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="usuarioRestaurante">Elige usuario y restaurante de la valoración</label>
+                                <label for="usuarioRestaurante">Elige usuario y restaurante de la valoración (*)</label>
                                 <select id="usuarioRestaurante" required name="usuarioRestaurante" class="form-control">
                                     @foreach ($reservas as $reserva)
                                         <option value="{{$reserva->idUsuario}}{{$reserva->idRestaurante}}">{{$reserva->name}} ~ {{$reserva->email}} en {{$reserva->zona}} de {{$reserva->ciudad}}</option>
@@ -18,7 +18,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="plato">Elige el plato</label>
+                                <label for="plato">Elige el plato (*)</label>
                                 <select id="plato" name="plato" required class="form-control">
                                     @foreach($platos as $plato)
                                         <option value="{{$plato->id}}">{{$plato->nombrePlato}}</option>
@@ -30,10 +30,11 @@
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
                                     <label for="datetime">Fecha de Valoración</label>
-                                    <input type="text" id="datetime"  name="datetime" minlength="19" maxlength="19" required onfocus="dateTime()" class="demo form-control">
+                                    <input type="text" id="datetime" readonly name="datetime" minlength="19" maxlength="19" required onfocus="dateTime()" class="demo form-control">
                                 </div>
                                 <script>
                                     function dateTime() {
+                                        var d = new Date();
                                         tail.DateTime("#datetime", {
                                             dateFormat: "dd-mm-YYYY",
                                             timeFormat: "HH:ii:ss",
@@ -41,9 +42,9 @@
                                             position: "top",
 
 
-                                            timeHours: 0,
-                                            timeMinutes: 0,
-                                            timeSeconds: 0,
+                                            timeHours: d.getHours(),
+                                            timeMinutes: d.getMinutes(),
+                                            timeSeconds: d.getSeconds(),
                                             timeIncrement: true,
                                             timeStepHours: 1,
                                             timeStepMinutes: 30,
@@ -56,7 +57,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="valor">Valoración</label>
+                                <label for="valor">Valoración (*)</label>
                                 <select class="form-control fa" id="valor" required name="valor">
                                     <option value="1" >@for($i = 0; $i<1;$i++)&#xf005;@endfor</option>
                                     <option value="2" >@for($i = 0; $i<2;$i++)&#xf005;@endfor</option>
@@ -69,7 +70,7 @@
 
                         <div class="row mt-4">
                             <div class="col-md-12">
-                               <label for="comentario">Comentario</label>
+                               <label for="comentario">Comentario (*)</label>
                                 <textarea class="form-control" id="comentario" required name="comentario"></textarea>
                             </div>
                         </div>

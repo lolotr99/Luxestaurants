@@ -10,6 +10,7 @@ $color-footer-title : #d6d6d6 !important;
 .imgPerfil {
   width: 50px;
 }
+
 .hoverEffect {
   width: 400px;
   border-radius: 50px;
@@ -31,6 +32,15 @@ $color-footer-title : #d6d6d6 !important;
 
 .hover-1:hover img {
   left: 0;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+.carousel-caption {
+    top:30%;
+    bottom:auto;
 }
 
 .imgCarta {

@@ -15,21 +15,29 @@
                     {{csrf_field()}}
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="nombrePlato">Nombre del Plato</label>
+                            <label for="nombrePlato">Nombre del Plato (*)</label>
                             <input type="text" required class="form-control" id="nombrePlato" name="nombrePlato">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="precioPlato">Precio</label>
+                            <label for="precioPlato">Precio (*)</label>
                             <input type="number"  step=".50" name="precioPlato" min="0" class="form-control" required id="precioPlato" placeholder="0,00€">
                         </div>
                     </div>
                     <div class="form-row">
-                        <label for="descripcion">Descripcion</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                        <label for="descripcion">Descripcion (*)</label>
+                        <textarea class="form-control" id="descripcion" required name="descripcion"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="imagenPlato" class="col-form-label">Seleccionar Imagen</label>
-                        <input type="file" name="imagenPlato" accept=".png, .jpg" id="imagenPlato"  required class="form-control">
+                        <label for="imagenPlato" class="col-form-label">Seleccionar Imagen (*)</label>
+                        <input type="file" name="imagenPlato" accept="image/*" id="imagenPlato"  required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria" class="col-form-label">Categoria (*)</label>
+                        <select name="categoria" class="form-control" required id="categoria">
+                            <option value="entrante">Entrante</option>
+                            <option value="plato">Plato</option>
+                            <option value="postre">Postre</option>
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Crear Plato</button>

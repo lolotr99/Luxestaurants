@@ -12,8 +12,8 @@
                         <input type="hidden" name="ocultoValoracion" id="ocultoValoracion" value="{{$valoracion->id}}">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="usuarioRestaurante">Elige usuario y restaurante de la valoración</label>
-                                <select id="usuarioRestaurante" name="usuarioRestaurante" class="form-control">
+                                <label for="usuarioRestaurante">Elige usuario y restaurante de la valoración (*)</label>
+                                <select id="usuarioRestaurante" name="usuarioRestaurante" required class="form-control">
                                     @foreach ($reservas as $reserva)
                                         @if ($reserva->idUsuario == $valoracion->idUsuario && $reserva->idRestaurante == $valoracion->idRestaurante)
                                             <option value="{{$reserva->idUsuario}}{{$reserva->idRestaurante}}" selected>{{$reserva->name}} ~ {{$reserva->email}} en {{$reserva->zona}} de {{$reserva->ciudad}}</option>
@@ -24,8 +24,8 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="plato">Elige el plato</label>
-                                <select id="plato" name="plato" class="form-control">
+                                <label for="plato">Elige el plato (*)</label>
+                                <select id="plato" name="plato" required class="form-control">
                                     @foreach($platos as $plato)
                                         @if($plato->id == $valoracion->idPlato)
                                             <option value="{{$plato->id}}" selected>{{$plato->nombrePlato}}</option>
@@ -39,11 +39,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
-                                    <label for="datetime">Fecha de Valoración</label>
-                                    <input type="text" id="datetime"  name="datetime" minlength="19" maxlength="19" value="{{$valoracion->fechaValoracion}}" required onfocus="dateTime()" class="demo form-control">
+                                    <label for="datetime">Fecha de Valoración (*)</label>
+                                    <input type="text" id="datetime"  readonly name="datetime" minlength="19" maxlength="19" value="{{$valoracion->fechaValoracion}}" required onfocus="dateTime()" class="demo form-control">
                                 </div>
                                 <script>
                                     function dateTime() {
+                                        var d = new Date();
                                         tail.DateTime("#datetime", {
                                             dateFormat: "dd-mm-YYYY",
                                             timeFormat: "HH:ii:ss",
@@ -51,9 +52,9 @@
                                             position: "top",
 
 
-                                            timeHours: 0,
-                                            timeMinutes: 0,
-                                            timeSeconds: 0,
+                                            timeHours: d.getHours(),
+                                            timeMinutes: d.getMinutes(),
+                                            timeSeconds: d.getSeconds(),
                                             timeIncrement: true,
                                             timeStepHours: 1,
                                             timeStepMinutes: 30,
@@ -66,8 +67,8 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="valor">Valoración</label>
-                                <select class="form-control fa" id="valor" name="valor">
+                                <label for="valor">Valoración (*)</label>
+                                <select class="form-control fa" required id="valor" name="valor">
                                     <option value="1" {{ (1 == $valoracion->valor ? "selected":"") }}>@for($i = 0; $i<1;$i++)&#xf005;@endfor</option>
                                     <option value="2" {{ (2 == $valoracion->valor ? "selected":"") }}>@for($i = 0; $i<2;$i++)&#xf005;@endfor</option>
                                     <option value="3" {{ (3 == $valoracion->valor ? "selected":"") }}>@for($i = 0; $i<3;$i++)&#xf005;@endfor</option>
@@ -79,8 +80,8 @@
 
                         <div class="row mt-4">
                             <div class="col-md-12">
-                               <label for="comentario">Comentario</label>
-                                <textarea class="form-control" id="comentario" name="comentario">{{$valoracion->comentario}}</textarea>
+                               <label for="comentario">Comentario (*)</label>
+                                <textarea class="form-control" id="comentario" required name="comentario">{{$valoracion->comentario}}</textarea>
                             </div>
                         </div>
 

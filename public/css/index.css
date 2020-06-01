@@ -33,6 +33,16 @@
   left: 0;
 }
 
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-caption {
+  top: 30%;
+  bottom: auto;
+}
+
 .imgCarta {
   width: 25rem;
   height: 16.625rem;

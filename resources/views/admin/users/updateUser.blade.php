@@ -11,21 +11,21 @@
                     <input type="hidden" name="ocultoUser" value="{{$usuario->id}}">
                     <input type="hidden" name="imagenAntigua" value="{{$usuario->imagenusuario}}">
                     <div class="form-group">
-                        <label for="email" class="col-form-label">Email</label>
+                        <label for="email" class="col-form-label">Email (*)</label>
                         <input type="email" required class="form-control" name="email" id="email" value="{{$usuario->email}}">
                     </div>
                     <div class="form-group">
-                        <label for="nombre" class="col-form-label">Nombre Usuario</label>
+                        <label for="nombre" class="col-form-label">Nombre Usuario (*)</label>
                         <input type="text" required class="form-control" name="nombre" id="nombre" value="{{$usuario->name}}">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="pass">Contraseña</label>
+                            <label for="pass">Contraseña (*)</label>
                             <input type="password" required class="form-control" id="pass" name="pass">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="fecha">Fecha Nacimiento</label>
-                            <input type="date" name="fecha"  value="{{$usuario->fechanacimiento}}" class="form-control" required id="fecha">
+                            <label for="fecha">Fecha Nacimiento (*)</label>
+                            <input type="date" name="fecha" value="{{$usuario->fechanacimiento}}" class="form-control" required id="fecha">
                         </div>
                     </div>
                     <div class="form-group">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="rol" class="col-form-label">Rol</label>
+                        <label for="rol" class="col-form-label">Rol (*)</label>
                         <select name="rol" class="form-control" required id="rol">
                             <option value="administrador" {{ ("administrador" == $usuario->rol ? "selected":"") }}>Administrador</option>
                             <option value="basico" {{ ("basico" == $usuario->rol ? "selected":"") }}>Básico</option>

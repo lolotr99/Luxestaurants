@@ -53,6 +53,7 @@
                         <div class="tab-content">
                             <h1 class="text-title">{{$plato->nombrePlato}}</h1>
                             <hr>
+                            <p class="m-0"><b>Categoría: </b>{{$plato->categoria}}</p>
                             <p class="m-0"><b>Descripción: </b> {{ $plato->descripcion}}</p>
                             <p class="m-0"><b>Precio: </b>{{$plato->precioPlato}} €</p>
                             <hr>

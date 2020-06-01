@@ -9,7 +9,7 @@
                 <!-- Content -->
                 <h5 class="mb-4 text-uppercase font-weight-bold">Luxestaurants</h5>
                 <p class="text-footer-cuerpo">¿Tienes alguna duda sobre nuestro funcionamiento? Te ayudaremos en lo que necesites</p>
-                <p class="text-footer-cuerpo"> <i class="fas fa-envelope"></i><span class="ml-2">aboutluxestaurants@gmail.com</span></p>
+                <p class="text-footer-cuerpo"> <a style="text-decoration: none; color: #AB2417" href="{{url('/about')}}"><i class="fas fa-envelope"></i><span class="ml-2">aboutluxestaurants@gmail.com</span></a></p>
             </div>
             <!-- Grid column -->
 

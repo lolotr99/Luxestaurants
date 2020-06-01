@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid text-secondary">
     <section class="row ">
         <div class="col p-0">
             <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
@@ -10,13 +10,19 @@
 
                 </ol>
                 <div class="carousel-inner p-0 h-100">
-                    <div class="carousel-item active  p-0 h-100">
-                        <img class="d-block w-100" src="img/mantel4.jpg" alt="First slide">
-                    </div>
-                    <div class="carousel-item p-0">
-                       <img class="d-block w-100" src="img/mantel4.jpg" alt="Second slide">
+                    <div class="carousel-item p-0 active">
+                        <img class="d-block w-100" src="img/menu.PNG" alt="First slide">
                     </div>
 
+                    <div class="carousel-item p-0 h-100">
+                        <a href="{{url('/carta')}}">
+                            <img class="d-block w-100" src="img/madera.jpg" alt="Second slide">
+                            <div class="carousel-caption">
+                                <h1>¿Quieres ver nuestros platos?</h1>
+                                <p><i class="fas fa-utensils"></i> Haz click en la imagen para ir a la carta</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

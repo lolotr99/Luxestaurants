@@ -10,8 +10,8 @@
                     {{csrf_field()}}
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="ciudad">Ciudad</label>
-                            <select name="ciudad" id="ciudad" class="form-control" size="1">
+                            <label for="ciudad">Ciudad (*)</label>
+                            <select name="ciudad" id="ciudad" required class="form-control" size="1">
                                 <option value='A Coruña'>A Coruña</option>
                                 <option value='Álava'> Álava</option>
                                 <option value='Albacete'>Albacete</option>
@@ -42,7 +42,7 @@
                                 <option value='León' >León</option>
                                 <option value='Lleida'>Lleida</option>
                                 <option value='Lugo' >Lugo</option>
-                                <option value='Madrid' >Madrid</option>
+                                <option value='Madrid' selected>Madrid</option>
                                 <option value='Málaga' >Málaga</option>
                                 <option value='Mallorca' >Mallorca</option>
                                 <option value='Melilla' >Melilla</option>
@@ -67,22 +67,22 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="zona">Zona</label>
+                            <label for="zona">Zona (*)</label>
                             <input type="text" name="zona" class="form-control" required id="zona">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="numeromesas">Nº de mesas</label>
-                            <input type="number" class="form-control"  id="numeromesas" name="numeromesas">
+                            <label for="numeromesas">Nº de mesas (*)</label>
+                            <input type="number" class="form-control" required id="numeromesas" name="numeromesas">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="telefono">Nº de Teléfono</label>
+                            <label for="telefono">Nº de Teléfono (*)</label>
                             <input type="tel" name="telefono" class="form-control" required id="telefono">
                         </div>
                     </div>
                     <div class="form-row">
-                        <label for="mapa">Elige nueva ubicación del restaurante</label>
+                        <label for="mapa">Elige nueva ubicación del restaurante (Madrid por defecto)</label>
                         <input type="text" id="newMapa" name="newMapa" class="form-control">
 
                         <div style="width: 100%">
