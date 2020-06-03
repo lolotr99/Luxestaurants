@@ -10,7 +10,7 @@
                     <h1 class="text-title">Así empezó</h1>
                 </div>
                 <div class="row">
-                    <p>Luxestaurantes ofrece desde 1994 un servicio de restauración exclusivo, con el único objetivo de responder a altos estándares de calidad.
+                    <p>Luxestaurantes ofrece desde 2020 un servicio de restauración exclusivo, con el único objetivo de responder a altos estándares de calidad.
                         La carta de Luxestaurants abarca una amplia gama de platos, cuyos ingredientes proceden de lugares exóticos de diversos países del mundo.
                         Nuestros cocineros poseen altas cualidades para preparar todos y cada uno de nuestros platos. ¡Disfruta de la experiencia en Luxestaurants!</p>
                 </div>

@@ -17,6 +17,16 @@ use Illuminate\Support\Facades\Mail;
 
 class RestauranteController extends Controller
 {
+    public function isVerify() {
+        if (Auth::check()) {
+            if (Auth::user()->email_verified_at != null) {
+                return redirect('/');
+            } else {
+                return redirect('/email/verify');
+            }
+        }
+    }
+
     public function getIndex()
     {
         return view('home');

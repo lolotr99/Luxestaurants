@@ -13,17 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'RestauranteController@getIndex');
-Route::get('/locales', 'RestauranteController@getRestaurantes');
-Route::get('/localesAjax/action','RestauranteController@action')->name('localesAjax.action');
-Route::get('/locales/{id}','RestauranteController@detallesRestaurante');
-Route::get('/carta','RestauranteController@getCarta');
-Route::get('/carta/filtroCarta','RestauranteController@filtrarCarta')->name('carta.filtroCarta');
-Route::get('/carta/{id}','RestauranteController@detailsPlato');
-Route::get('/about', 'RestauranteController@aboutUs');
-Route::post('/contacto','RestauranteController@contact');
+Route::get('/isVerify','RestauranteController@isVerify');
+Route::group(['middleware' => 'isVerify'], function() {
+    Route::get('/', 'RestauranteController@getIndex');
+    Route::get('/locales', 'RestauranteController@getRestaurantes');
+    Route::get('/localesAjax/action', 'RestauranteController@action')->name('localesAjax.action');
+    Route::get('/locales/{id}', 'RestauranteController@detallesRestaurante');
+    Route::get('/carta', 'RestauranteController@getCarta');
+    Route::get('/carta/filtroCarta', 'RestauranteController@filtrarCarta')->name('carta.filtroCarta');
+    Route::get('/carta/{id}', 'RestauranteController@detailsPlato');
+    Route::get('/about', 'RestauranteController@aboutUs');
+    Route::post('/contacto', 'RestauranteController@contact');
+});
 
-Route::group(['middleware' => 'auth',  'middleware' => 'verified'], function() {
+Route::group(['middleware' => 'auth',  'middleware' => 'isVerify'], function() {
     Route::post('/reservar', 'RestauranteController@reservar');
     Route::get('/anularReserva/{id}', 'RestauranteController@anularReserva');
     Route::get('/descargarPDF/{id}', 'RestauranteController@descargarPDF');

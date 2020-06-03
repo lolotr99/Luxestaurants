@@ -1142,7 +1142,7 @@ class AdminController extends Controller
             ->join('restaurantes','idRestaurante', '=', 'restaurantes.id')
             ->join('users','idUsuario','=','users.id')
             ->select('users.email','users.name','users.imagenusuario','restaurantes.zona','restaurantes.ciudad','reservas.nombrePersona','reservas.personas','reservas.fechaReserva','reservas.id')
-            ->paginate('1');
+            ->paginate('5');
 
         return view('admin.reservas.viewReservas',compact("reservas"));
     }
@@ -1578,6 +1578,10 @@ class AdminController extends Controller
 
     public function borrarReserva($id) {
         $reserva = Reserva::find($id);
+        DB::table('valoraciones')
+            ->where("idUsuario", '=', $reserva->idUsuario)
+            ->where("idRestaurante","=",$reserva->idRestaurante)
+            ->delete();
         $reserva->delete();
         flash('Reserva eliminada correctamente');
         return redirect('/deleteReserva');
@@ -2143,9 +2147,9 @@ class AdminController extends Controller
         $valoraciones = DB::table('valoraciones')->join('platos','idPlato','platos.id')
             ->join('users','idUsuario','users.id')
             ->join('restaurantes','idRestaurante','restaurantes.id')
-            ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+            ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
             ->paginate(5);
-        return view("admin.valoraciones.viewValoraciones",compact('valoraciones'));
+        return view("admin.valoraciones.updateValoraciones",array('valoraciones' => $valoraciones));
     }
 
     public function viewUpdateValoracion($id) {
@@ -2188,9 +2192,9 @@ class AdminController extends Controller
         $valoraciones = DB::table('valoraciones')->join('platos','idPlato','platos.id')
             ->join('users','idUsuario','users.id')
             ->join('restaurantes','idRestaurante','restaurantes.id')
-            ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato')
+            ->select('users.imagenusuario','users.name','users.email','valoraciones.fechaValoracion','valoraciones.comentario','valoraciones.valor','restaurantes.ciudad','restaurantes.zona','platos.imagenPlato','valoraciones.id')
             ->paginate(5);
-        return view("admin.valoraciones.viewValoraciones",compact('valoraciones'));
+        return view("admin.valoraciones.deleteValoraciones",compact('valoraciones'));
     }
 
     public function borrarValoracion($id) {
